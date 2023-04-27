@@ -1,1 +1,5 @@
 python train_offline_cbam.py /home/sdeevi/Research/Datasets/FLIR_Aligned --checkpoint  /home/sdeevi/Research/deep-sensor-fusion-main/Pretrained\ Model\ Files/model_best.pth.tar --num-classes 90 --model efficientdetv2_dt --branch fusion --batch-size=8 --epochs=50 --freeze-layer fusion_cbam --mean 0.519 0.519 0.519 --std 0.225 0.225 0.225 --save="EXP_CBAM_FULL" 
+
+python train_offline_comp_att.py /home/sdeevi/Research/Datasets/FLIR_Aligned --checkpoint  /home/sdeevi/Research/deep-sensor-fusion-main/Pretrained\ Model\ Files/model_best.pth.tar --num-classes 90 --model efficientdetv2_dt --branch fusion --batch-size=8 --epochs=50 --freeze-layer fusion_att_block --mean 0.519 0.519 0.519 --std 0.225 0.225 0.225 --save="EXP_ECA_NIGHT"
+
+python train_offline_comp_att_shuffle.py /home/sdeevi/Research/Datasets/FLIR_Aligned --checkpoint  /home/sdeevi/Research/deep-sensor-fusion-main/Pretrained\ Model\ Files/model_best.pth.tar --num-classes 90 --model efficientdetv2_dt --branch fusion --batch-size=8 --epochs=50 --freeze-layer shuffle_att_block --mean 0.519 0.519 0.519 --std 0.225 0.225 0.225 --save="EXP_SHUFFLE_DAY"
