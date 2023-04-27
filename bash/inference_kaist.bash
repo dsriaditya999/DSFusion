@@ -1,0 +1,1 @@
+python validate_segmentation.py /home/carson/data/kaist/ --dataset=kaist --model=resnet50 --num-classes=19 --batch-size=8 --img-size=640 --gpu=1 --num-workers=4 --pretrained-weights=weights/resnet50-kaist-20221016-041249/weights-0300.pt

@@ -1,0 +1,1 @@
+python ../train_segmentation.py /home/shivansh_gupta/ir_seg_dataset/ --dataset=mfn --model=resnet50 --num-classes=9 --branch=thermal --batch-size=32 --img-size=640 --wandb --gpu=1 --lr=1e-2

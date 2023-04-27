@@ -1,0 +1,1 @@
+python train_segmentation.py /home/carson/data/cityscapes/ --dataset=cityscapes --model=resnet50 --num-classes=19 --num-workers=16 --batch-size=48 --img-size=768 --gpu=1 --epochs=480 --cityscapes-split fine --lr=1e-2 --use-amp --wandb

@@ -1,0 +1,1 @@
+python validate_cbam.py /home/sdeevi/Research/Datasets/FLIR_Aligned/ --checkpoint /home/sdeevi/Research/deep-sensor-fusion-main/output/train_test_offline/20230424-213752-EXP_CBAM_NIGHT/model_best.pth.tar --num-classes 90 --model efficientdetv2_dt --branch fusion --classwise --split test --mean 0.519 0.519 0.519 --std 0.225 0.225 0.225
