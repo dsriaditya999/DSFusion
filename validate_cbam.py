@@ -52,7 +52,7 @@ parser.add_argument('root', metavar='DIR',
                     help='path to dataset root')
 parser.add_argument('--dataset', default='flir_aligned', type=str, metavar='DATASET',
                     help='Name of dataset (default: "coco"')
-parser.add_argument('--split', default='train',
+parser.add_argument('--split', default='test',
                     help='test split')
 parser.add_argument('--model', '-m', metavar='MODEL', default='tf_efficientdet_d1',
                     help='model architecture (default: tf_efficientdet_d1)')
@@ -161,6 +161,7 @@ def validate(args):
         bench = torch.nn.DataParallel(bench, device_ids=list(range(args.num_gpu)))
 
     dataset = create_dataset(args.dataset, args.root, args.split)
+    print(args.batch_size)
     input_config = resolve_input_config(args, model_config)
     loader = create_loader(
         dataset,

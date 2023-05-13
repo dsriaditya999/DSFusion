@@ -52,7 +52,7 @@ parser.add_argument('root', metavar='DIR',
                     help='path to dataset root')
 parser.add_argument('--dataset', default='flir_aligned', type=str, metavar='DATASET',
                     help='Name of dataset (default: "coco"')
-parser.add_argument('--split', default='train',
+parser.add_argument('--split', default='test',
                     help='test split')
 parser.add_argument('--model', '-m', metavar='MODEL', default='tf_efficientdet_d1',
                     help='model architecture (default: tf_efficientdet_d1)')

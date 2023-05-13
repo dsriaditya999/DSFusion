@@ -18,8 +18,12 @@ from models.detector import DetBenchTrainImagePair
 from models.models import FusionNet_New
 from utils.evaluator import CocoEvaluator
 from utils.utils import visualize_detections, visualize_target
-from torch.utils.data import random_split
 
+import matplotlib.pyplot as plt
+import numpy as np
+
+def count_parameters(model):
+    return np.sum(np.prod(v.size()) for name, v in model.named_parameters() if "auxiliary" not in name)
 
 def set_eval_mode(network, freeze_layer):
     for name, module in network.named_modules():
@@ -100,7 +104,14 @@ if __name__ == '__main__':
         net_dict = net.state_dict()
         
         new_checkpoint_dict = {k: v for k, v in checkpoint_dict.items() if k in net_dict}
-        net_dict.update(new_checkpoint_dict)
+        second_checkpoint_dict = {k: v for k, v in new_checkpoint_dict.items() if args.freeze_layer not in k}
+        net_dict.update(second_checkpoint_dict)
+
+        for k, v in second_checkpoint_dict.items():
+            if args.freeze_layer in k:
+                print("Something Went Wrong")
+                print(k)
+
         net.load_state_dict(net_dict) 
         
         print('Loaded checkpoint from ', args.checkpoint)
@@ -110,9 +121,23 @@ if __name__ == '__main__':
 
     freeze(training_bench, args.freeze_layer)
     
+    full_backbone_params = count_parameters(training_bench.model.thermal_backbone) + count_parameters(training_bench.model.rgb_backbone)
+    head_net_params = count_parameters(training_bench.model.fusion_class_net) + count_parameters(training_bench.model.fusion_box_net)
+    bifpn_params = count_parameters(training_bench.model.fusion_fpn)
+    full_params = count_parameters(training_bench.model)
+    fusion_net_params = count_parameters(training_bench.model.fusion_cbam0)+count_parameters(training_bench.model.fusion_cbam1)+count_parameters(training_bench.model.fusion_cbam2)
+
+
+    print("*"*50)
+    print("Backbone Params : {}".format(full_backbone_params) )
+    print("Head Network Params : {}".format(head_net_params) )
+    print("BiFPN Params : {}".format(bifpn_params) )
+    print("Fusion Nets Params : {}".format(fusion_net_params) )
+    print("Total Model Parameters : {}".format(full_params) )
     total_trainable_params = sum(p.numel() for p in training_bench.parameters() if p.requires_grad)
     total_params = sum(p.numel() for p in training_bench.parameters())
     print('Total Parameters: {:,} \nTotal Trainable: {:,}\n'.format(total_params, total_trainable_params))
+    print("*"*50)
 
     training_bench.cuda()
 
@@ -122,31 +147,6 @@ if __name__ == '__main__':
     input_config = resolve_input_config(args, model_config)
 
     train_dataset, val_dataset = create_dataset(args.dataset, args.root)
-    # generator1 = torch.Generator().manual_seed(42)
-    # train_set, val_set = random_split(train_dataset,[0.8,0.2],generator=generator1)
-
-    # print(train_dataset.img_ids)
-    # print(val_set.img_ids)
-
-   
-
-    # validation_split = 0.2
-    # shuffle_dataset = True
-    # random_seed= 42
-
-    # # Creating data indices for training and validation splits:
-    # dataset_size = len(train_dataset)
-    # indices = list(range(dataset_size))
-    # split = int(np.floor(validation_split * dataset_size))
-    # if shuffle_dataset :
-    #     np.random.seed(random_seed)
-    #     np.random.shuffle(indices)
-    
-    # train_indices, val_indices = indices[split:], indices[:split]
-
-    # # Creating PT data samplers and loaders:
-    # train_sampler = SubsetRandomSampler(train_indices)
-    # val_sampler = SubsetRandomSampler(val_indices)
 
     train_dataloader = create_loader(
         train_dataset,
@@ -161,7 +161,6 @@ if __name__ == '__main__':
         pin_mem=args.pin_mem,
         is_training=True
         )
-        # sampler=train_sampler)
 
     val_dataloader = create_loader(
         val_dataset,
@@ -174,7 +173,6 @@ if __name__ == '__main__':
         std=input_config['std'],
         num_workers=args.workers,
         pin_mem=args.pin_mem)
-        # sampler=val_sampler)
 
     evaluator = CocoEvaluator(val_dataset, distributed=False, pred_yxyx=False)
 
@@ -185,7 +183,7 @@ if __name__ == '__main__':
         datetime.now().strftime("%Y%m%d-%H%M%S"),
         args.save
     ])
-    output_dir = get_outdir(output_base, 'train_test_offline', exp_name)
+    output_dir = get_outdir(output_base, 'final_train_offline', exp_name)
     saver = CheckpointSaver(
         net, optimizer, args=args, checkpoint_dir=output_dir)
 
@@ -199,6 +197,10 @@ if __name__ == '__main__':
           config=config
         )
 
+    train_loss = []
+    val_loss = []
+
+
     for epoch in range(1, args.epochs + 1):
         
         train_losses_m = AverageMeter()
@@ -208,24 +210,29 @@ if __name__ == '__main__':
         set_eval_mode(training_bench, args.freeze_layer) 
 
         pbar = tqdm.tqdm(train_dataloader)
+        batch_train_loss = []
         for batch in pbar:
             pbar.set_description('Epoch {}/{}'.format(epoch, args.epochs + 1))
 
             thermal_img_tensor, rgb_img_tensor, target = batch[0], batch[1], batch[2]
 
-            output = training_bench(thermal_img_tensor, rgb_img_tensor, target, eval_pass=False,branch=args.branch)
+            output = training_bench(thermal_img_tensor, rgb_img_tensor, target, eval_pass=False)
             loss = output['loss']
             train_losses_m.update(loss.item(), thermal_img_tensor.size(0))
+            batch_train_loss.append(loss.item())
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
 
             if args.wandb:
                visualize_target(train_dataset, target, wandb, args, 'train')
+
+        train_loss.append(sum(batch_train_loss)/len(batch_train_loss))
         
         training_bench.eval()
         with torch.no_grad():
             pbar = tqdm.tqdm(val_dataloader)
+            batch_val_loss = []
             for batch in tqdm.tqdm(val_dataloader):
                 pbar.set_description('Validating...')
                 thermal_img_tensor, rgb_img_tensor, target = batch[0], batch[1], batch[2]
@@ -233,9 +240,20 @@ if __name__ == '__main__':
                 output = training_bench(thermal_img_tensor, rgb_img_tensor, target, eval_pass=True)
                 loss = output['loss']
                 val_losses_m.update(loss.item(), thermal_img_tensor.size(0))
+                batch_val_loss.append(loss.item())
                 evaluator.add_predictions(output['detections'], target)
                 if args.wandb and epoch == args.epochs:
                     visualize_detections(val_dataset, output['detections'], target, wandb, args, 'val')
 
+            val_loss.append(sum(batch_val_loss)/len(batch_val_loss))
+
         if saver is not None:
             best_metric, best_epoch = saver.save_checkpoint(epoch=epoch, metric=evaluator.evaluate())
+
+    # Plotting the training and validation loss curves and saving the plot
+
+    plt.plot(train_loss, label='Training loss')
+    plt.plot(val_loss, label='Validation loss')
+    plt.legend(frameon=False)
+    plt.savefig(os.path.join(output_dir,'loss_plot.png'))
+

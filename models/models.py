@@ -103,14 +103,8 @@ class FusionNet_New(nn.Module):
         rgb_det = EfficientDet(self.config)
         
         self.thermal_backbone = thermal_det.backbone
-        self.thermal_fpn = thermal_det.fpn
-        self.thermal_class_net = thermal_det.class_net
-        self.thermal_box_net = thermal_det.box_net
 
         self.rgb_backbone = rgb_det.backbone
-        self.rgb_fpn = rgb_det.fpn
-        self.rgb_class_net = rgb_det.class_net
-        self.rgb_box_net = rgb_det.box_net
 
         fusion_det = EfficientDet(self.config)
         self.fusion_fpn = fusion_det.fpn
@@ -335,14 +329,8 @@ class Att_FusionNet(nn.Module):
         rgb_det = EfficientDet(self.config)
         
         self.thermal_backbone = thermal_det.backbone
-        self.thermal_fpn = thermal_det.fpn
-        self.thermal_class_net = thermal_det.class_net
-        self.thermal_box_net = thermal_det.box_net
 
         self.rgb_backbone = rgb_det.backbone
-        self.rgb_fpn = rgb_det.fpn
-        self.rgb_class_net = rgb_det.class_net
-        self.rgb_box_net = rgb_det.box_net
 
         fusion_det = EfficientDet(self.config)
         self.fusion_fpn = fusion_det.fpn
@@ -471,14 +459,8 @@ class Shuffle_Att_FusionNet(nn.Module):
         rgb_det = EfficientDet(self.config)
 
         self.thermal_backbone = thermal_det.backbone
-        self.thermal_fpn = thermal_det.fpn
-        self.thermal_class_net = thermal_det.class_net
-        self.thermal_box_net = thermal_det.box_net
 
         self.rgb_backbone = rgb_det.backbone
-        self.rgb_fpn = rgb_det.fpn
-        self.rgb_class_net = rgb_det.class_net
-        self.rgb_box_net = rgb_det.box_net
 
         fusion_det = EfficientDet(self.config)
         self.fusion_fpn = fusion_det.fpn
