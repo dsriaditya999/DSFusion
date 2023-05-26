@@ -18,6 +18,7 @@ from models.detector import DetBenchTrainImagePair
 from models.models import FusionNet_New
 from utils.evaluator import CocoEvaluator
 from utils.utils import visualize_detections, visualize_target
+from copy import deepcopy
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -68,8 +69,12 @@ if __name__ == '__main__':
                         help='Image augmentation fill (background) color ("mean" or int)')
     parser.add_argument('--log-freq', default=10, type=int,
                         metavar='N', help='batch logging frequency (default: 10)')
-    parser.add_argument('--checkpoint', default='', type=str, metavar='PATH',
+    parser.add_argument('--rgb_checkpoint', default='', type=str, metavar='PATH',
                         help='path to latest checkpoint (default: none)')
+    parser.add_argument('--thermal_checkpoint', default='', type=str, metavar='PATH',
+                        help='path to latest checkpoint (default: none)')
+    parser.add_argument('--head', default='', type=str, metavar='HEAD',
+                        help='the inference head ("thermal", "rgb", "fusion", or "single")')
     parser.add_argument('--pretrained', dest='pretrained', action='store_true',
                         help='use pre-trained model')
     parser.add_argument('--no-prefetcher', action='store_true', default=False,
@@ -95,27 +100,90 @@ if __name__ == '__main__':
 
     net = FusionNet_New(args.num_classes)
 
-    # load checkpoint
-    if args.checkpoint:
-        
-        checkpoint = torch.load(args.checkpoint)
-        checkpoint_dict = checkpoint["state_dict"]
-        
-        net_dict = net.state_dict()
-        
-        new_checkpoint_dict = {k: v for k, v in checkpoint_dict.items() if k in net_dict}
-        second_checkpoint_dict = {k: v for k, v in new_checkpoint_dict.items() if args.freeze_layer not in k}
-        net_dict.update(second_checkpoint_dict)
+    # Load All Checkpoints
+    if args.rgb_checkpoint != '' and args.thermal_checkpoint != '':
 
-        for k, v in second_checkpoint_dict.items():
-            if args.freeze_layer in k:
-                print("Something Went Wrong")
-                print(k)
+        rgb_checkpoint = torch.load(args.rgb_checkpoint)
 
-        net.load_state_dict(net_dict) 
+        # Load RGB Backbone and FPN
+
+        rgb_checkpoint_dict = deepcopy(rgb_checkpoint["state_dict"])
+
+        for key in rgb_checkpoint["state_dict"].keys():
+            if "backbone" in key or "fpn" in key:
+                rgb_checkpoint_dict["rgb_"+key] = rgb_checkpoint["state_dict"][key]
+            
+            del rgb_checkpoint_dict[key]
+            
+
+        # Load Thermal Backbone and FPN
+
+        thermal_checkpoint = torch.load(args.thermal_checkpoint)
+
+        thermal_checkpoint_dict = deepcopy(thermal_checkpoint["state_dict"])
+
+        for key in thermal_checkpoint["state_dict"].keys():
+            if "backbone" in key or "fpn" in key:
+                thermal_checkpoint_dict["rgb_"+key] = thermal_checkpoint["state_dict"][key]
+
+            del thermal_checkpoint_dict[key]
+
+        # Load Class and Head Weights
+
+        if args.head == "rgb":
+
+            fusion_checkpoint_dict =  deepcopy(rgb_checkpoint["state_dict"])
+
+            for key in rgb_checkpoint["state_dict"].keys():
+
+                if "class_net" in key or "box_net" in key:
+                    fusion_checkpoint_dict["fusion"+key] = rgb_checkpoint["state_dict"][key]
+
+                del fusion_checkpoint_dict[key]
+
+        elif args.head == "thermal":
+
+            fusion_checkpoint_dict =  deepcopy(thermal_checkpoint["state_dict"])
+
+            for key in thermal_checkpoint["state_dict"].keys():
+
+                if "class_net" in key or "box_net" in key:
+                    fusion_checkpoint_dict["fusion"+key] = thermal_checkpoint["state_dict"][key]
+
+                del fusion_checkpoint_dict[key]
+
+        else:
+            raise ValueError("Invalid Head")
         
-        print('Loaded checkpoint from ', args.checkpoint)
-    
+        
+
+        # Assert that checkpoint dicts are not empty
+
+        assert len(rgb_checkpoint_dict.keys()) > 0
+        assert len(thermal_checkpoint_dict.keys()) > 0
+        assert len(fusion_checkpoint_dict.keys()) > 0
+
+
+        net.rgb_backbone.load_state_dict({k.split(".", 1)[1]: v for k, v in rgb_checkpoint_dict.items() if k.split(".", 1)[1] in net.rgb_backbone.state_dict()})
+        net.rgb_fpn.load_state_dict({k.split(".", 1)[1]: v for k, v in rgb_checkpoint_dict.items() if k.split(".", 1)[1] in net.rgb_fpn.state_dict()})
+
+        net.thermal_backbone.load_state_dict({k.split(".", 1)[1]: v for k, v in thermal_checkpoint_dict.items() if k.split(".", 1)[1] in net.thermal_backbone.state_dict()})
+        net.thermal_fpn.load_state_dict({k.split(".", 1)[1]: v for k, v in thermal_checkpoint_dict.items() if k.split(".", 1)[1] in net.thermal_fpn.state_dict()})
+
+        net.fusion_class_net.load_state_dict({k.split(".", 1)[1]: v for k, v in fusion_checkpoint_dict.items() if k.split(".", 1)[1] in net.fusion_class_net.state_dict()})
+        net.fusion_box_net.load_state_dict({k.split(".", 1)[1]: v for k, v in fusion_checkpoint_dict.items() if k.split(".", 1)[1] in net.fusion_box_net.state_dict()})
+
+
+        # Print Loaded Checkpoint
+
+        print("Loaded RGB Checkpoint from ", args.rgb_checkpoint)
+        print("Loaded Thermal Checkpoint from ", args.thermal_checkpoint)
+        print("Using ", args.head, " Head")
+
+
+    else:
+
+        print("No Checkpoint Loaded")
     
     training_bench = DetBenchTrainImagePair(net, create_labeler=True)
 
@@ -123,9 +191,9 @@ if __name__ == '__main__':
     
     full_backbone_params = count_parameters(training_bench.model.thermal_backbone) + count_parameters(training_bench.model.rgb_backbone)
     head_net_params = count_parameters(training_bench.model.fusion_class_net) + count_parameters(training_bench.model.fusion_box_net)
-    bifpn_params = count_parameters(training_bench.model.fusion_fpn)
+    bifpn_params = count_parameters(training_bench.model.rgb_fpn) + count_parameters(training_bench.model.thermal_fpn)
     full_params = count_parameters(training_bench.model)
-    fusion_net_params = count_parameters(training_bench.model.fusion_cbam0)+count_parameters(training_bench.model.fusion_cbam1)+count_parameters(training_bench.model.fusion_cbam2)
+    fusion_net_params = count_parameters(training_bench.model.fusion_cbam0)+count_parameters(training_bench.model.fusion_cbam1)+count_parameters(training_bench.model.fusion_cbam2)+count_parameters(training_bench.model.fusion_cbam3)+count_parameters(training_bench.model.fusion_cbam4)
 
 
     print("*"*50)
