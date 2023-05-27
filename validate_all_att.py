@@ -15,7 +15,7 @@ from timm.utils import AverageMeter, setup_default_logging
 from timm.models import load_checkpoint
 from timm.models.layers import set_layer_config
 
-from models.models import FusionNet_New
+from models.models import Att_FusionNet
 from models.detector import DetBenchPredictImagePair
 from data import create_dataset, create_loader
 from utils.evaluator import CocoEvaluator
@@ -61,6 +61,7 @@ add_bool_arg(parser, 'redundant-bias', default=None,
 add_bool_arg(parser, 'soft-nms', default=None, help='override model config for soft-nms')
 parser.add_argument('--num-classes', type=int, default=None, metavar='N',
                     help='Override num_classes in model config if set. For fine-tuning from pretrained.')
+parser.add_argument('--att_type', default='None', type=str, choices=['cbam','shuffle','eca'])
 parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('-b', '--batch-size', default=16, type=int,
@@ -136,7 +137,7 @@ def validate(args):
                 **extra_args,
             )
     else:
-        model = FusionNet_New(args.num_classes)
+        model = Att_FusionNet(args)
         if args.checkpoint:
             load_checkpoint(model, args.checkpoint, use_ema=args.use_ema)
         bench = DetBenchPredictImagePair(model)
@@ -161,7 +162,6 @@ def validate(args):
         bench = torch.nn.DataParallel(bench, device_ids=list(range(args.num_gpu)))
 
     dataset = create_dataset(args.dataset, args.root, args.split)
-    print(args.batch_size)
     input_config = resolve_input_config(args, model_config)
     loader = create_loader(
         dataset,

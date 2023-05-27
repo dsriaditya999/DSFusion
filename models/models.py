@@ -91,82 +91,108 @@ class FusionNet(nn.Module):
 
 ##################################### New Def Fusion Net###############################################
 
-class FusionNet_New(nn.Module):
+class Att_FusionNet(nn.Module):
 
-    def __init__(self, num_classes):
-        super(FusionNet_New, self).__init__()
+    def __init__(self, args):
+        super(Att_FusionNet, self).__init__()
 
         self.config = effdet.config.model_config.get_efficientdet_config('efficientdetv2_dt')
-        self.config.num_classes = num_classes
+        self.config.num_classes = args.num_classes
 
         thermal_det = EfficientDet(self.config)
         rgb_det = EfficientDet(self.config)
+
+        if args.thermal_checkpoint_path:
+            effdet.helpers.load_checkpoint(thermal_det, args.thermal_checkpoint_path)
+            print('Loading Thermal from {}'.format(args.thermal_checkpoint_path))
+        else:
+            raise ValueError('Thermal checkpoint path not provided.')
         
-        self.thermal_backbone = thermal_det.backbone
-        self.thermal_fpn = thermal_det.fpn
-
-        self.rgb_backbone = rgb_det.backbone
-        self.rgb_fpn = rgb_det.fpn
-
-        fusion_det = EfficientDet(self.config)
-        self.fusion_class_net = fusion_det.class_net
-        self.fusion_box_net = fusion_det.box_net
-
-
-        feature_info = get_feature_info(self.thermal_backbone)
-        for level in range(self.config.num_levels):
-            in_chs = 128
-            self.add_module(f'fusion_cbam{level}', CBAMLayer(2*in_chs))
-
-    def forward(self, data_pair, branch='fusion'):
-        thermal_x, rgb_x = data_pair[0], data_pair[1]
-
-        thermal_x = self.thermal_backbone(thermal_x)
-        rgb_x = self.rgb_backbone(rgb_x)
-
-        thermal_out = self.thermal_fpn(thermal_x)
-        rgb_out = self.rgb_fpn(rgb_x)
-
-        fusion_out = []
-        for i, (tx, vx) in enumerate(zip(thermal_out, rgb_out)):
-            x = torch.cat((tx, vx), dim=1)
-            cbam = getattr(self, f'fusion_cbam{i}')
-            fusion_out.append(cbam(x))
-
-        x_class = self.fusion_class_net(fusion_out)
-        x_box = self.fusion_box_net(fusion_out)
-
-        print("I am done")
-
-        return x_class, x_box
-
-
-
-
-class FusionNet_New_thermal(nn.Module):
-
-    def __init__(self, num_classes):
-        super(FusionNet_New_thermal, self).__init__()
-
-        self.config = effdet.config.model_config.get_efficientdet_config('efficientdetv2_dt')
-        self.config.num_classes = num_classes
-
-        thermal_det = EfficientDet(self.config)
+        if args.rgb_checkpoint_path:
+            effdet.helpers.load_checkpoint(rgb_det, args.rgb_checkpoint_path)
+            print('Loading RGB from {}'.format(args.rgb_checkpoint_path))
+        else:
+            raise ValueError('RGB checkpoint path not provided.')
+            
         
         self.thermal_backbone = thermal_det.backbone
         self.thermal_fpn = thermal_det.fpn
         self.thermal_class_net = thermal_det.class_net
         self.thermal_box_net = thermal_det.box_net
 
+        self.rgb_backbone = rgb_det.backbone
+        self.rgb_fpn = rgb_det.fpn
+        self.rgb_class_net = rgb_det.class_net
+        self.rgb_box_net = rgb_det.box_net
+
+        fusion_det = EfficientDet(self.config)
+        
+        if args.init_fusion_head_weights == 'thermal':
+            effdet.helpers.load_checkpoint(fusion_det, args.thermal_checkpoint_path) # This is optional
+            print("Loading fusion head from thermal checkpoint.")
+        elif args.init_fusion_head_weights == 'rgb':
+            effdet.helpers.load_checkpoint(fusion_det, args.rgb_checkpoint_path)
+            print("Loading fusion head from rgb checkpoint.")
+        else:
+            raise ValueError('Fusion head random init.')
+        
+
+        self.fusion_class_net = fusion_det.class_net
+        self.fusion_box_net = fusion_det.box_net
+
+        if args.branch == 'fusion':
+            self.attention_type = args.att_type
+            print("Using {} attention.".format(self.attention_type))
+            in_chs = args.channels
+            for level in range(self.config.num_levels):
+                if self.attention_type=="cbam":
+                    self.add_module("fusion_"+self.attention_type+str(level), CBAMLayer(2*in_chs))
+                elif self.attention_type=="eca":
+                    self.add_module("fusion_"+self.attention_type+str(level), attention_block(2*in_chs))
+                elif self.attention_type=="shuffle":
+                    self.add_module("fusion_"+self.attention_type+str(level), shuffle_attention_block(2*in_chs))
+                else:
+                    raise ValueError('Attention type not supported.')
+
     def forward(self, data_pair, branch='fusion'):
         thermal_x, rgb_x = data_pair[0], data_pair[1]
-        print("I am here")
-        feats = self.thermal_backbone(thermal_x)
-        x = self.thermal_fpn(feats)
-        x_class = self.thermal_class_net(x)
-        x_box = self.thermal_box_net(x)
+
+        class_net = getattr(self, f'{branch}_class_net')
+        box_net = getattr(self, f'{branch}_box_net')
+        
+        x = None
+        if branch =='fusion':
+            thermal_x = self.thermal_backbone(thermal_x)
+            rgb_x = self.rgb_backbone(rgb_x)
+
+            thermal_x = self.thermal_fpn(thermal_x)
+            rgb_x = self.rgb_fpn(rgb_x)
+
+            out = []
+            for i, (tx, vx) in enumerate(zip(thermal_x, rgb_x)):
+                x = torch.cat((tx, vx), dim=1)
+                attention = getattr(self, "fusion_"+self.attention_type+str(i))
+                out.append(attention(x))
+        else:
+            fpn = getattr(self, f'{branch}_fpn')
+            backbone = getattr(self, f'{branch}_backbone')
+            if branch =='thermal':
+                x = thermal_x
+            elif branch =='rgb':
+                x = rgb_x
+            feats = backbone(x)
+            out = fpn(feats)
+        
+        
+        x_class = class_net(out)
+        x_box = box_net(out)
 
         return x_class, x_box
+
+
+
+
+
     
     
 
@@ -304,67 +330,9 @@ class attention_block(nn.Module):
         return x_out_1
     
     
-###################################New FusionNet###################################    
+
     
-class Att_FusionNet(nn.Module):
 
-    def __init__(self, num_classes):
-        super(Att_FusionNet, self).__init__()
-
-        self.config = effdet.config.model_config.get_efficientdet_config('efficientdetv2_dt')
-        self.config.num_classes = num_classes
-
-        thermal_det = EfficientDet(self.config)
-        rgb_det = EfficientDet(self.config)
-        
-        self.thermal_backbone = thermal_det.backbone
-
-        self.rgb_backbone = rgb_det.backbone
-
-        fusion_det = EfficientDet(self.config)
-        self.fusion_fpn = fusion_det.fpn
-        self.fusion_class_net = fusion_det.class_net
-        self.fusion_box_net = fusion_det.box_net
-
-
-        feature_info = get_feature_info(self.thermal_backbone)
-        for level in range(self.config.num_levels):
-            if level < len(feature_info):
-                in_chs = feature_info[level]['num_chs']
-                self.add_module(f'fusion_att_block{level}', attention_block(2*in_chs))
-
-    def forward(self, data_pair, branch='fusion'):
-        thermal_x, rgb_x = data_pair[0], data_pair[1]
-
-        fpn = getattr(self, f'{branch}_fpn')
-        class_net = getattr(self, f'{branch}_class_net')
-        box_net = getattr(self, f'{branch}_box_net')
-        
-        x = None
-        if branch =='fusion':
-            thermal_x = self.thermal_backbone(thermal_x)
-            rgb_x = self.rgb_backbone(rgb_x)
-            
-            
-            feats = []
-            for i, (tx, vx) in enumerate(zip(thermal_x, rgb_x)):
-                x = torch.cat((tx, vx), dim=1)
-                cbam = getattr(self, f'fusion_att_block{i}')
-                feats.append(cbam(x))
-                
-        else:
-            backbone = getattr(self, f'{branch}_backbone')
-            if branch =='thermal':
-                x = thermal_x
-            elif branch =='rgb':
-                x = rgb_x
-            feats = backbone(x)
-        
-        x = fpn(feats)
-        x_class = class_net(x)
-        x_box = box_net(x)
-
-        return x_class, x_box
 
 
 ################################################################################################################################
@@ -376,7 +344,7 @@ class shuffle_attention_block(nn.Module):
         k_size: Adaptive selection of kernel size
     """
 
-    def __init__(self, in_channels, groups=64):
+    def __init__(self, in_channels, groups=16):
         super(shuffle_attention_block, self).__init__()
         self.groups = groups
         self.avg_pool = nn.AdaptiveAvgPool2d(1)
@@ -434,76 +402,4 @@ class shuffle_attention_block(nn.Module):
         return out
 
 
-################################################# Shuffle Attention Fusion Net ################################################# 
-
-class Shuffle_Att_FusionNet(nn.Module):
-
-    def __init__(self, num_classes):
-        super(Shuffle_Att_FusionNet, self).__init__()
-
-        self.config = effdet.config.model_config.get_efficientdet_config('efficientdetv2_dt')
-        self.config.num_classes = num_classes
-
-        thermal_det = EfficientDet(self.config)
-        rgb_det = EfficientDet(self.config)
-
-        self.thermal_backbone = thermal_det.backbone
-
-        self.rgb_backbone = rgb_det.backbone
-
-        fusion_det = EfficientDet(self.config)
-        self.fusion_fpn = fusion_det.fpn
-        self.fusion_class_net = fusion_det.class_net
-        self.fusion_box_net = fusion_det.box_net
-
-
-
-        feature_info = get_feature_info(self.thermal_backbone)
-        for level in range(self.config.num_levels):
-            if level < len(feature_info):
-                in_chs = feature_info[level]['num_chs']
-                if 2*in_chs==96:
-                    groups_ = 12
-                elif 2*in_chs==416:
-                    groups_ = 52
-                elif 2*in_chs==256:
-                    groups_=32
-                    
-                print(2*in_chs)
-                self.add_module(f'shuffle_att_block{level}', shuffle_attention_block(2*in_chs,groups=groups_))
-                                
-                                
-
-    def forward(self, data_pair, branch='fusion'):
-        thermal_x, rgb_x = data_pair[0], data_pair[1]
-
-        fpn = getattr(self, f'{branch}_fpn')
-        class_net = getattr(self, f'{branch}_class_net')
-        box_net = getattr(self, f'{branch}_box_net')
-        
-        x = None
-        if branch =='fusion':
-            thermal_x = self.thermal_backbone(thermal_x)
-            rgb_x = self.rgb_backbone(rgb_x)
-            
-            
-            feats = []
-            for i, (tx, vx) in enumerate(zip(thermal_x, rgb_x)):
-                x = torch.cat((tx, vx), dim=1)
-                shuffle_att_block = getattr(self, f'shuffle_att_block{i}')
-                feats.append(shuffle_att_block(x))
-                
-        else:
-            backbone = getattr(self, f'{branch}_backbone')
-            if branch =='thermal':
-                x = thermal_x
-            elif branch =='rgb':
-                x = rgb_x
-            feats = backbone(x)
-        
-        x = fpn(feats)
-        x_class = class_net(x)
-        x_box = box_net(x)
-
-        return x_class, x_box
 

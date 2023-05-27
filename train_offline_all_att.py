@@ -15,15 +15,16 @@ from torchsummary import summary
 
 from data import create_dataset, create_loader
 from models.detector import DetBenchTrainImagePair
-from models.models import Shuffle_Att_FusionNet
+from models.models import Att_FusionNet
 from utils.evaluator import CocoEvaluator
 from utils.utils import visualize_detections, visualize_target
+from copy import deepcopy
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 def count_parameters(model):
-    return np.sum(np.prod(v.size()) for name, v in model.named_parameters() if "auxiliary" not in name)
+    return sum(np.prod(v.size()) for name, v in model.named_parameters() if "auxiliary" not in name)
 
 def set_eval_mode(network, freeze_layer):
     for name, module in network.named_modules():
@@ -56,6 +57,9 @@ if __name__ == '__main__':
                         help='number of data loading workers (default: 4)')
     parser.add_argument('--batch-size', default=16, type=int,
                         metavar='N', help='mini-batch size (default: 16)')
+    parser.add_argument('--channels', default=128, type=int,
+                        metavar='N', help='channels (default: 128)')
+    parser.add_argument('--att_type', default='None', type=str, choices=['cbam','shuffle','eca'])
     parser.add_argument('--img-size', default=None, type=int,
                         metavar='N', help='Input image dimension, uses model default if empty')
     parser.add_argument('--mean', type=float, nargs='+', default=None, metavar='MEAN',
@@ -76,12 +80,14 @@ if __name__ == '__main__':
                         help='disable fast prefetcher')
     parser.add_argument('--pin-mem', action='store_true', default=False,
                         help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
-
-    parser.add_argument('--freeze-layer', default='shuffle_att_block', type=str, choices=['shuffle_att_block'])
+    parser.add_argument('--freeze-layer', default='fusion_cbam', type=str, choices=['fusion_cbam','fusion_shuffle','fusion_eca'])
 
     parser.add_argument('--epochs', default=300, type=int)
     parser.add_argument('--gpu', default=0, type=int)
 
+    parser.add_argument('--init-fusion-head-weights', type=str, default=None, choices=['thermal', 'rgb', None])
+    parser.add_argument('--thermal-checkpoint-path', type=str)
+    parser.add_argument('--rgb-checkpoint-path', type=str, default=None)
     parser.add_argument('--output', default='', type=str, metavar='PATH',
                         help='path to output folder (default: none, current dir)')
     parser.add_argument('--wandb', action='store_true',
@@ -93,29 +99,8 @@ if __name__ == '__main__':
 
     os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu)
 
-    net = Shuffle_Att_FusionNet(args.num_classes)
+    net = Att_FusionNet(args)
 
-    # load checkpoint
-    if args.checkpoint:
-        
-        checkpoint = torch.load(args.checkpoint)
-        checkpoint_dict = checkpoint["state_dict"]
-        
-        net_dict = net.state_dict()
-        
-        new_checkpoint_dict = {k: v for k, v in checkpoint_dict.items() if k in net_dict}
-        second_checkpoint_dict = {k: v for k, v in new_checkpoint_dict.items() if args.freeze_layer not in k}
-        net_dict.update(second_checkpoint_dict)
-
-        for k, v in second_checkpoint_dict.items():
-            if args.freeze_layer in k:
-                print("Something Went Wrong")
-                print(k)
-
-        net.load_state_dict(net_dict) 
-        
-        print('Loaded checkpoint from ', args.checkpoint)
-    
     
     training_bench = DetBenchTrainImagePair(net, create_labeler=True)
 
@@ -123,9 +108,10 @@ if __name__ == '__main__':
     
     full_backbone_params = count_parameters(training_bench.model.thermal_backbone) + count_parameters(training_bench.model.rgb_backbone)
     head_net_params = count_parameters(training_bench.model.fusion_class_net) + count_parameters(training_bench.model.fusion_box_net)
-    bifpn_params = count_parameters(training_bench.model.fusion_fpn)
+    bifpn_params = count_parameters(training_bench.model.rgb_fpn) + count_parameters(training_bench.model.thermal_fpn)
     full_params = count_parameters(training_bench.model)
-    fusion_net_params = count_parameters(training_bench.model.shuffle_att_block0)+count_parameters(training_bench.model.shuffle_att_block1)+count_parameters(training_bench.model.shuffle_att_block2)
+    fusion_net_params = sum([count_parameters(getattr(training_bench.model,"fusion_"+args.att_type+str(i))) for i in range(5)])
+
 
 
     print("*"*50)
@@ -176,14 +162,18 @@ if __name__ == '__main__':
 
     evaluator = CocoEvaluator(val_dataset, distributed=False, pred_yxyx=False)
 
+    # load checkpoint
+    if args.checkpoint:
+        load_checkpoint(net, args.checkpoint)
+        print('Loaded checkpoint from ', args.checkpoint)
 
     # set up checkpoint saver
     output_base = args.output if args.output else './output'
     exp_name = '-'.join([
         datetime.now().strftime("%Y%m%d-%H%M%S"),
-        args.save
+        args.save+"_"+args.dataset.upper()+"_"+args.att_type.upper()
     ])
-    output_dir = get_outdir(output_base, 'final_train_offline', exp_name)
+    output_dir = get_outdir(output_base, 'train_m3fd', exp_name)
     saver = CheckpointSaver(
         net, optimizer, args=args, checkpoint_dir=output_dir)
 
@@ -193,7 +183,7 @@ if __name__ == '__main__':
         config = dict()
         config.update({arg: getattr(args, arg) for arg in vars(args)})
         wandb.init(
-          project='deep-sensor-fusion-new-shuffle_att',
+          project='deep-sensor-fusion-'+args.att_type,
           config=config
         )
 
