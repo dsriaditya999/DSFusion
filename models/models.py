@@ -106,13 +106,16 @@ class Att_FusionNet(nn.Module):
             effdet.helpers.load_checkpoint(thermal_det, args.thermal_checkpoint_path)
             print('Loading Thermal from {}'.format(args.thermal_checkpoint_path))
         else:
-            raise ValueError('Thermal checkpoint path not provided.')
+            # raise ValueError('Thermal checkpoint path not provided.')
+            print('Thermal checkpoint path not provided.')
         
         if args.rgb_checkpoint_path:
             effdet.helpers.load_checkpoint(rgb_det, args.rgb_checkpoint_path)
             print('Loading RGB from {}'.format(args.rgb_checkpoint_path))
         else:
-            raise ValueError('RGB checkpoint path not provided.')
+            # raise ValueError('RGB checkpoint path not provided.')
+            print('RGB checkpoint path not provided.')
+
             
         
         self.thermal_backbone = thermal_det.backbone
@@ -134,7 +137,8 @@ class Att_FusionNet(nn.Module):
             effdet.helpers.load_checkpoint(fusion_det, args.rgb_checkpoint_path)
             print("Loading fusion head from rgb checkpoint.")
         else:
-            raise ValueError('Fusion head random init.')
+            # raise ValueError('Fusion head random init.')
+            print('Fusion head random init.')
         
 
         self.fusion_class_net = fusion_det.class_net

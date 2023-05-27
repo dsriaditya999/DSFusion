@@ -82,6 +82,8 @@ parser.add_argument('--checkpoint', default='', type=str, metavar='PATH',
                     help='path to latest checkpoint (default: none)')
 parser.add_argument('--pretrained', dest='pretrained', action='store_true',
                     help='use pre-trained model')
+parser.add_argument('--channels', default=128, type=int,
+                        metavar='N', help='channels (default: 128)')
 parser.add_argument('--num-gpu', type=int, default=1,
                     help='Number of GPUS to use')
 parser.add_argument('--no-prefetcher', action='store_true', default=False,
@@ -101,7 +103,7 @@ parser.add_argument('--torchscript', dest='torchscript', action='store_true',
 parser.add_argument('--results', default='', type=str, metavar='FILENAME',
                     help='JSON filename for evaluation results')
 parser.add_argument('--init-fusion-head-weights', type=str, default=None, choices=['thermal', 'rgb', None])
-parser.add_argument('--thermal-checkpoint-path', type=str)
+parser.add_argument('--thermal-checkpoint-path', type=str, default=None)
 parser.add_argument('--rgb-checkpoint-path', type=str, default=None)
 parser.add_argument('--classwise', dest='classwise', action='store_true',
                     help='use Pascal evaluator for classwise metrics')
