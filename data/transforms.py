@@ -36,10 +36,11 @@ class ImageToNumpy:
 
 class ResizePad:
 
-    def __init__(self, target_size: int, interpolation: str = 'bilinear', fill_color: tuple = (0, 0, 0)):
+    def __init__(self, target_size: int, interpolation: str = 'bilinear', rgb_fill_color: tuple = (0, 0, 0), thermal_fill_color: tuple = (0, 0, 0)):
         self.target_size = _size_tuple(target_size)
         self.interpolation = interpolation
-        self.fill_color = fill_color
+        self.rgb_fill_color = rgb_fill_color
+        self.thermal_fill_color = thermal_fill_color
 
     def __call__(self, thermal_img, rgb_img, anno: dict):
         width, height = thermal_img.size
@@ -52,11 +53,11 @@ class ResizePad:
 
         interp_method = _pil_interp(self.interpolation)
         thermal_img = thermal_img.resize((scaled_w, scaled_h), interp_method)
-        new_thermal_img = Image.new("RGB", (self.target_size[1], self.target_size[0]), color=self.fill_color)
+        new_thermal_img = Image.new("RGB", (self.target_size[1], self.target_size[0]), color=self.rgb_fill_color)
         new_thermal_img.paste(thermal_img)  # pastes at 0,0 (upper-left corner)
 
         rgb_img = rgb_img.resize((scaled_w, scaled_h), interp_method)
-        new_rgb_img = Image.new("RGB", (self.target_size[1], self.target_size[0]), color=self.fill_color)
+        new_rgb_img = Image.new("RGB", (self.target_size[1], self.target_size[0]), color=self.thermal_fill_color)
         new_rgb_img.paste(rgb_img)  # pastes at 0,0 (upper-left corner)
 
         if 'bbox' in anno:
@@ -76,14 +77,15 @@ class ResizePad:
 class RandomResizePad:
 
     def __init__(self, target_size: int, scale: tuple = (0.1, 2.0), interpolation: str = 'random',
-                 fill_color: tuple = (0, 0, 0)):
+                 rgb_fill_color: tuple = (0, 0, 0), thermal_fill_color: tuple = (0, 0, 0)):
         self.target_size = _size_tuple(target_size)
         self.scale = scale
         if interpolation == 'random':
             self.interpolation = _RANDOM_INTERPOLATION
         else:
             self.interpolation = _pil_interp(interpolation)
-        self.fill_color = fill_color
+        self.rgb_fill_color = rgb_fill_color
+        self.thermal_fill_color = thermal_fill_color
 
     def _get_params(self, img):
         # Select a random scale factor.
@@ -116,12 +118,12 @@ class RandomResizePad:
         right, lower = min(scaled_w, offset_x + self.target_size[1]), min(scaled_h, offset_y + self.target_size[0])
         thermal_img = thermal_img.resize((scaled_w, scaled_h), interpolation)
         thermal_img = thermal_img.crop((offset_x, offset_y, right, lower))
-        new_thermal_img = Image.new("RGB", (self.target_size[1], self.target_size[0]), color=self.fill_color)
+        new_thermal_img = Image.new("RGB", (self.target_size[1], self.target_size[0]), color=self.thermal_fill_color)
         new_thermal_img.paste(thermal_img)  # pastes at 0,0 (upper-left corner)
 
         rgb_img = rgb_img.resize((scaled_w, scaled_h), interpolation)
         rgb_img = rgb_img.crop((offset_x, offset_y, right, lower))
-        new_rgb_img = Image.new("RGB", (self.target_size[1], self.target_size[0]), color=self.fill_color)
+        new_rgb_img = Image.new("RGB", (self.target_size[1], self.target_size[0]), color=self.rgb_fill_color)
         new_rgb_img.paste(rgb_img)  # pastes at 0,0 (upper-left corner)
 
         if 'bbox' in anno:
@@ -236,19 +238,21 @@ class Compose:
         return thermal_img, rgb_img, annotations
 
 
-def transforms_flir_eval(
+def transforms_eval(
         img_size=224,
         interpolation='bilinear',
         use_prefetcher=False,
         fill_color='mean',
-        mean=IMAGENET_DEFAULT_MEAN,
-        std=IMAGENET_DEFAULT_STD):
+        rgb_mean=IMAGENET_DEFAULT_MEAN,
+        rgb_std=IMAGENET_DEFAULT_STD,
+        thermal_mean=IMAGENET_DEFAULT_MEAN,
+        thermal_std=IMAGENET_DEFAULT_STD):
 
-    fill_color = resolve_fill_color(fill_color, mean)
+    rgb_fill_color, thermal_fill_color = resolve_fill_color(fill_color, rgb_mean), resolve_fill_color(fill_color, thermal_mean)
 
     image_tfl = [
         ResizePad(
-            target_size=img_size, interpolation=interpolation, fill_color=fill_color),
+            target_size=img_size, interpolation=interpolation, rgb_fill_color=rgb_fill_color, thermal_fill_color=thermal_fill_color),
         ImageToNumpy(),
     ]
 
@@ -258,21 +262,23 @@ def transforms_flir_eval(
     return image_tf
 
 
-def transforms_flir_train(
+def transforms_train(
         img_size=224,
         interpolation='random',
         use_prefetcher=False,
         fill_color='mean',
-        mean=IMAGENET_DEFAULT_MEAN,
-        std=IMAGENET_DEFAULT_STD):
+        rgb_mean=IMAGENET_DEFAULT_MEAN,
+        rgb_std=IMAGENET_DEFAULT_STD,
+        thermal_mean=IMAGENET_DEFAULT_MEAN,
+        thermal_std=IMAGENET_DEFAULT_STD):
 
-    fill_color = resolve_fill_color(fill_color, mean)
+    rgb_fill_color, thermal_fill_color = resolve_fill_color(fill_color, rgb_mean), resolve_fill_color(fill_color, thermal_mean)
 
     image_tfl = [
         RandomFlip(horizontal=True, prob=0.5),
         RandomColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, sharpness=0.4),
         RandomResizePad(
-            target_size=img_size, interpolation=interpolation, fill_color=fill_color),
+            target_size=img_size, interpolation=interpolation, rgb_fill_color=rgb_fill_color, thermal_fill_color=thermal_fill_color),
         ImageToNumpy(),
     ]
 

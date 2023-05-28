@@ -10,14 +10,13 @@ import torch.nn.parallel
 from contextlib import suppress
 
 from effdet import create_model, create_evaluator
-from effdet.data import resolve_input_config
 from timm.utils import AverageMeter, setup_default_logging
 from timm.models import load_checkpoint
 from timm.models.layers import set_layer_config
 
 from models.models import Att_FusionNet
 from models.detector import DetBenchPredictImagePair
-from data import create_dataset, create_loader
+from data import create_dataset, create_loader, resolve_input_config
 from utils.evaluator import CocoEvaluator
 
 has_apex = False
@@ -68,10 +67,14 @@ parser.add_argument('-b', '--batch-size', default=16, type=int,
                     metavar='N', help='mini-batch size (default: 16)')
 parser.add_argument('--img-size', default=None, type=int,
                     metavar='N', help='Input image dimension, uses model default if empty')
-parser.add_argument('--mean', type=float, nargs='+', default=None, metavar='MEAN',
-                    help='Override mean pixel value of dataset')
-parser.add_argument('--std', type=float,  nargs='+', default=None, metavar='STD',
-                    help='Override std deviation of of dataset')
+parser.add_argument('--rgb_mean', type=float, nargs='+', default=None, metavar='MEAN',
+                        help='Override mean pixel value of RGB dataset')
+parser.add_argument('--rgb_std', type=float,  nargs='+', default=None, metavar='STD',
+                    help='Override std deviation of of RGB dataset')
+parser.add_argument('--thermal_mean', type=float, nargs='+', default=None, metavar='MEAN',
+                    help='Override mean pixel value of Thermal dataset')
+parser.add_argument('--thermal_std', type=float,  nargs='+', default=None, metavar='STD',
+                    help='Override std deviation of of Thermal dataset')
 parser.add_argument('--interpolation', default='bilinear', type=str, metavar='NAME',
                     help='Image resize interpolation type (overrides model)')
 parser.add_argument('--fill-color', default=None, type=str, metavar='NAME',
@@ -172,8 +175,10 @@ def validate(args):
         use_prefetcher=args.prefetcher,
         interpolation=input_config['interpolation'],
         fill_color=input_config['fill_color'],
-        mean=input_config['mean'],
-        std=input_config['std'],
+        rgb_mean=input_config['rgb_mean'],
+        rgb_std=input_config['rgb_std'],
+        thermal_mean=input_config['thermal_mean'],
+        thermal_std=input_config['thermal_std'],
         num_workers=args.workers,
         pin_mem=args.pin_mem)
 

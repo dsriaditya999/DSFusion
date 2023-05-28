@@ -7,13 +7,12 @@ from turtle import forward
 import torch
 import torch.nn as nn
 import tqdm
-from effdet.data import resolve_input_config
 from PIL import Image
 from timm.models import load_checkpoint
 from timm.utils import AverageMeter, CheckpointSaver, get_outdir
 from torchsummary import summary
 
-from data import create_dataset, create_loader
+from data import create_dataset, create_loader, resolve_input_config
 from models.detector import DetBenchTrainImagePair
 from models.models import Att_FusionNet
 from utils.evaluator import CocoEvaluator
@@ -62,10 +61,14 @@ if __name__ == '__main__':
     parser.add_argument('--att_type', default='None', type=str, choices=['cbam','shuffle','eca'])
     parser.add_argument('--img-size', default=None, type=int,
                         metavar='N', help='Input image dimension, uses model default if empty')
-    parser.add_argument('--mean', type=float, nargs='+', default=None, metavar='MEAN',
-                        help='Override mean pixel value of dataset')
-    parser.add_argument('--std', type=float,  nargs='+', default=None, metavar='STD',
-                        help='Override std deviation of of dataset')
+    parser.add_argument('--rgb_mean', type=float, nargs='+', default=None, metavar='MEAN',
+                        help='Override mean pixel value of RGB dataset')
+    parser.add_argument('--rgb_std', type=float,  nargs='+', default=None, metavar='STD',
+                        help='Override std deviation of of RGB dataset')
+    parser.add_argument('--thermal_mean', type=float, nargs='+', default=None, metavar='MEAN',
+                        help='Override mean pixel value of Thermal dataset')
+    parser.add_argument('--thermal_std', type=float,  nargs='+', default=None, metavar='STD',
+                        help='Override std deviation of of Thermal dataset')
     parser.add_argument('--interpolation', default='bilinear', type=str, metavar='NAME',
                         help='Image resize interpolation type (overrides model)')
     parser.add_argument('--fill-color', default=None, type=str, metavar='NAME',
@@ -141,8 +144,10 @@ if __name__ == '__main__':
         use_prefetcher=args.prefetcher,
         interpolation=input_config['interpolation'],
         fill_color=input_config['fill_color'],
-        mean=input_config['mean'],
-        std=input_config['std'],
+        rgb_mean=input_config['rgb_mean'],
+        rgb_std=input_config['rgb_std'],
+        thermal_mean=input_config['thermal_mean'],
+        thermal_std=input_config['thermal_std'],
         num_workers=args.workers,
         pin_mem=args.pin_mem,
         is_training=True
@@ -155,8 +160,10 @@ if __name__ == '__main__':
         use_prefetcher=args.prefetcher,
         interpolation=input_config['interpolation'],
         fill_color=input_config['fill_color'],
-        mean=input_config['mean'],
-        std=input_config['std'],
+        rgb_mean=input_config['rgb_mean'],
+        rgb_std=input_config['rgb_std'],
+        thermal_mean=input_config['thermal_mean'],
+        thermal_std=input_config['thermal_std'],
         num_workers=args.workers,
         pin_mem=args.pin_mem)
 
