@@ -35,6 +35,14 @@ def freeze(network, freeze_layer):
         if freeze_layer not in name:
             param.requires_grad = False
 
+def freeze_no_head(network, freeze_layer):
+    for name, param in network.named_parameters():
+        if freeze_layer not in name:
+            param.requires_grad = False
+
+        if 'fusion_class_net' in name or 'fusion_box_net' in name:
+            param.requires_grad = True
+
 
 if __name__ == '__main__':
 
@@ -176,10 +184,9 @@ if __name__ == '__main__':
 
     # set up checkpoint saver
     output_base = args.output if args.output else './output'
-    exp_name = '-'.join([
-        datetime.now().strftime("%Y%m%d-%H%M%S"),
-        args.save+"_"+args.dataset.upper()+"_"+args.att_type.upper()
-    ])
+    exp_name = args.save+"_"+args.dataset.upper()+"_"+args.att_type.upper()
+        
+
     output_dir = get_outdir(output_base, 'train_m3fd', exp_name)
     saver = CheckpointSaver(
         net, optimizer, args=args, checkpoint_dir=output_dir)

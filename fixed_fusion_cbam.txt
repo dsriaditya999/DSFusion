@@ -1,0 +1,509 @@
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/40]  Time: 4.238s (4.238s,    1.89/s)  
+Test: [  10/40]  Time: 0.365s (0.825s,    9.70/s)  
+Test: [  20/40]  Time: 0.363s (0.605s,   13.22/s)  
+Test: [  30/40]  Time: 0.365s (0.528s,   15.15/s)  
+Test: [  39/40]  Time: 0.420s (0.492s,   16.26/s)  
+Dataset Tested on: M3FD_DAY, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_DAY_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.7604227123002062
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/18]  Time: 4.321s (4.321s,    1.85/s)  
+Test: [  10/18]  Time: 0.365s (0.838s,    9.54/s)  
+Test: [  17/18]  Time: 1.529s (0.719s,    5.57/s)  
+Dataset Tested on: M3FD_NIGHT, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_DAY_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.940718482041174
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/26]  Time: 4.220s (4.220s,    1.90/s)  
+Test: [  10/26]  Time: 0.372s (0.828s,    9.66/s)  
+Test: [  20/26]  Time: 0.362s (0.610s,   13.11/s)  
+Test: [  25/26]  Time: 1.596s (0.610s,    8.20/s)  
+Dataset Tested on: M3FD_OVERCAST, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_DAY_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8489462837372669
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/20]  Time: 4.438s (4.438s,    1.80/s)  
+Test: [  10/20]  Time: 0.367s (0.841s,    9.52/s)  
+Test: [  19/20]  Time: 1.464s (0.681s,    5.88/s)  
+Dataset Tested on: M3FD_CHALLENGE, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_DAY_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8078072907898547
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.04s)
+creating index...
+index created!
+Test: [   0/105]  Time: 4.016s (4.016s,    1.99/s)  
+Test: [  10/105]  Time: 0.364s (0.800s,   10.00/s)  
+Test: [  20/105]  Time: 0.367s (0.592s,   13.51/s)  
+Test: [  30/105]  Time: 0.367s (0.519s,   15.42/s)  
+Test: [  40/105]  Time: 0.374s (0.482s,   16.61/s)  
+Test: [  50/105]  Time: 0.365s (0.459s,   17.44/s)  
+Test: [  60/105]  Time: 0.366s (0.443s,   18.05/s)  
+Test: [  70/105]  Time: 0.366s (0.432s,   18.52/s)  
+Test: [  80/105]  Time: 0.365s (0.424s,   18.88/s)  
+Test: [  90/105]  Time: 0.365s (0.417s,   19.18/s)  
+Test: [ 100/105]  Time: 0.362s (0.412s,   19.43/s)  
+Test: [ 104/105]  Time: 0.406s (0.410s,   19.50/s)  
+Dataset Tested on: M3FD_FULL, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_DAY_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8106941333542027
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/40]  Time: 3.702s (3.702s,    2.16/s)  
+Test: [  10/40]  Time: 0.365s (0.772s,   10.37/s)  
+Test: [  20/40]  Time: 0.364s (0.578s,   13.85/s)  
+Test: [  30/40]  Time: 0.380s (0.509s,   15.71/s)  
+Test: [  39/40]  Time: 0.403s (0.477s,   16.77/s)  
+Dataset Tested on: M3FD_DAY, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_NIGHT_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.7267612423605713
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Test: [   0/18]  Time: 3.690s (3.690s,    2.17/s)  
+Test: [  10/18]  Time: 0.365s (0.776s,   10.31/s)  
+Test: [  17/18]  Time: 1.549s (0.680s,    5.88/s)  
+Dataset Tested on: M3FD_NIGHT, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_NIGHT_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.9254943631153814
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Test: [   0/26]  Time: 3.962s (3.962s,    2.02/s)  
+Test: [  10/26]  Time: 0.368s (0.795s,   10.07/s)  
+Test: [  20/26]  Time: 0.360s (0.589s,   13.57/s)  
+Test: [  25/26]  Time: 1.536s (0.590s,    8.47/s)  
+Dataset Tested on: M3FD_OVERCAST, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_NIGHT_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8319743646796681
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/20]  Time: 4.202s (4.202s,    1.90/s)  
+Test: [  10/20]  Time: 0.375s (0.822s,    9.73/s)  
+Test: [  19/20]  Time: 1.529s (0.674s,    5.94/s)  
+Dataset Tested on: M3FD_CHALLENGE, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_NIGHT_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.7876596939604682
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/105]  Time: 3.757s (3.757s,    2.13/s)  
+Test: [  10/105]  Time: 0.364s (0.779s,   10.27/s)  
+Test: [  20/105]  Time: 0.368s (0.582s,   13.75/s)  
+Test: [  30/105]  Time: 0.364s (0.512s,   15.63/s)  
+Test: [  40/105]  Time: 0.365s (0.476s,   16.80/s)  
+Test: [  50/105]  Time: 0.363s (0.454s,   17.61/s)  
+Test: [  60/105]  Time: 0.363s (0.439s,   18.21/s)  
+Test: [  70/105]  Time: 0.363s (0.429s,   18.63/s)  
+Test: [  80/105]  Time: 0.378s (0.422s,   18.98/s)  
+Test: [  90/105]  Time: 0.363s (0.415s,   19.27/s)  
+Test: [ 100/105]  Time: 0.363s (0.410s,   19.51/s)  
+Test: [ 104/105]  Time: 0.406s (0.409s,   19.58/s)  
+Dataset Tested on: M3FD_FULL, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_NIGHT_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.7861723877567406
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/40]  Time: 3.916s (3.916s,    2.04/s)  
+Test: [  10/40]  Time: 0.365s (0.793s,   10.09/s)  
+Test: [  20/40]  Time: 0.362s (0.588s,   13.62/s)  
+Test: [  30/40]  Time: 0.361s (0.514s,   15.55/s)  
+Test: [  39/40]  Time: 0.410s (0.481s,   16.64/s)  
+Dataset Tested on: M3FD_DAY, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_OVERCAST_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.7329579935384501
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Test: [   0/18]  Time: 3.997s (3.997s,    2.00/s)  
+Test: [  10/18]  Time: 0.365s (0.800s,   10.00/s)  
+Test: [  17/18]  Time: 1.508s (0.694s,    5.77/s)  
+Dataset Tested on: M3FD_NIGHT, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_OVERCAST_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.9252595626077493
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Test: [   0/26]  Time: 3.841s (3.841s,    2.08/s)  
+Test: [  10/26]  Time: 0.367s (0.784s,   10.21/s)  
+Test: [  20/26]  Time: 0.364s (0.585s,   13.67/s)  
+Test: [  25/26]  Time: 1.533s (0.587s,    8.51/s)  
+Dataset Tested on: M3FD_OVERCAST, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_OVERCAST_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8514711498794191
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Test: [   0/20]  Time: 3.756s (3.756s,    2.13/s)  
+Test: [  10/20]  Time: 0.365s (0.777s,   10.30/s)  
+Test: [  19/20]  Time: 1.507s (0.647s,    6.18/s)  
+Dataset Tested on: M3FD_CHALLENGE, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_OVERCAST_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8066684796646504
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/105]  Time: 3.962s (3.962s,    2.02/s)  
+Test: [  10/105]  Time: 0.375s (0.799s,   10.01/s)  
+Test: [  20/105]  Time: 0.365s (0.595s,   13.45/s)  
+Test: [  30/105]  Time: 0.364s (0.522s,   15.34/s)  
+Test: [  40/105]  Time: 0.367s (0.484s,   16.52/s)  
+Test: [  50/105]  Time: 0.376s (0.462s,   17.33/s)  
+Test: [  60/105]  Time: 0.366s (0.447s,   17.90/s)  
+Test: [  70/105]  Time: 0.364s (0.435s,   18.37/s)  
+Test: [  80/105]  Time: 0.366s (0.427s,   18.73/s)  
+Test: [  90/105]  Time: 0.377s (0.421s,   19.00/s)  
+Test: [ 100/105]  Time: 0.375s (0.416s,   19.25/s)  
+Test: [ 104/105]  Time: 0.406s (0.414s,   19.32/s)  
+Dataset Tested on: M3FD_FULL, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_OVERCAST_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.7993979213580961
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/40]  Time: 3.865s (3.865s,    2.07/s)  
+Test: [  10/40]  Time: 0.375s (0.786s,   10.18/s)  
+Test: [  20/40]  Time: 0.364s (0.585s,   13.68/s)  
+Test: [  30/40]  Time: 0.366s (0.513s,   15.58/s)  
+Test: [  39/40]  Time: 0.397s (0.480s,   16.66/s)  
+Dataset Tested on: M3FD_DAY, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_CHALLENGE_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.7409730325155643
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Test: [   0/18]  Time: 3.908s (3.908s,    2.05/s)  
+Test: [  10/18]  Time: 0.360s (0.790s,   10.13/s)  
+Test: [  17/18]  Time: 1.478s (0.685s,    5.84/s)  
+Dataset Tested on: M3FD_NIGHT, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_CHALLENGE_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.9427917210155474
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Test: [   0/26]  Time: 3.823s (3.823s,    2.09/s)  
+Test: [  10/26]  Time: 0.363s (0.782s,   10.24/s)  
+Test: [  20/26]  Time: 0.359s (0.583s,   13.72/s)  
+Test: [  25/26]  Time: 1.607s (0.588s,    8.51/s)  
+Dataset Tested on: M3FD_OVERCAST, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_CHALLENGE_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8270291482178137
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Test: [   0/20]  Time: 4.019s (4.019s,    1.99/s)  
+Test: [  10/20]  Time: 0.366s (0.803s,    9.96/s)  
+Test: [  19/20]  Time: 1.429s (0.658s,    6.08/s)  
+Dataset Tested on: M3FD_CHALLENGE, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_CHALLENGE_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8260728279142685
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/105]  Time: 3.912s (3.912s,    2.05/s)  
+Test: [  10/105]  Time: 0.361s (0.790s,   10.12/s)  
+Test: [  20/105]  Time: 0.366s (0.587s,   13.64/s)  
+Test: [  30/105]  Time: 0.361s (0.516s,   15.51/s)  
+Test: [  40/105]  Time: 0.366s (0.478s,   16.73/s)  
+Test: [  50/105]  Time: 0.367s (0.456s,   17.54/s)  
+Test: [  60/105]  Time: 0.381s (0.442s,   18.10/s)  
+Test: [  70/105]  Time: 0.361s (0.431s,   18.58/s)  
+Test: [  80/105]  Time: 0.364s (0.422s,   18.95/s)  
+Test: [  90/105]  Time: 0.359s (0.415s,   19.26/s)  
+Test: [ 100/105]  Time: 0.363s (0.410s,   19.51/s)  
+Test: [ 104/105]  Time: 0.406s (0.409s,   19.58/s)  
+Dataset Tested on: M3FD_FULL, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_CHALLENGE_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8093080858079912
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/40]  Time: 3.961s (3.961s,    2.02/s)  
+Test: [  10/40]  Time: 0.378s (0.801s,    9.99/s)  
+Test: [  20/40]  Time: 0.361s (0.594s,   13.47/s)  
+Test: [  30/40]  Time: 0.363s (0.519s,   15.41/s)  
+Test: [  39/40]  Time: 0.419s (0.485s,   16.50/s)  
+Dataset Tested on: M3FD_DAY, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_FULL_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.7453262610054051
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Test: [   0/18]  Time: 4.046s (4.046s,    1.98/s)  
+Test: [  10/18]  Time: 0.368s (0.805s,    9.94/s)  
+Test: [  17/18]  Time: 1.485s (0.696s,    5.75/s)  
+Dataset Tested on: M3FD_NIGHT, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_FULL_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.9309154701493664
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/26]  Time: 4.143s (4.143s,    1.93/s)  
+Test: [  10/26]  Time: 0.365s (0.819s,    9.76/s)  
+Test: [  20/26]  Time: 0.362s (0.604s,   13.24/s)  
+Test: [  25/26]  Time: 1.562s (0.604s,    8.28/s)  
+Dataset Tested on: M3FD_OVERCAST, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_FULL_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8411190042072968
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Test: [   0/20]  Time: 3.974s (3.974s,    2.01/s)  
+Test: [  10/20]  Time: 0.369s (0.799s,   10.01/s)  
+Test: [  19/20]  Time: 1.533s (0.661s,    6.05/s)  
+Dataset Tested on: M3FD_CHALLENGE, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_FULL_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.810610498131812
+**************************************************
+
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27004051
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/105]  Time: 3.768s (3.768s,    2.12/s)  
+Test: [  10/105]  Time: 0.381s (0.789s,   10.14/s)  
+Test: [  20/105]  Time: 0.365s (0.591s,   13.54/s)  
+Test: [  30/105]  Time: 0.365s (0.521s,   15.35/s)  
+Test: [  40/105]  Time: 0.360s (0.485s,   16.51/s)  
+Test: [  50/105]  Time: 0.384s (0.463s,   17.30/s)  
+Test: [  60/105]  Time: 0.366s (0.447s,   17.90/s)  
+Test: [  70/105]  Time: 0.367s (0.436s,   18.35/s)  
+Test: [  80/105]  Time: 0.365s (0.428s,   18.68/s)  
+Test: [  90/105]  Time: 0.364s (0.422s,   18.97/s)  
+Test: [ 100/105]  Time: 0.368s (0.416s,   19.22/s)  
+Test: [ 104/105]  Time: 0.405s (0.415s,   19.29/s)  
+Dataset Tested on: M3FD_FULL, Attention Type: CBAM, Trained Model Folder: EXP_M3FD_FULL_CBAM
+**************************************************
+Mean Average Precision Obtained is : 0.8046418996027014
+**************************************************

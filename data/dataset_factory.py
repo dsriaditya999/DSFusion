@@ -150,6 +150,25 @@ def create_dataset(name, root, splits=('train', 'val')):
                 parser=create_parser(dataset_cfg.parser, cfg=parser_cfg),
             )
 
+    elif name == 'm3fd_overcast':
+        dataset_cls = FusionDatasetM3FD
+        datasets = OrderedDict()
+        dataset_cfg = M3fdOvercastCfg()
+        for s in splits:
+            if s not in dataset_cfg.splits:
+                raise RuntimeError(f'{s} split not found in config')
+            split_cfg = dataset_cfg.splits[s]
+            ann_file = root / split_cfg['ann_filename']
+            parser_cfg = CocoParserCfg(
+                ann_filename=ann_file,
+                has_labels=split_cfg['has_labels']
+            )
+            datasets[s] = dataset_cls(
+                thermal_data_dir=root / Path(split_cfg['img_dir']),
+                rgb_data_dir=root / Path(split_cfg['img_dir'].replace('Ir', 'Vis')),
+                parser=create_parser(dataset_cfg.parser, cfg=parser_cfg),
+            )
+
 
     elif name == 'llvip':
         dataset_cls = FusionDataset
