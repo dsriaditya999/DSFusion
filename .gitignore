@@ -3,3 +3,11 @@ output/*
 Pretrained Model Files/*
 data/__pycache__/*
 models/__pycache__/*
+fixed_fusion_rgb.sh
+fixed_fusion_rgb.txt
+fixed_fusion_thermal_unfreeze.sh
+fixed_fusion_thermal_unfreeze.txt
+single_bb_rgb.sh
+single_bb_rgb.txt
+single_bb_thermal.sh
+single_bb_thermal.txt

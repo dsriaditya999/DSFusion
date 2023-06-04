@@ -226,6 +226,7 @@ def main():
     args = parser.parse_args()
     mean_ap = validate(args)
     print("Dataset Tested on: "+args.dataset.upper()+", Attention Type: "+args.att_type.upper()+", Trained Model Folder: "+args.checkpoint.split('/')[-2])
+    # print("Dataset Tested on: "+args.dataset.upper()+" Branch : "+args.branch.upper())
     print("*"*50)
     print("Mean Average Precision Obtained is : "+str(mean_ap))
     print("*"*50)
