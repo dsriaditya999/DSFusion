@@ -40,8 +40,11 @@ class DetectionFastCollate:
         batch_size = len(batch)
         target = dict()
         labeler_outputs = dict()
-        thermal_img_tensor = torch.zeros((batch_size, *batch[0][0].shape), dtype=torch.uint8)
-        rgb_img_tensor = torch.zeros((batch_size, *batch[0][1].shape), dtype=torch.uint8)
+        # thermal_img_tensor = torch.zeros((batch_size, *batch[0][0].shape), dtype=torch.uint8)
+        # rgb_img_tensor = torch.zeros((batch_size, *batch[0][1].shape), dtype=torch.uint8)
+        thermal_img_tensor = torch.zeros((batch_size, *batch[0][0].shape), dtype=torch.float32)
+        rgb_img_tensor = torch.zeros((batch_size, *batch[0][1].shape), dtype=torch.float32)
+
         for i in range(batch_size):
             thermal_img_tensor[i] += torch.from_numpy(batch[i][0])
             rgb_img_tensor[i] += torch.from_numpy(batch[i][1])
