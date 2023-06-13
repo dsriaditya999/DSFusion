@@ -83,7 +83,7 @@ class ResizePad:
         self.gated_fill_color = gated_fill_color
 
     def __call__(self, gated_img, rgb_img, anno: dict):
-        width, height = gated_img.size
+        height, width = gated_img.shape[:2]
 
         img_scale_y = self.target_size[0] / height
         img_scale_x = self.target_size[1] / width

@@ -192,7 +192,7 @@ def create_dataset(name, root, splits=('train', 'val')):
             datasets[s] = dataset_cls(
                 gated_data_dir=root / Path(split_cfg['img_dir']),
                 rgb_data_dir=root / Path(split_cfg['img_dir'].replace('gated_full_acc_rect_aligned', 'cam_stereo_left_rect_aligned')),
-                parser=create_parser(dataset_cfg.parser, cfg=parser_cfg),
+                parser=create_parser_stf(dataset_cfg.parser, cfg=parser_cfg),
                 mode=s, 
                 rgb_bits=12,
                 gated_bits=10,
@@ -219,7 +219,7 @@ def create_dataset(name, root, splits=('train', 'val')):
             datasets[s] = dataset_cls(
                 gated_data_dir=root / Path(split_cfg['img_dir']),
                 rgb_data_dir=root / Path(split_cfg['img_dir'].replace('gated_full_acc_rect_aligned', 'cam_stereo_left_rect_aligned')),
-                parser=create_parser(dataset_cfg.parser, cfg=parser_cfg),
+                parser=create_parser_stf(dataset_cfg.parser, cfg=parser_cfg),
                 mode=s, 
                 rgb_bits=12,
                 gated_bits=10,
@@ -246,7 +246,7 @@ def create_dataset(name, root, splits=('train', 'val')):
             datasets[s] = dataset_cls(
                 gated_data_dir=root / Path(split_cfg['img_dir']),
                 rgb_data_dir=root / Path(split_cfg['img_dir'].replace('gated_full_acc_rect_aligned', 'cam_stereo_left_rect_aligned')),
-                parser=create_parser(dataset_cfg.parser, cfg=parser_cfg),
+                parser=create_parser_stf(dataset_cfg.parser, cfg=parser_cfg),
                 mode=s, 
                 rgb_bits=12,
                 gated_bits=10,
@@ -273,7 +273,7 @@ def create_dataset(name, root, splits=('train', 'val')):
             datasets[s] = dataset_cls(
                 gated_data_dir=root / Path(split_cfg['img_dir']),
                 rgb_data_dir=root / Path(split_cfg['img_dir'].replace('gated_full_acc_rect_aligned', 'cam_stereo_left_rect_aligned')),
-                parser=create_parser(dataset_cfg.parser, cfg=parser_cfg),
+                parser=create_parser_stf(dataset_cfg.parser, cfg=parser_cfg),
                 mode=s, 
                 rgb_bits=12,
                 gated_bits=10,
@@ -300,7 +300,7 @@ def create_dataset(name, root, splits=('train', 'val')):
             datasets[s] = dataset_cls(
                 gated_data_dir=root / Path(split_cfg['img_dir']),
                 rgb_data_dir=root / Path(split_cfg['img_dir'].replace('gated_full_acc_rect_aligned', 'cam_stereo_left_rect_aligned')),
-                parser=create_parser(dataset_cfg.parser, cfg=parser_cfg),
+                parser=create_parser_stf(dataset_cfg.parser, cfg=parser_cfg),
                 mode=s, 
                 rgb_bits=12,
                 gated_bits=10,
@@ -327,7 +327,7 @@ def create_dataset(name, root, splits=('train', 'val')):
             datasets[s] = dataset_cls(
                 gated_data_dir=root / Path(split_cfg['img_dir']),
                 rgb_data_dir=root / Path(split_cfg['img_dir'].replace('gated_full_acc_rect_aligned', 'cam_stereo_left_rect_aligned')),
-                parser=create_parser(dataset_cfg.parser, cfg=parser_cfg),
+                parser=create_parser_stf(dataset_cfg.parser, cfg=parser_cfg),
                 mode=s, 
                 rgb_bits=12,
                 gated_bits=10,
@@ -354,7 +354,7 @@ def create_dataset(name, root, splits=('train', 'val')):
             datasets[s] = dataset_cls(
                 gated_data_dir=root / Path(split_cfg['img_dir']),
                 rgb_data_dir=root / Path(split_cfg['img_dir'].replace('gated_full_acc_rect_aligned', 'cam_stereo_left_rect_aligned')),
-                parser=create_parser(dataset_cfg.parser, cfg=parser_cfg),
+                parser=create_parser_stf(dataset_cfg.parser, cfg=parser_cfg),
                 mode=s, 
                 rgb_bits=12,
                 gated_bits=10,
@@ -381,7 +381,7 @@ def create_dataset(name, root, splits=('train', 'val')):
             datasets[s] = dataset_cls(
                 gated_data_dir=root / Path(split_cfg['img_dir']),
                 rgb_data_dir=root / Path(split_cfg['img_dir'].replace('gated_full_acc_rect_aligned', 'cam_stereo_left_rect_aligned')),
-                parser=create_parser(dataset_cfg.parser, cfg=parser_cfg),
+                parser=create_parser_stf(dataset_cfg.parser, cfg=parser_cfg),
                 mode=s, 
                 rgb_bits=12,
                 gated_bits=10,

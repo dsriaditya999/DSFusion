@@ -11,3 +11,7 @@ single_bb_rgb.sh
 single_bb_rgb.txt
 single_bb_thermal.sh
 single_bb_thermal.txt
+data/parsers/__pycache__/*
+utils/__pycache__/*
+utils/evaluation/__pycache__/*
+utils/__pycache__/*

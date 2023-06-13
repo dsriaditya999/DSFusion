@@ -16,7 +16,7 @@ from effdet.distributed import synchronize, is_main_process, all_gather_containe
 #import pyximport; py_importer, pyx_importer = pyximport.install(pyimport=True)
 from .evaluation import detection_evaluator as tfm_eval
 #pyximport.uninstall(py_importer, pyx_importer)
-from kitti_eval import kitti_eval
+from .kitti_eval import kitti_eval
 
 _logger = logging.getLogger(__name__)
 
@@ -233,6 +233,8 @@ class KittiEvaluator(Evaluator):
                 'rotation_y': []
             }
 
+            # print(target)
+
             annotations['name'] = [self.STF_MAP[idx] for idx in target['cls'][i].cpu().numpy()]
             annotations['truncated'] = target['truncated'][i].cpu().numpy()
             annotations['occluded'] = target['occluded'][i].cpu().numpy()
@@ -278,7 +280,7 @@ class KittiEvaluator(Evaluator):
         self.add_ground_truth_anno(target)
         self.add_detections(detections)
 
-    def evaluate(self):
+    def evaluate(self, output_result_file=None):
         # 1 : 'LargeVehicle',
         # 2 : 'Person',
         # 3 : 'Car',
@@ -292,6 +294,15 @@ class KittiEvaluator(Evaluator):
         )
         print(result)
         print(ret_dict)
+
+        ret_dict["final_score"] = result
+
+        if output_result_file is not None:
+
+            with open(output_result_file, 'w') as f:
+                json.dump(ret_dict, f, indent=4)
+
+
 
 def create_evaluator(name, dataset, distributed=False, pred_yxyx=False):
     # FIXME support OpenImages Challenge2019 metric w/ image level label consideration

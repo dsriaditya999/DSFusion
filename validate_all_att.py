@@ -17,7 +17,7 @@ from timm.models.layers import set_layer_config
 from models.models import Att_FusionNet
 from models.detector import DetBenchPredictImagePair
 from data import create_dataset, create_loader, resolve_input_config
-from utils.evaluator import CocoEvaluator
+from utils.evaluator import CocoEvaluator, KittiEvaluator
 
 has_apex = False
 try:
@@ -182,10 +182,14 @@ def validate(args):
         num_workers=args.workers,
         pin_mem=args.pin_mem)
 
-    if args.classwise:
-        evaluator = create_evaluator(args.dataset, dataset, pred_yxyx=False)
-    else:
-        evaluator = CocoEvaluator(dataset, distributed=False, pred_yxyx=False)
+    # if args.classwise:
+    #     evaluator = create_evaluator(args.dataset, dataset, pred_yxyx=False)
+    # else:
+    #     # evaluator = CocoEvaluator(dataset, distributed=False, pred_yxyx=False)
+    #     evaluator = KittiEvaluator(dataset, distributed=False, pred_yxyx=False)
+
+    evaluator = KittiEvaluator(dataset, distributed=False, pred_yxyx=False)
+
     bench.eval()
     batch_time = AverageMeter()
     end = time.time()
@@ -214,7 +218,11 @@ def validate(args):
 
     mean_ap = 0.
     if dataset.parser.has_labels:
-        mean_ap = evaluator.evaluate(output_result_file=args.results)
+        # mean_ap = evaluator.evaluate(output_result_file=args.results)
+        if args.results == '':
+            mean_ap = evaluator.evaluate()
+        else:
+            mean_ap = evaluator.evaluate(output_result_file=args.results)
         # mean_ap = CocoEvaluator(dataset, distributed=distributed, pred_yxyx=pred_yxyx)
     else:
         evaluator.save(args.results)
@@ -225,11 +233,9 @@ def validate(args):
 def main():
     args = parser.parse_args()
     mean_ap = validate(args)
-    print("Dataset Tested on: "+args.dataset.upper()+", Attention Type: "+args.att_type.upper()+", Trained Model Folder: "+args.checkpoint.split('/')[-2])
-    # print("Dataset Tested on: "+args.dataset.upper()+" Branch : "+args.branch.upper())
-    print("*"*50)
-    print("Mean Average Precision Obtained is : "+str(mean_ap))
-    print("*"*50)
+    # print("*"*50)
+    # print("Mean Average Precision Obtained is : "+str(mean_ap))
+    # print("*"*50)
 
 
 if __name__ == '__main__':

@@ -6,7 +6,7 @@ import copy
 import torch
 import os
 
-import cv2_transforms
+from .cv2_transforms import transforms_coco_train, transforms_coco_eval
 from PIL import Image
 from effdet.data.parsers import create_parser
 from .parsers import create_parser as create_parser_stf
@@ -137,7 +137,7 @@ class XBitFusionDatsetSTF(data.Dataset):
         self.rgb_bits = rgb_bits
 
         if mode == 'train':
-            self.fixed_transform = cv2_transforms.transforms_coco_train(
+            self.fixed_transform = transforms_coco_train(
                 1280,
                 use_prefetcher=True,
                 rgb_mean=rgb_mean,
@@ -146,7 +146,7 @@ class XBitFusionDatsetSTF(data.Dataset):
                 gated_std=gated_std,
             )
         else:
-            self.fixed_transform = cv2_transforms.transforms_coco_eval(
+            self.fixed_transform = transforms_coco_eval(
                 1280,
                 use_prefetcher=True,
                 rgb_mean=rgb_mean,

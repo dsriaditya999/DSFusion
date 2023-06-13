@@ -98,6 +98,7 @@ class Att_FusionNet(nn.Module):
 
         self.config = effdet.config.model_config.get_efficientdet_config('efficientdetv2_dt')
         self.config.num_classes = args.num_classes
+        self.config.image_size = (1280, 1280)
 
         thermal_det = EfficientDet(self.config)
         rgb_det = EfficientDet(self.config)
