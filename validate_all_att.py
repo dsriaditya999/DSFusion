@@ -232,10 +232,20 @@ def validate(args):
 
 def main():
     args = parser.parse_args()
+    print("Dataset: "+args.dataset)
+    if args.checkpoint == '':
+
+        print("Branch: "+args.branch)
+
+    else:
+        print("Checkpoint: "+args.checkpoint)
+        print("Att Type: "+args.att_type)
+        
     mean_ap = validate(args)
     # print("*"*50)
     # print("Mean Average Precision Obtained is : "+str(mean_ap))
     # print("*"*50)
+    
 
 
 if __name__ == '__main__':
