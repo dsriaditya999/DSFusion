@@ -1,0 +1,174 @@
+Dataset: stf_full
+Branch: thermal
+Loading Thermal from /groups/ARCL/stf_1280_all_scenes_weights/gated/model_best.pth.tar
+RGB checkpoint path not provided.
+Loading fusion head from thermal checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.18s)
+creating index...
+index created!
+Test: [   0/401]  Time: 8.480s (8.480s,    0.94/s)  
+Test: [  10/401]  Time: 0.743s (1.514s,    5.28/s)  
+Test: [  20/401]  Time: 0.675s (1.130s,    7.08/s)  
+Test: [  30/401]  Time: 0.649s (1.060s,    7.55/s)  
+Test: [  40/401]  Time: 0.648s (1.043s,    7.67/s)  
+Test: [  50/401]  Time: 0.650s (1.002s,    7.98/s)  
+Test: [  60/401]  Time: 0.686s (0.992s,    8.06/s)  
+Test: [  70/401]  Time: 0.651s (0.969s,    8.25/s)  
+Test: [  80/401]  Time: 0.717s (0.967s,    8.27/s)  
+Test: [  90/401]  Time: 0.668s (0.954s,    8.38/s)  
+Test: [ 100/401]  Time: 0.671s (0.952s,    8.41/s)  
+Test: [ 110/401]  Time: 0.673s (0.944s,    8.48/s)  
+Test: [ 120/401]  Time: 0.692s (0.937s,    8.54/s)  
+Test: [ 130/401]  Time: 0.707s (0.931s,    8.60/s)  
+Test: [ 140/401]  Time: 0.701s (0.932s,    8.58/s)  
+Test: [ 150/401]  Time: 0.658s (0.926s,    8.64/s)  
+Test: [ 160/401]  Time: 0.655s (0.924s,    8.66/s)  
+Test: [ 170/401]  Time: 0.651s (0.919s,    8.71/s)  
+Test: [ 180/401]  Time: 0.654s (0.919s,    8.71/s)  
+Test: [ 190/401]  Time: 0.659s (0.914s,    8.75/s)  
+Test: [ 200/401]  Time: 0.670s (0.913s,    8.76/s)  
+Test: [ 210/401]  Time: 0.807s (0.910s,    8.79/s)  
+Test: [ 220/401]  Time: 0.686s (0.910s,    8.79/s)  
+Test: [ 230/401]  Time: 0.673s (0.907s,    8.82/s)  
+Test: [ 240/401]  Time: 0.673s (0.907s,    8.82/s)  
+Test: [ 250/401]  Time: 0.730s (0.904s,    8.85/s)  
+Test: [ 260/401]  Time: 0.660s (0.904s,    8.85/s)  
+Test: [ 270/401]  Time: 0.660s (0.902s,    8.87/s)  
+Test: [ 280/401]  Time: 0.653s (0.902s,    8.87/s)  
+Test: [ 290/401]  Time: 0.653s (0.900s,    8.89/s)  
+Test: [ 300/401]  Time: 0.658s (0.899s,    8.90/s)  
+Test: [ 310/401]  Time: 0.678s (0.897s,    8.92/s)  
+Test: [ 320/401]  Time: 0.653s (0.897s,    8.92/s)  
+Test: [ 330/401]  Time: 0.659s (0.895s,    8.94/s)  
+Test: [ 340/401]  Time: 0.654s (0.896s,    8.93/s)  
+Test: [ 350/401]  Time: 0.674s (0.895s,    8.94/s)  
+Test: [ 360/401]  Time: 0.688s (0.896s,    8.93/s)  
+Test: [ 370/401]  Time: 0.663s (0.894s,    8.95/s)  
+Test: [ 380/401]  Time: 0.662s (0.895s,    8.94/s)  
+Test: [ 390/401]  Time: 0.739s (0.893s,    8.95/s)  
+Test: [ 400/401]  Time: 1.692s (0.894s,    7.83/s)  
+
+Dataset: stf_clear_day
+Branch: thermal
+Loading Thermal from /groups/ARCL/stf_1280_all_scenes_weights/gated/model_best.pth.tar
+RGB checkpoint path not provided.
+Loading fusion head from thermal checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.07s)
+creating index...
+index created!
+Test: [   0/112]  Time: 8.473s (8.473s,    0.94/s)  
+Test: [  10/112]  Time: 0.682s (1.483s,    5.39/s)  
+Test: [  20/112]  Time: 0.662s (1.140s,    7.02/s)  
+Test: [  30/112]  Time: 1.372s (1.056s,    7.58/s)  
+Test: [  40/112]  Time: 0.686s (1.018s,    7.86/s)  
+Test: [  50/112]  Time: 1.438s (1.001s,    8.00/s)  
+Test: [  60/112]  Time: 0.676s (0.971s,    8.24/s)  
+Test: [  70/112]  Time: 1.505s (0.967s,    8.27/s)  
+Test: [  80/112]  Time: 0.739s (0.951s,    8.41/s)  
+Test: [  90/112]  Time: 1.455s (0.945s,    8.47/s)  
+Test: [ 100/112]  Time: 0.727s (0.931s,    8.59/s)  
+Test: [ 110/112]  Time: 0.661s (0.919s,    8.70/s)  
+Test: [ 111/112]  Time: 1.632s (0.926s,    7.56/s)  
+
+Dataset: stf_clear_night
+Branch: thermal
+Loading Thermal from /groups/ARCL/stf_1280_all_scenes_weights/gated/model_best.pth.tar
+RGB checkpoint path not provided.
+Loading fusion head from thermal checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.10s)
+creating index...
+index created!
+Test: [   0/82]  Time: 8.541s (8.541s,    0.94/s)  
+Test: [  10/82]  Time: 0.657s (1.508s,    5.30/s)  
+Test: [  20/82]  Time: 0.665s (1.116s,    7.17/s)  
+Test: [  30/82]  Time: 1.395s (1.049s,    7.62/s)  
+Test: [  40/82]  Time: 0.991s (0.992s,    8.06/s)  
+Test: [  50/82]  Time: 1.022s (0.969s,    8.26/s)  
+Test: [  60/82]  Time: 1.370s (0.959s,    8.34/s)  
+Test: [  70/82]  Time: 1.196s (0.942s,    8.49/s)  
+Test: [  80/82]  Time: 0.618s (0.924s,    8.65/s)  
+Test: [  81/82]  Time: 1.647s (0.933s,    7.50/s)  
+
+Dataset: stf_fog_day
+Branch: thermal
+Loading Thermal from /groups/ARCL/stf_1280_all_scenes_weights/gated/model_best.pth.tar
+RGB checkpoint path not provided.
+Loading fusion head from thermal checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/38]  Time: 8.434s (8.434s,    0.95/s)  
+Test: [  10/38]  Time: 0.740s (1.769s,    4.52/s)  
+Test: [  20/38]  Time: 0.657s (1.266s,    6.32/s)  
+Test: [  30/38]  Time: 0.659s (1.124s,    7.12/s)  
+Test: [  37/38]  Time: 3.230s (1.130s,    0.88/s)  
+
+Dataset: stf_fog_night
+Branch: thermal
+Loading Thermal from /groups/ARCL/stf_1280_all_scenes_weights/gated/model_best.pth.tar
+RGB checkpoint path not provided.
+Loading fusion head from thermal checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/23]  Time: 8.402s (8.402s,    0.95/s)  
+Test: [  10/23]  Time: 0.717s (1.472s,    5.44/s)  
+Test: [  20/23]  Time: 1.256s (1.125s,    7.11/s)  
+Test: [  22/23]  Time: 1.638s (1.126s,    6.22/s)  
+
+Dataset: stf_snow_day
+Branch: thermal
+Loading Thermal from /groups/ARCL/stf_1280_all_scenes_weights/gated/model_best.pth.tar
+RGB checkpoint path not provided.
+Loading fusion head from thermal checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.03s)
+creating index...
+index created!
+Test: [   0/72]  Time: 8.489s (8.489s,    0.94/s)  
+Test: [  10/72]  Time: 0.652s (1.476s,    5.42/s)  
+Test: [  20/72]  Time: 0.646s (1.126s,    7.11/s)  
+Test: [  30/72]  Time: 1.220s (1.042s,    7.68/s)  
+Test: [  40/72]  Time: 0.647s (0.993s,    8.06/s)  
+Test: [  50/72]  Time: 1.734s (0.981s,    8.15/s)  
+Test: [  60/72]  Time: 0.637s (0.949s,    8.43/s)  
+Test: [  70/72]  Time: 0.478s (0.930s,    8.60/s)  
+Test: [  71/72]  Time: 4.354s (0.978s,    2.05/s)  
+
+Dataset: stf_snow_night
+Branch: thermal
+Loading Thermal from /groups/ARCL/stf_1280_all_scenes_weights/gated/model_best.pth.tar
+RGB checkpoint path not provided.
+Loading fusion head from thermal checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.04s)
+creating index...
+index created!
+Test: [   0/76]  Time: 8.190s (8.190s,    0.98/s)  
+Test: [  10/76]  Time: 0.674s (1.456s,    5.50/s)  
+Test: [  20/76]  Time: 0.702s (1.101s,    7.26/s)  
+Test: [  30/76]  Time: 1.498s (1.047s,    7.64/s)  
+Test: [  40/76]  Time: 0.670s (0.992s,    8.07/s)  
+Test: [  50/76]  Time: 1.502s (0.984s,    8.13/s)  
+Test: [  60/76]  Time: 0.648s (0.959s,    8.34/s)  
+Test: [  70/76]  Time: 1.405s (0.949s,    8.43/s)  
+Test: [  75/76]  Time: 1.686s (0.943s,    7.43/s)  

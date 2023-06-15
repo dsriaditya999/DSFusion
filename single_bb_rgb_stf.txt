@@ -1,0 +1,321 @@
+Dataset: stf_full
+Branch: rgb
+Thermal checkpoint path not provided.
+Loading RGB from /groups/ARCL/stf_1280_all_scenes_weights/rgb/model_best.pth.tar
+Loading fusion head from rgb checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.22s)
+creating index...
+index created!
+Test: [   0/401]  Time: 10.927s (10.927s,    0.73/s)  
+Test: [  10/401]  Time: 0.708s (1.802s,    4.44/s)  
+Test: [  20/401]  Time: 0.759s (1.363s,    5.87/s)  
+Test: [  30/401]  Time: 0.985s (1.226s,    6.53/s)  
+Test: [  40/401]  Time: 0.989s (1.165s,    6.86/s)  
+Test: [  50/401]  Time: 0.743s (1.098s,    7.29/s)  
+Test: [  60/401]  Time: 1.309s (1.099s,    7.28/s)  
+Test: [  70/401]  Time: 0.716s (1.058s,    7.56/s)  
+Test: [  80/401]  Time: 1.487s (1.049s,    7.62/s)  
+Test: [  90/401]  Time: 0.694s (1.047s,    7.64/s)  
+Test: [ 100/401]  Time: 1.106s (1.042s,    7.68/s)  
+Test: [ 110/401]  Time: 0.692s (1.043s,    7.67/s)  
+Test: [ 120/401]  Time: 1.127s (1.045s,    7.65/s)  
+Test: [ 130/401]  Time: 0.686s (1.041s,    7.68/s)  
+Test: [ 140/401]  Time: 1.505s (1.043s,    7.67/s)  
+Test: [ 150/401]  Time: 0.730s (1.046s,    7.65/s)  
+Test: [ 160/401]  Time: 0.716s (1.036s,    7.72/s)  
+Test: [ 170/401]  Time: 0.735s (1.019s,    7.85/s)  
+Test: [ 180/401]  Time: 1.379s (1.022s,    7.82/s)  
+Test: [ 190/401]  Time: 0.693s (1.016s,    7.87/s)  
+Test: [ 200/401]  Time: 0.894s (1.022s,    7.83/s)  
+Test: [ 210/401]  Time: 0.690s (1.018s,    7.86/s)  
+Test: [ 220/401]  Time: 1.167s (1.020s,    7.85/s)  
+Test: [ 230/401]  Time: 0.696s (1.012s,    7.91/s)  
+Test: [ 240/401]  Time: 1.647s (1.013s,    7.90/s)  
+Test: [ 250/401]  Time: 0.706s (1.012s,    7.91/s)  
+Test: [ 260/401]  Time: 0.747s (1.007s,    7.95/s)  
+Test: [ 270/401]  Time: 0.681s (1.004s,    7.97/s)  
+Test: [ 280/401]  Time: 0.729s (1.004s,    7.97/s)  
+Test: [ 290/401]  Time: 0.834s (0.996s,    8.03/s)  
+Test: [ 300/401]  Time: 1.707s (0.997s,    8.03/s)  
+Test: [ 310/401]  Time: 0.690s (0.994s,    8.05/s)  
+Test: [ 320/401]  Time: 0.707s (0.989s,    8.09/s)  
+Test: [ 330/401]  Time: 0.685s (0.992s,    8.07/s)  
+Test: [ 340/401]  Time: 0.703s (0.987s,    8.10/s)  
+Test: [ 350/401]  Time: 0.904s (0.988s,    8.09/s)  
+Test: [ 360/401]  Time: 0.685s (0.985s,    8.13/s)  
+Test: [ 370/401]  Time: 0.690s (0.988s,    8.10/s)  
+Test: [ 380/401]  Time: 0.683s (0.986s,    8.11/s)  
+Test: [ 390/401]  Time: 0.709s (0.991s,    8.07/s)  
+Test: [ 400/401]  Time: 2.987s (0.993s,    7.05/s)  
+Car AP@0.70, 0.70, 0.70:
+bbox AP:90.2126, 88.4385, 81.0706
+Car AP@0.50, 0.50, 0.50:
+bbox AP:91.2275, 90.7653, 90.0807
+LargeVehicle AP@0.70, 0.70, 0.70:
+bbox AP:82.1375, 77.2986, 72.6741
+LargeVehicle AP@0.70, 0.50, 0.50:
+bbox AP:82.1375, 77.2986, 72.6741
+Person AP@0.50, 0.50, 0.50:
+bbox AP:85.4790, 81.9677, 80.1913
+Person AP@0.50, 0.25, 0.25:
+bbox AP:85.4790, 81.9677, 80.1913
+Bike AP@0.50, 0.50, 0.50:
+bbox AP:78.9671, 72.3371, 71.4744
+Bike AP@0.50, 0.25, 0.25:
+bbox AP:78.9671, 72.3371, 71.4744
+
+Overall AP@easy, moderate, hard:
+bbox AP:84.1991, 80.0105, 76.3526
+
+{'KITTI/Car_2D_easy_strict': 90.21263428251166, 'KITTI/Car_2D_moderate_strict': 88.43854996991698, 'KITTI/Car_2D_hard_strict': 81.07059435604377, 'KITTI/Car_2D_easy_loose': 91.22746188292757, 'KITTI/Car_2D_moderate_loose': 90.76528512933581, 'KITTI/Car_2D_hard_loose': 90.080687745061, 'KITTI/LargeVehicle_2D_easy_strict': 82.1375311922193, 'KITTI/LargeVehicle_2D_moderate_strict': 77.29860118105131, 'KITTI/LargeVehicle_2D_hard_strict': 72.67405422911246, 'KITTI/LargeVehicle_2D_easy_loose': 82.1375311922193, 'KITTI/LargeVehicle_2D_moderate_loose': 77.29860118105131, 'KITTI/LargeVehicle_2D_hard_loose': 72.67405422911246, 'KITTI/Person_2D_easy_strict': 85.47895701538081, 'KITTI/Person_2D_moderate_strict': 81.96773087976997, 'KITTI/Person_2D_hard_strict': 80.1912580775303, 'KITTI/Person_2D_easy_loose': 85.47895701538081, 'KITTI/Person_2D_moderate_loose': 81.96773087976997, 'KITTI/Person_2D_hard_loose': 80.1912580775303, 'KITTI/Bike_2D_easy_strict': 78.96710756998418, 'KITTI/Bike_2D_moderate_strict': 72.33708368687648, 'KITTI/Bike_2D_hard_strict': 71.47439628189706, 'KITTI/Bike_2D_easy_loose': 78.96710756998418, 'KITTI/Bike_2D_moderate_loose': 72.33708368687648, 'KITTI/Bike_2D_hard_loose': 71.47439628189706, 'KITTI/Overall_2D_easy': 84.199057515024, 'KITTI/Overall_2D_moderate': 80.01049142940369, 'KITTI/Overall_2D_hard': 76.3525757361459}
+
+Dataset: stf_clear_day
+Branch: rgb
+Thermal checkpoint path not provided.
+Loading RGB from /groups/ARCL/stf_1280_all_scenes_weights/rgb/model_best.pth.tar
+Loading fusion head from rgb checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.11s)
+creating index...
+index created!
+Test: [   0/112]  Time: 15.315s (15.315s,    0.52/s)  
+Test: [  10/112]  Time: 0.711s (2.175s,    3.68/s)  
+Test: [  20/112]  Time: 2.377s (1.692s,    4.73/s)  
+Test: [  30/112]  Time: 1.074s (1.411s,    5.67/s)  
+Test: [  40/112]  Time: 2.196s (1.318s,    6.07/s)  
+Test: [  50/112]  Time: 0.938s (1.238s,    6.46/s)  
+Test: [  60/112]  Time: 1.079s (1.211s,    6.60/s)  
+Test: [  70/112]  Time: 0.670s (1.181s,    6.77/s)  
+Test: [  80/112]  Time: 0.760s (1.165s,    6.87/s)  
+Test: [  90/112]  Time: 0.876s (1.149s,    6.96/s)  
+Test: [ 100/112]  Time: 0.700s (1.135s,    7.05/s)  
+Test: [ 110/112]  Time: 0.669s (1.106s,    7.23/s)  
+Test: [ 111/112]  Time: 1.860s (1.113s,    6.29/s)  
+Car AP@0.70, 0.70, 0.70:
+bbox AP:89.9112, 88.6339, 81.1474
+Car AP@0.50, 0.50, 0.50:
+bbox AP:91.2215, 90.9450, 90.2471
+LargeVehicle AP@0.70, 0.70, 0.70:
+bbox AP:79.1449, 72.7802, 67.4564
+LargeVehicle AP@0.70, 0.50, 0.50:
+bbox AP:79.1449, 72.7802, 67.4564
+Person AP@0.50, 0.50, 0.50:
+bbox AP:85.7689, 81.6092, 79.5958
+Person AP@0.50, 0.25, 0.25:
+bbox AP:85.7689, 81.6092, 79.5958
+Bike AP@0.50, 0.50, 0.50:
+bbox AP:82.9712, 76.1522, 74.9956
+Bike AP@0.50, 0.25, 0.25:
+bbox AP:82.9712, 76.1522, 74.9956
+
+Overall AP@easy, moderate, hard:
+bbox AP:84.4490, 79.7939, 75.7988
+
+{'KITTI/Car_2D_easy_strict': 89.91122741904921, 'KITTI/Car_2D_moderate_strict': 88.63387592646603, 'KITTI/Car_2D_hard_strict': 81.14736372216849, 'KITTI/Car_2D_easy_loose': 91.22147507609637, 'KITTI/Car_2D_moderate_loose': 90.94495477174227, 'KITTI/Car_2D_hard_loose': 90.24706281548461, 'KITTI/LargeVehicle_2D_easy_strict': 79.14487700541241, 'KITTI/LargeVehicle_2D_moderate_strict': 72.78023510941482, 'KITTI/LargeVehicle_2D_hard_strict': 67.45642109759613, 'KITTI/LargeVehicle_2D_easy_loose': 79.14487700541241, 'KITTI/LargeVehicle_2D_moderate_loose': 72.78023510941482, 'KITTI/LargeVehicle_2D_hard_loose': 67.45642109759613, 'KITTI/Person_2D_easy_strict': 85.76885977398892, 'KITTI/Person_2D_moderate_strict': 81.60919338007685, 'KITTI/Person_2D_hard_strict': 79.59579380021196, 'KITTI/Person_2D_easy_loose': 85.76885977398892, 'KITTI/Person_2D_moderate_loose': 81.60919338007685, 'KITTI/Person_2D_hard_loose': 79.59579380021196, 'KITTI/Bike_2D_easy_strict': 82.97123303029322, 'KITTI/Bike_2D_moderate_strict': 76.15221101004104, 'KITTI/Bike_2D_hard_strict': 74.99564352699805, 'KITTI/Bike_2D_easy_loose': 82.97123303029322, 'KITTI/Bike_2D_moderate_loose': 76.15221101004104, 'KITTI/Bike_2D_hard_loose': 74.99564352699805, 'KITTI/Overall_2D_easy': 84.44904930718594, 'KITTI/Overall_2D_moderate': 79.79387885649969, 'KITTI/Overall_2D_hard': 75.79880553674366}
+
+Dataset: stf_clear_night
+Branch: rgb
+Thermal checkpoint path not provided.
+Loading RGB from /groups/ARCL/stf_1280_all_scenes_weights/rgb/model_best.pth.tar
+Loading fusion head from rgb checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.05s)
+creating index...
+index created!
+Test: [   0/82]  Time: 8.255s (8.255s,    0.97/s)  
+Test: [  10/82]  Time: 0.744s (1.521s,    5.26/s)  
+Test: [  20/82]  Time: 0.678s (1.287s,    6.22/s)  
+Test: [  30/82]  Time: 2.817s (1.260s,    6.35/s)  
+Test: [  40/82]  Time: 0.666s (1.174s,    6.82/s)  
+Test: [  50/82]  Time: 1.168s (1.138s,    7.03/s)  
+Test: [  60/82]  Time: 0.683s (1.112s,    7.19/s)  
+Test: [  70/82]  Time: 2.364s (1.114s,    7.18/s)  
+Test: [  80/82]  Time: 0.651s (1.067s,    7.50/s)  
+Test: [  81/82]  Time: 1.692s (1.074s,    6.52/s)  
+Car AP@0.70, 0.70, 0.70:
+bbox AP:90.2444, 87.4756, 81.2747
+Car AP@0.50, 0.50, 0.50:
+bbox AP:91.3978, 90.6928, 90.3193
+LargeVehicle AP@0.70, 0.70, 0.70:
+bbox AP:79.6445, 70.3152, 66.5780
+LargeVehicle AP@0.70, 0.50, 0.50:
+bbox AP:79.6445, 70.3152, 66.5780
+Person AP@0.50, 0.50, 0.50:
+bbox AP:81.6687, 78.3659, 76.8488
+Person AP@0.50, 0.25, 0.25:
+bbox AP:81.6687, 78.3659, 76.8488
+Bike AP@0.50, 0.50, 0.50:
+bbox AP:70.9794, 63.3602, 61.4573
+Bike AP@0.50, 0.25, 0.25:
+bbox AP:70.9794, 63.3602, 61.4573
+
+Overall AP@easy, moderate, hard:
+bbox AP:80.6342, 74.8792, 71.5397
+
+{'KITTI/Car_2D_easy_strict': 90.24436796653728, 'KITTI/Car_2D_moderate_strict': 87.47557623465885, 'KITTI/Car_2D_hard_strict': 81.27467997193966, 'KITTI/Car_2D_easy_loose': 91.39779920105468, 'KITTI/Car_2D_moderate_loose': 90.69277722930617, 'KITTI/Car_2D_hard_loose': 90.31925976720481, 'KITTI/LargeVehicle_2D_easy_strict': 79.64451045004162, 'KITTI/LargeVehicle_2D_moderate_strict': 70.31518147065673, 'KITTI/LargeVehicle_2D_hard_strict': 66.57797409465219, 'KITTI/LargeVehicle_2D_easy_loose': 79.64451045004162, 'KITTI/LargeVehicle_2D_moderate_loose': 70.31518147065673, 'KITTI/LargeVehicle_2D_hard_loose': 66.57797409465219, 'KITTI/Person_2D_easy_strict': 81.66865204939538, 'KITTI/Person_2D_moderate_strict': 78.36588257156586, 'KITTI/Person_2D_hard_strict': 76.84875742840525, 'KITTI/Person_2D_easy_loose': 81.66865204939538, 'KITTI/Person_2D_moderate_loose': 78.36588257156586, 'KITTI/Person_2D_hard_loose': 76.84875742840525, 'KITTI/Bike_2D_easy_strict': 70.97936794649084, 'KITTI/Bike_2D_moderate_strict': 63.36020665037828, 'KITTI/Bike_2D_hard_strict': 61.45732787246684, 'KITTI/Bike_2D_easy_loose': 70.97936794649084, 'KITTI/Bike_2D_moderate_loose': 63.36020665037828, 'KITTI/Bike_2D_hard_loose': 61.45732787246684, 'KITTI/Overall_2D_easy': 80.63422460311628, 'KITTI/Overall_2D_moderate': 74.87921173181493, 'KITTI/Overall_2D_hard': 71.53968484186599}
+
+Dataset: stf_fog_day
+Branch: rgb
+Thermal checkpoint path not provided.
+Loading RGB from /groups/ARCL/stf_1280_all_scenes_weights/rgb/model_best.pth.tar
+Loading fusion head from rgb checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.07s)
+creating index...
+index created!
+Test: [   0/38]  Time: 9.141s (9.141s,    0.88/s)  
+Test: [  10/38]  Time: 0.689s (1.668s,    4.80/s)  
+Test: [  20/38]  Time: 0.694s (1.336s,    5.99/s)  
+Test: [  30/38]  Time: 0.652s (1.217s,    6.57/s)  
+Test: [  37/38]  Time: 3.399s (1.200s,    0.83/s)  
+Car AP@0.70, 0.70, 0.70:
+bbox AP:94.8513, 92.8422, 89.9837
+Car AP@0.50, 0.50, 0.50:
+bbox AP:91.3132, 91.2610, 91.0832
+LargeVehicle AP@0.70, 0.70, 0.70:
+bbox AP:90.7937, 88.1351, 82.5137
+LargeVehicle AP@0.70, 0.50, 0.50:
+bbox AP:90.7937, 88.1351, 82.5137
+Person AP@0.50, 0.50, 0.50:
+bbox AP:87.7110, 89.0611, 89.1059
+Person AP@0.50, 0.25, 0.25:
+bbox AP:87.7110, 89.0611, 89.1059
+Bike AP@0.50, 0.50, 0.50:
+bbox AP:18.1818, 18.1818, 18.1818
+Bike AP@0.50, 0.25, 0.25:
+bbox AP:18.1818, 18.1818, 18.1818
+
+Overall AP@easy, moderate, hard:
+bbox AP:72.8845, 72.0551, 69.9463
+
+{'KITTI/Car_2D_easy_strict': 94.85132492029041, 'KITTI/Car_2D_moderate_strict': 92.84221522660405, 'KITTI/Car_2D_hard_strict': 89.98372209509252, 'KITTI/Car_2D_easy_loose': 91.3131705398636, 'KITTI/Car_2D_moderate_loose': 91.26100653599897, 'KITTI/Car_2D_hard_loose': 91.08317425899001, 'KITTI/LargeVehicle_2D_easy_strict': 90.79371256837692, 'KITTI/LargeVehicle_2D_moderate_strict': 88.13514967361122, 'KITTI/LargeVehicle_2D_hard_strict': 82.51366864121863, 'KITTI/LargeVehicle_2D_easy_loose': 90.79371256837692, 'KITTI/LargeVehicle_2D_moderate_loose': 88.13514967361122, 'KITTI/LargeVehicle_2D_hard_loose': 82.51366864121863, 'KITTI/Person_2D_easy_strict': 87.71101738314854, 'KITTI/Person_2D_moderate_strict': 89.06114185458367, 'KITTI/Person_2D_hard_strict': 89.1058887650708, 'KITTI/Person_2D_easy_loose': 87.71101738314854, 'KITTI/Person_2D_moderate_loose': 89.06114185458367, 'KITTI/Person_2D_hard_loose': 89.1058887650708, 'KITTI/Bike_2D_easy_strict': 18.181818181818183, 'KITTI/Bike_2D_moderate_strict': 18.181818181818183, 'KITTI/Bike_2D_hard_strict': 18.181818181818183, 'KITTI/Bike_2D_easy_loose': 18.181818181818183, 'KITTI/Bike_2D_moderate_loose': 18.181818181818183, 'KITTI/Bike_2D_hard_loose': 18.181818181818183, 'KITTI/Overall_2D_easy': 72.88446826340852, 'KITTI/Overall_2D_moderate': 72.05508123415429, 'KITTI/Overall_2D_hard': 69.94627442080004}
+
+Dataset: stf_fog_night
+Branch: rgb
+Thermal checkpoint path not provided.
+Loading RGB from /groups/ARCL/stf_1280_all_scenes_weights/rgb/model_best.pth.tar
+Loading fusion head from rgb checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/23]  Time: 10.383s (10.383s,    0.77/s)  
+Test: [  10/23]  Time: 0.677s (1.699s,    4.71/s)  
+Test: [  20/23]  Time: 0.656s (1.335s,    5.99/s)  
+Test: [  22/23]  Time: 1.734s (1.322s,    5.29/s)  
+Car AP@0.70, 0.70, 0.70:
+bbox AP:91.8011, 88.2002, 80.6050
+Car AP@0.50, 0.50, 0.50:
+bbox AP:92.7163, 90.6576, 90.4953
+LargeVehicle AP@0.70, 0.70, 0.70:
+bbox AP:45.5211, 77.6728, 78.0010
+LargeVehicle AP@0.70, 0.50, 0.50:
+bbox AP:45.5211, 77.6728, 78.0010
+Person AP@0.50, 0.50, 0.50:
+bbox AP:86.3643, 84.0447, 82.0536
+Person AP@0.50, 0.25, 0.25:
+bbox AP:86.3643, 84.0447, 82.0536
+Bike AP@0.50, 0.50, 0.50:
+bbox AP:49.5455, 49.2424, 49.2424
+Bike AP@0.50, 0.25, 0.25:
+bbox AP:49.5455, 49.2424, 49.2424
+
+Overall AP@easy, moderate, hard:
+bbox AP:68.3080, 74.7900, 72.4755
+
+{'KITTI/Car_2D_easy_strict': 91.8010903518832, 'KITTI/Car_2D_moderate_strict': 88.20022722947101, 'KITTI/Car_2D_hard_strict': 80.60499292115568, 'KITTI/Car_2D_easy_loose': 92.71629900778282, 'KITTI/Car_2D_moderate_loose': 90.65760038990469, 'KITTI/Car_2D_hard_loose': 90.49533372295936, 'KITTI/LargeVehicle_2D_easy_strict': 45.52107905401319, 'KITTI/LargeVehicle_2D_moderate_strict': 77.67277365491651, 'KITTI/LargeVehicle_2D_hard_strict': 78.00104657247515, 'KITTI/LargeVehicle_2D_easy_loose': 45.52107905401319, 'KITTI/LargeVehicle_2D_moderate_loose': 77.67277365491651, 'KITTI/LargeVehicle_2D_hard_loose': 78.00104657247515, 'KITTI/Person_2D_easy_strict': 86.36427228978309, 'KITTI/Person_2D_moderate_strict': 84.04467058960056, 'KITTI/Person_2D_hard_strict': 82.05359281400638, 'KITTI/Person_2D_easy_loose': 86.36427228978309, 'KITTI/Person_2D_moderate_loose': 84.04467058960056, 'KITTI/Person_2D_hard_loose': 82.05359281400638, 'KITTI/Bike_2D_easy_strict': 49.54545454545455, 'KITTI/Bike_2D_moderate_strict': 49.24242424242424, 'KITTI/Bike_2D_hard_strict': 49.24242424242424, 'KITTI/Bike_2D_easy_loose': 49.54545454545455, 'KITTI/Bike_2D_moderate_loose': 49.24242424242424, 'KITTI/Bike_2D_hard_loose': 49.24242424242424, 'KITTI/Overall_2D_easy': 68.30797406028351, 'KITTI/Overall_2D_moderate': 74.79002392910309, 'KITTI/Overall_2D_hard': 72.47551413751536}
+
+Dataset: stf_snow_day
+Branch: rgb
+Thermal checkpoint path not provided.
+Loading RGB from /groups/ARCL/stf_1280_all_scenes_weights/rgb/model_best.pth.tar
+Loading fusion head from rgb checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.05s)
+creating index...
+index created!
+Test: [   0/72]  Time: 9.143s (9.143s,    0.87/s)  
+Test: [  10/72]  Time: 0.744s (1.625s,    4.92/s)  
+Test: [  20/72]  Time: 0.695s (1.210s,    6.61/s)  
+Test: [  30/72]  Time: 0.735s (1.097s,    7.29/s)  
+Test: [  40/72]  Time: 0.746s (1.062s,    7.53/s)  
+Test: [  50/72]  Time: 1.048s (1.028s,    7.78/s)  
+Test: [  60/72]  Time: 0.682s (1.000s,    8.00/s)  
+Test: [  70/72]  Time: 0.516s (0.980s,    8.17/s)  
+Test: [  71/72]  Time: 4.465s (1.028s,    1.95/s)  
+Car AP@0.70, 0.70, 0.70:
+bbox AP:90.5104, 89.1695, 81.4913
+Car AP@0.50, 0.50, 0.50:
+bbox AP:91.2714, 90.8009, 89.3320
+LargeVehicle AP@0.70, 0.70, 0.70:
+bbox AP:86.0367, 77.8168, 74.3783
+LargeVehicle AP@0.70, 0.50, 0.50:
+bbox AP:86.0367, 77.8168, 74.3783
+Person AP@0.50, 0.50, 0.50:
+bbox AP:89.2143, 85.4788, 83.4138
+Person AP@0.50, 0.25, 0.25:
+bbox AP:89.2143, 85.4788, 83.4138
+Bike AP@0.50, 0.50, 0.50:
+bbox AP:18.1818, 19.1919, 19.1919
+Bike AP@0.50, 0.25, 0.25:
+bbox AP:18.1818, 19.1919, 19.1919
+
+Overall AP@easy, moderate, hard:
+bbox AP:70.9858, 67.9143, 64.6188
+
+{'KITTI/Car_2D_easy_strict': 90.51035314534374, 'KITTI/Car_2D_moderate_strict': 89.16951037620336, 'KITTI/Car_2D_hard_strict': 81.49126255306996, 'KITTI/Car_2D_easy_loose': 91.27135520129379, 'KITTI/Car_2D_moderate_loose': 90.80087814407203, 'KITTI/Car_2D_hard_loose': 89.33198172386784, 'KITTI/LargeVehicle_2D_easy_strict': 86.03672189879087, 'KITTI/LargeVehicle_2D_moderate_strict': 77.81678051374233, 'KITTI/LargeVehicle_2D_hard_strict': 74.37826572547306, 'KITTI/LargeVehicle_2D_easy_loose': 86.03672189879087, 'KITTI/LargeVehicle_2D_moderate_loose': 77.81678051374233, 'KITTI/LargeVehicle_2D_hard_loose': 74.37826572547306, 'KITTI/Person_2D_easy_strict': 89.21425340699606, 'KITTI/Person_2D_moderate_strict': 85.47880905631249, 'KITTI/Person_2D_hard_strict': 83.41380911366961, 'KITTI/Person_2D_easy_loose': 89.21425340699606, 'KITTI/Person_2D_moderate_loose': 85.47880905631249, 'KITTI/Person_2D_hard_loose': 83.41380911366961, 'KITTI/Bike_2D_easy_strict': 18.181818181818183, 'KITTI/Bike_2D_moderate_strict': 19.191919191919194, 'KITTI/Bike_2D_hard_strict': 19.191919191919194, 'KITTI/Bike_2D_easy_loose': 18.181818181818183, 'KITTI/Bike_2D_moderate_loose': 19.191919191919194, 'KITTI/Bike_2D_hard_loose': 19.191919191919194, 'KITTI/Overall_2D_easy': 70.98578665823722, 'KITTI/Overall_2D_moderate': 67.91425478454434, 'KITTI/Overall_2D_hard': 64.61881414603295}
+
+Dataset: stf_snow_night
+Branch: rgb
+Thermal checkpoint path not provided.
+Loading RGB from /groups/ARCL/stf_1280_all_scenes_weights/rgb/model_best.pth.tar
+Loading fusion head from rgb checkpoint.
+Model efficientdetv2_dt created, param count: 26789790
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.03s)
+creating index...
+index created!
+Test: [   0/76]  Time: 8.654s (8.654s,    0.92/s)  
+Test: [  10/76]  Time: 0.979s (1.671s,    4.79/s)  
+Test: [  20/76]  Time: 0.983s (1.279s,    6.25/s)  
+Test: [  30/76]  Time: 0.980s (1.118s,    7.15/s)  
+Test: [  40/76]  Time: 0.843s (1.031s,    7.76/s)  
+Test: [  50/76]  Time: 1.475s (1.013s,    7.90/s)  
+Test: [  60/76]  Time: 0.690s (0.973s,    8.22/s)  
+Test: [  70/76]  Time: 2.246s (0.982s,    8.15/s)  
+Test: [  75/76]  Time: 1.721s (0.977s,    7.17/s)  
+Car AP@0.70, 0.70, 0.70:
+bbox AP:90.4360, 87.3202, 80.9297
+Car AP@0.50, 0.50, 0.50:
+bbox AP:93.7317, 90.5951, 89.6001
+LargeVehicle AP@0.70, 0.70, 0.70:
+bbox AP:83.9079, 84.0812, 77.9461
+LargeVehicle AP@0.70, 0.50, 0.50:
+bbox AP:83.9079, 84.0812, 77.9461
+Person AP@0.50, 0.50, 0.50:
+bbox AP:86.8096, 83.8057, 82.9722
+Person AP@0.50, 0.25, 0.25:
+bbox AP:86.8096, 83.8057, 82.9722
+Bike AP@0.50, 0.50, 0.50:
+bbox AP:82.8428, 73.8874, 72.0644
+Bike AP@0.50, 0.25, 0.25:
+bbox AP:82.8428, 73.8874, 72.0644
+
+Overall AP@easy, moderate, hard:
+bbox AP:85.9991, 82.2736, 78.4781
+
+{'KITTI/Car_2D_easy_strict': 90.43599789363756, 'KITTI/Car_2D_moderate_strict': 87.3201644050683, 'KITTI/Car_2D_hard_strict': 80.92970341313422, 'KITTI/Car_2D_easy_loose': 93.73165710633984, 'KITTI/Car_2D_moderate_loose': 90.59513307988422, 'KITTI/Car_2D_hard_loose': 89.60009036330025, 'KITTI/LargeVehicle_2D_easy_strict': 83.90791580664998, 'KITTI/LargeVehicle_2D_moderate_strict': 84.08118567000625, 'KITTI/LargeVehicle_2D_hard_strict': 77.94605394605395, 'KITTI/LargeVehicle_2D_easy_loose': 83.90791580664998, 'KITTI/LargeVehicle_2D_moderate_loose': 84.08118567000625, 'KITTI/LargeVehicle_2D_hard_loose': 77.94605394605395, 'KITTI/Person_2D_easy_strict': 86.80962590723315, 'KITTI/Person_2D_moderate_strict': 83.80565694079358, 'KITTI/Person_2D_hard_strict': 82.97218693674145, 'KITTI/Person_2D_easy_loose': 86.80962590723315, 'KITTI/Person_2D_moderate_loose': 83.80565694079358, 'KITTI/Person_2D_hard_loose': 82.97218693674145, 'KITTI/Bike_2D_easy_strict': 82.84282444160131, 'KITTI/Bike_2D_moderate_strict': 73.88735484250749, 'KITTI/Bike_2D_hard_strict': 72.06436059115507, 'KITTI/Bike_2D_easy_loose': 82.84282444160131, 'KITTI/Bike_2D_moderate_loose': 73.88735484250749, 'KITTI/Bike_2D_hard_loose': 72.06436059115507, 'KITTI/Overall_2D_easy': 85.9990910122805, 'KITTI/Overall_2D_moderate': 82.27359046459391, 'KITTI/Overall_2D_hard': 78.47807622177118}

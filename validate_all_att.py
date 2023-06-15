@@ -17,7 +17,7 @@ from timm.models.layers import set_layer_config
 from models.models import Att_FusionNet
 from models.detector import DetBenchPredictImagePair
 from data import create_dataset, create_loader, resolve_input_config
-from utils.evaluator import CocoEvaluator, KittiEvaluator
+from utils.evaluator import CocoEvaluator, KittiEvaluator, PascalEvaluator
 
 has_apex = False
 try:
@@ -188,7 +188,8 @@ def validate(args):
     #     # evaluator = CocoEvaluator(dataset, distributed=False, pred_yxyx=False)
     #     evaluator = KittiEvaluator(dataset, distributed=False, pred_yxyx=False)
 
-    evaluator = KittiEvaluator(dataset, distributed=False, pred_yxyx=False)
+    # evaluator = KittiEvaluator(dataset, distributed=False, pred_yxyx=False)
+    evaluator = PascalEvaluator(dataset, distributed=False, pred_yxyx=False)
 
     bench.eval()
     batch_time = AverageMeter()
