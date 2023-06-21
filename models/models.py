@@ -208,15 +208,11 @@ class Adaptive_Att_FusionNet(Att_FusionNet):
 
     def __init__(self, args):
         Att_FusionNet.__init__(self, args)
-        
-        self.num_scenes = args.num_scenes
 
+        self.num_scenes = args.num_scenes
 
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.classifier = Classifier(n_classes=self.num_scenes, dropout=0.5)
-
-
-
 
         if args.branch == 'fusion':
             in_chs = args.channels
@@ -227,7 +223,6 @@ class Adaptive_Att_FusionNet(Att_FusionNet):
             del self.fusion_cbam4
             for scene in range(self.num_scenes):
                 for level in range(self.config.num_levels):
-
                     if self.attention_type=="cbam":
                         self.add_module("fusion"+str(scene)+"_"+self.attention_type+str(level), CBAMLayer(2*in_chs))
                     elif self.attention_type=="eca":
