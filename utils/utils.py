@@ -194,3 +194,37 @@ def visualize_target(dataset, target, wandb, args, split='val', img_tensor=None)
         # log to wandb: raw image, predictions, and dictionary of class labels for each class id
         box_image = wandb.Image(raw_image, boxes = {'gts': {"box_data": gt_boxes, "class_labels" : class_id_to_label}})
         wandb.log({split: box_image})
+
+def load_checkpoint_selective(net, snapshot, scene=None):
+    """
+    Restore weights and optimizer (if needed ) for resuming job.
+    """
+    checkpoint = torch.load(snapshot, map_location=torch.device('cpu'))
+
+    if 'state_dict' in checkpoint:
+        net = state_restore_selective(net, checkpoint['state_dict'], scene)
+    else:
+        net = state_restore_selective(net, checkpoint, scene)
+
+    return net
+
+
+def state_restore_selective(net, loaded_dict, scene=None):
+    """
+    Handle partial loading when some tensors don't match up in size.
+    Because we want to use models that were trained off a different
+    number of classes.
+    """
+    net_state_dict = net.state_dict()
+    new_loaded_dict = {}
+    for k in loaded_dict:
+        if 'cbam' in k:
+            new_loaded_dict[k.replace('fusion', 'fusion'+str(scene))] = loaded_dict[k]
+            print('successfully loaded ', k.replace('fusion', 'fusion'+str(scene)))
+        if 'classifier' in k:
+            new_loaded_dict[k] = loaded_dict[k]
+            print('successfully loaded ', k)
+    net_state_dict.update(new_loaded_dict)
+    net.load_state_dict(net_state_dict)
+    return net
+

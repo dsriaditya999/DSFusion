@@ -194,7 +194,7 @@ class Att_FusionNet(nn.Module):
         return x_class, x_box
 
 
-##################################### New Def Fusion Net###############################################
+##################################### Adaptive Fusion Net ###############################################
 class Classifier(nn.Module):
     def __init__(self, n_classes, dropout=0.5):
         super(Classifier, self).__init__()
@@ -204,69 +204,30 @@ class Classifier(nn.Module):
         x = self.l1(x)
         return x
 
-class Adaptive_Att_FusionNet(nn.Module):
+class Adaptive_Att_FusionNet(Att_FusionNet):
 
     def __init__(self, args):
-        super(Att_FusionNet, self).__init__()
-
-        self.config = effdet.config.model_config.get_efficientdet_config('efficientdetv2_dt')
-        self.config.num_classes = args.num_classes
-        self.config.num_scenes = args.num_scenes
-
-        thermal_det = EfficientDet(self.config)
-        rgb_det = EfficientDet(self.config)
-
-        if args.thermal_checkpoint_path:
-            effdet.helpers.load_checkpoint(thermal_det, args.thermal_checkpoint_path)
-            print('Loading Thermal from {}'.format(args.thermal_checkpoint_path))
-        else:
-            # raise ValueError('Thermal checkpoint path not provided.')
-            print('Thermal checkpoint path not provided.')
+        Att_FusionNet.__init__(self, args)
         
-        if args.rgb_checkpoint_path:
-            effdet.helpers.load_checkpoint(rgb_det, args.rgb_checkpoint_path)
-            print('Loading RGB from {}'.format(args.rgb_checkpoint_path))
-        else:
-            # raise ValueError('RGB checkpoint path not provided.')
-            print('RGB checkpoint path not provided.')
+        self.num_scenes = args.num_scenes
 
-            
-        
-        self.thermal_backbone = thermal_det.backbone
-        self.thermal_fpn = thermal_det.fpn
-        self.thermal_class_net = thermal_det.class_net
-        self.thermal_box_net = thermal_det.box_net
-
-        self.rgb_backbone = rgb_det.backbone
-        self.rgb_fpn = rgb_det.fpn
-        self.rgb_class_net = rgb_det.class_net
-        self.rgb_box_net = rgb_det.box_net
 
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
-        self.classifier = Classifier(n_classes=5, dropout=0.5)
+        self.classifier = Classifier(n_classes=self.num_scenes, dropout=0.5)
 
-        fusion_det = EfficientDet(self.config)
-        
-        if args.init_fusion_head_weights == 'thermal':
-            effdet.helpers.load_checkpoint(fusion_det, args.thermal_checkpoint_path) # This is optional
-            print("Loading fusion head from thermal checkpoint.")
-        elif args.init_fusion_head_weights == 'rgb':
-            effdet.helpers.load_checkpoint(fusion_det, args.rgb_checkpoint_path)
-            print("Loading fusion head from rgb checkpoint.")
-        else:
-            # raise ValueError('Fusion head random init.')
-            print('Fusion head random init.')
-        
 
-        self.fusion_class_net = fusion_det.class_net
-        self.fusion_box_net = fusion_det.box_net
+
 
         if args.branch == 'fusion':
-            self.attention_type = args.att_type
-            print("Using {} attention.".format(self.attention_type))
             in_chs = args.channels
-            for scene in range(self.config.num_scenes):
+            del self.fusion_cbam0
+            del self.fusion_cbam1
+            del self.fusion_cbam2
+            del self.fusion_cbam3
+            del self.fusion_cbam4
+            for scene in range(self.num_scenes):
                 for level in range(self.config.num_levels):
+
                     if self.attention_type=="cbam":
                         self.add_module("fusion"+str(scene)+"_"+self.attention_type+str(level), CBAMLayer(2*in_chs))
                     elif self.attention_type=="eca":
@@ -290,6 +251,7 @@ class Adaptive_Att_FusionNet(nn.Module):
             feat = self.avgpool(rgb_x[len(rgb_x)-1])
             feat = feat.view(feat.size(0), -1)
             image_class_out = self.classifier(feat)
+            image_class_out = torch.argmax(image_class_out, dim=1).cpu().numpy()[0]
 
             thermal_x = self.thermal_fpn(thermal_x)
             rgb_x = self.rgb_fpn(rgb_x)
@@ -314,9 +276,6 @@ class Adaptive_Att_FusionNet(nn.Module):
         x_box = box_net(out)
 
         return x_class, x_box
-
-
-
     
     
 

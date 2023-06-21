@@ -18,6 +18,7 @@ from models.models import Att_FusionNet, Adaptive_Att_FusionNet
 from models.detector import DetBenchPredictImagePair
 from data import create_dataset, create_loader, resolve_input_config
 from utils.evaluator import CocoEvaluator
+from utils.utils import load_checkpoint_selective
 
 has_apex = False
 try:
@@ -85,6 +86,10 @@ parser.add_argument('--log-freq', default=10, type=int,
                     metavar='N', help='batch logging frequency (default: 10)')
 parser.add_argument('--checkpoint', default='', type=str, metavar='PATH',
                     help='path to latest checkpoint (default: none)')
+parser.add_argument('--checkpoint-cls', default='', type=str, metavar='PATH',
+                    help='path to latest checkpoint (default: none)')
+parser.add_argument('--checkpoint-scenes', type=str, nargs='+', default=None, metavar='PATH',
+                    help='path to scene-specific checkpoint (default: none)')
 parser.add_argument('--pretrained', dest='pretrained', action='store_true',
                     help='use pre-trained model')
 parser.add_argument('--channels', default=128, type=int,
@@ -147,7 +152,12 @@ def validate(args):
         #model = Att_FusionNet(args)
         model = Adaptive_Att_FusionNet(args)
         if args.checkpoint:
-            load_checkpoint(model, args.checkpoint, use_ema=args.use_ema)
+            load_checkpoint(model, args.checkpoint, use_ema=args.use_ema, strict=False)
+        if args.checkpoint_cls:
+            load_checkpoint_selective(model, args.checkpoint_cls)
+        if args.num_scenes:
+            for scene in range(args.num_scenes):
+                load_checkpoint_selective(model, args.checkpoint_scenes[scene], scene)
         bench = DetBenchPredictImagePair(model)
     model_config = bench.config
 
