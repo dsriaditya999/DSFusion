@@ -196,8 +196,83 @@ class Att_FusionNet(nn.Module):
 
 
 
+##################################### Adaptive Fusion Net ###############################################
+class Classifier(nn.Module):
+    def __init__(self, n_classes, dropout=0.5):
+        super(Classifier, self).__init__()
+        self.l1 = nn.Linear(208, n_classes)
+
+    def forward(self, x):
+        x = self.l1(x)
+        return x
+
+class Adaptive_Att_FusionNet(Att_FusionNet):
+
+    def __init__(self, args):
+        Att_FusionNet.__init__(self, args)
+
+        self.num_scenes = args.num_scenes
+
+        self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
+        self.classifier = Classifier(n_classes=self.num_scenes, dropout=0.5)
+
+        if args.branch == 'fusion':
+            in_chs = args.channels
+            del self.fusion_cbam0
+            del self.fusion_cbam1
+            del self.fusion_cbam2
+            del self.fusion_cbam3
+            del self.fusion_cbam4
+            for scene in range(self.num_scenes):
+                for level in range(self.config.num_levels):
+                    if self.attention_type=="cbam":
+                        self.add_module("fusion"+str(scene)+"_"+self.attention_type+str(level), CBAMLayer(2*in_chs))
+                    elif self.attention_type=="eca":
+                        self.add_module("fusion"+str(scene)+"_"+self.attention_type+str(level), attention_block(2*in_chs))
+                    elif self.attention_type=="shuffle":
+                        self.add_module("fusion"+str(scene)+"_"+self.attention_type+str(level), shuffle_attention_block(2*in_chs))
+                    else:
+                        raise ValueError('Attention type not supported.')
+
+    def forward(self, data_pair, branch='fusion'):
+        thermal_x, rgb_x = data_pair[0], data_pair[1]
+
+        class_net = getattr(self, f'{branch}_class_net')
+        box_net = getattr(self, f'{branch}_box_net')
+
+        x = None
+        if branch =='fusion':
+            thermal_x = self.thermal_backbone(thermal_x)
+            rgb_x = self.rgb_backbone(rgb_x)
+
+            feat = self.avgpool(rgb_x[len(rgb_x)-1])
+            feat = feat.view(feat.size(0), -1)
+            image_class_out = self.classifier(feat)
+            image_class_out = torch.argmax(image_class_out, dim=1).cpu().numpy()[0]
+
+            thermal_x = self.thermal_fpn(thermal_x)
+            rgb_x = self.rgb_fpn(rgb_x)
+
+            out = []
+            for i, (tx, vx) in enumerate(zip(thermal_x, rgb_x)):
+                x = torch.cat((tx, vx), dim=1)
+                attention = getattr(self, "fusion"+str(image_class_out)+"_"+self.attention_type+str(i))
+                out.append(attention(x))
+        else:
+            fpn = getattr(self, f'{branch}_fpn')
+            backbone = getattr(self, f'{branch}_backbone')
+            if branch =='thermal':
+                x = thermal_x
+            elif branch =='rgb':
+                x = rgb_x
+            feats = backbone(x)
+            out = fpn(feats)
 
 
+        x_class = class_net(out)
+        x_box = box_net(out)
+
+        return x_class, x_box
     
     
 

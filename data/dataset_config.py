@@ -156,9 +156,9 @@ class StfRainCfg(CocoCfg):
 class StfFullCfg(CocoCfg):
     variant: str = ''
     splits: Dict[str, dict] = field(default_factory=lambda: dict(
-        train=dict(ann_filename='meta/all/stf-full-train.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
-        val=dict(ann_filename='meta/all/stf-full-val.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
-        test=dict(ann_filename='meta/all/stf-full-test.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        train=dict(ann_filename='meta/STF/all/stf-full-train.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        val=dict(ann_filename='meta/STF/all/stf-full-val.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        test=dict(ann_filename='meta/STF/all/stf-full-test.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
     ))
 
 
