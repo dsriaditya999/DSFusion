@@ -6,50 +6,53 @@ Loading fusion head from rgb checkpoint.
 Model efficientdetv2_dt created, param count: 26789790
 AMP not enabled. Validating in float32.
 loading annotations into memory...
-Done (t=0.10s)
+Done (t=0.12s)
 creating index...
 index created!
-Test: [   0/401]  Time: 7.923s (7.923s,    1.01/s)  
-Test: [  10/401]  Time: 0.651s (1.434s,    5.58/s)  
-Test: [  20/401]  Time: 0.643s (1.155s,    6.93/s)  
-Test: [  30/401]  Time: 0.645s (1.054s,    7.59/s)  
-Test: [  40/401]  Time: 0.649s (1.041s,    7.68/s)  
-Test: [  50/401]  Time: 0.657s (1.007s,    7.94/s)  
-Test: [  60/401]  Time: 0.665s (1.003s,    7.97/s)  
-Test: [  70/401]  Time: 0.673s (0.999s,    8.01/s)  
-Test: [  80/401]  Time: 1.019s (0.978s,    8.18/s)  
-Test: [  90/401]  Time: 0.669s (0.959s,    8.34/s)  
-Test: [ 100/401]  Time: 0.651s (0.962s,    8.32/s)  
-Test: [ 110/401]  Time: 0.635s (0.953s,    8.40/s)  
-Test: [ 120/401]  Time: 0.633s (0.932s,    8.58/s)  
-Test: [ 130/401]  Time: 0.648s (0.944s,    8.47/s)  
-Test: [ 140/401]  Time: 0.645s (0.937s,    8.54/s)  
-Test: [ 150/401]  Time: 0.652s (0.928s,    8.62/s)  
-Test: [ 160/401]  Time: 0.637s (0.928s,    8.62/s)  
-Test: [ 170/401]  Time: 0.663s (0.924s,    8.66/s)  
-Test: [ 180/401]  Time: 1.027s (0.923s,    8.67/s)  
-Test: [ 190/401]  Time: 0.643s (0.917s,    8.72/s)  
-Test: [ 200/401]  Time: 0.676s (0.918s,    8.71/s)  
-Test: [ 210/401]  Time: 0.637s (0.914s,    8.75/s)  
-Test: [ 220/401]  Time: 0.641s (0.910s,    8.79/s)  
-Test: [ 230/401]  Time: 0.644s (0.909s,    8.80/s)  
-Test: [ 240/401]  Time: 0.646s (0.911s,    8.78/s)  
-Test: [ 250/401]  Time: 0.651s (0.906s,    8.83/s)  
-Test: [ 260/401]  Time: 0.651s (0.908s,    8.81/s)  
-Test: [ 270/401]  Time: 0.651s (0.907s,    8.82/s)  
-Test: [ 280/401]  Time: 0.645s (0.905s,    8.84/s)  
-Test: [ 290/401]  Time: 0.643s (0.901s,    8.88/s)  
-Test: [ 300/401]  Time: 0.697s (0.900s,    8.89/s)  
-Test: [ 310/401]  Time: 0.645s (0.897s,    8.92/s)  
-Test: [ 320/401]  Time: 0.644s (0.899s,    8.90/s)  
-Test: [ 330/401]  Time: 0.645s (0.898s,    8.91/s)  
-Test: [ 340/401]  Time: 0.649s (0.902s,    8.87/s)  
-Test: [ 350/401]  Time: 0.633s (0.896s,    8.92/s)  
-Test: [ 360/401]  Time: 0.652s (0.901s,    8.88/s)  
-Test: [ 370/401]  Time: 0.782s (0.900s,    8.89/s)  
-Test: [ 380/401]  Time: 0.644s (0.896s,    8.93/s)  
-Test: [ 390/401]  Time: 1.218s (0.899s,    8.90/s)  
-Test: [ 400/401]  Time: 2.868s (0.898s,    7.80/s)  
+Test: [   0/401]  Time: 13.832s (13.832s,    0.58/s)  
+Test: [  10/401]  Time: 0.748s (2.119s,    3.78/s)  
+Test: [  20/401]  Time: 0.932s (1.640s,    4.88/s)  
+Test: [  30/401]  Time: 0.727s (1.476s,    5.42/s)  
+Test: [  40/401]  Time: 0.633s (1.341s,    5.96/s)  
+Test: [  50/401]  Time: 0.757s (1.250s,    6.40/s)  
+Test: [  60/401]  Time: 0.782s (1.241s,    6.45/s)  
+Test: [  70/401]  Time: 0.748s (1.220s,    6.56/s)  
+Test: [  80/401]  Time: 0.777s (1.208s,    6.62/s)  
+Test: [  90/401]  Time: 0.744s (1.202s,    6.65/s)  
+Test: [ 100/401]  Time: 1.117s (1.203s,    6.65/s)  
+Test: [ 110/401]  Time: 0.754s (1.187s,    6.74/s)  
+Test: [ 120/401]  Time: 0.777s (1.185s,    6.75/s)  
+Test: [ 130/401]  Time: 1.210s (1.173s,    6.82/s)  
+Test: [ 140/401]  Time: 0.831s (1.169s,    6.84/s)  
+Test: [ 150/401]  Time: 0.759s (1.159s,    6.90/s)  
+Test: [ 160/401]  Time: 1.052s (1.156s,    6.92/s)  
+Test: [ 170/401]  Time: 0.759s (1.140s,    7.02/s)  
+Test: [ 180/401]  Time: 2.923s (1.140s,    7.02/s)  
+Test: [ 190/401]  Time: 0.977s (1.137s,    7.04/s)  
+Test: [ 200/401]  Time: 1.245s (1.138s,    7.03/s)  
+Test: [ 210/401]  Time: 0.750s (1.136s,    7.04/s)  
+Test: [ 220/401]  Time: 2.710s (1.143s,    7.00/s)  
+Test: [ 230/401]  Time: 1.031s (1.140s,    7.02/s)  
+Test: [ 240/401]  Time: 2.346s (1.141s,    7.01/s)  
+Test: [ 250/401]  Time: 0.784s (1.138s,    7.03/s)  
+Test: [ 260/401]  Time: 2.734s (1.137s,    7.03/s)  
+Test: [ 270/401]  Time: 0.827s (1.135s,    7.05/s)  
+Test: [ 280/401]  Time: 1.748s (1.135s,    7.05/s)  
+Test: [ 290/401]  Time: 0.697s (1.119s,    7.15/s)  
+Test: [ 300/401]  Time: 0.958s (1.122s,    7.13/s)  
+Test: [ 310/401]  Time: 0.766s (1.122s,    7.13/s)  
+Test: [ 320/401]  Time: 2.377s (1.123s,    7.12/s)  
+Test: [ 330/401]  Time: 1.030s (1.121s,    7.14/s)  
+Test: [ 340/401]  Time: 0.758s (1.120s,    7.14/s)  
+Test: [ 350/401]  Time: 0.770s (1.122s,    7.13/s)  
+Test: [ 360/401]  Time: 0.799s (1.124s,    7.11/s)  
+Test: [ 370/401]  Time: 0.784s (1.121s,    7.13/s)  
+Test: [ 380/401]  Time: 0.821s (1.124s,    7.12/s)  
+Test: [ 390/401]  Time: 0.693s (1.125s,    7.11/s)  
+Test: [ 400/401]  Time: 1.894s (1.120s,    6.25/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8078521393139171
+**************************************************
 
 Dataset: stf_clear_day
 Branch: rgb
@@ -62,19 +65,22 @@ loading annotations into memory...
 Done (t=0.05s)
 creating index...
 index created!
-Test: [   0/112]  Time: 15.421s (15.421s,    0.52/s)  
-Test: [  10/112]  Time: 0.645s (2.138s,    3.74/s)  
-Test: [  20/112]  Time: 0.645s (1.475s,    5.43/s)  
-Test: [  30/112]  Time: 0.655s (1.300s,    6.15/s)  
-Test: [  40/112]  Time: 0.638s (1.199s,    6.67/s)  
-Test: [  50/112]  Time: 0.635s (1.147s,    6.97/s)  
-Test: [  60/112]  Time: 0.657s (1.111s,    7.20/s)  
-Test: [  70/112]  Time: 0.679s (1.068s,    7.49/s)  
-Test: [  80/112]  Time: 0.642s (1.050s,    7.62/s)  
-Test: [  90/112]  Time: 0.647s (1.011s,    7.91/s)  
-Test: [ 100/112]  Time: 0.989s (1.004s,    7.97/s)  
-Test: [ 110/112]  Time: 0.609s (0.980s,    8.17/s)  
-Test: [ 111/112]  Time: 1.738s (0.987s,    7.10/s)  
+Test: [   0/112]  Time: 10.379s (10.379s,    0.77/s)  
+Test: [  10/112]  Time: 0.854s (1.876s,    4.26/s)  
+Test: [  20/112]  Time: 0.916s (1.504s,    5.32/s)  
+Test: [  30/112]  Time: 2.617s (1.444s,    5.54/s)  
+Test: [  40/112]  Time: 1.397s (1.349s,    5.93/s)  
+Test: [  50/112]  Time: 1.555s (1.302s,    6.15/s)  
+Test: [  60/112]  Time: 1.370s (1.296s,    6.17/s)  
+Test: [  70/112]  Time: 0.735s (1.263s,    6.34/s)  
+Test: [  80/112]  Time: 0.808s (1.228s,    6.52/s)  
+Test: [  90/112]  Time: 2.762s (1.243s,    6.43/s)  
+Test: [ 100/112]  Time: 0.819s (1.235s,    6.48/s)  
+Test: [ 110/112]  Time: 1.331s (1.232s,    6.49/s)  
+Test: [ 111/112]  Time: 3.060s (1.249s,    5.61/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8005509626852564
+**************************************************
 
 Dataset: stf_clear_night
 Branch: rgb
@@ -87,16 +93,19 @@ loading annotations into memory...
 Done (t=0.03s)
 creating index...
 index created!
-Test: [   0/82]  Time: 8.747s (8.747s,    0.91/s)  
-Test: [  10/82]  Time: 0.679s (1.600s,    5.00/s)  
-Test: [  20/82]  Time: 0.654s (1.291s,    6.20/s)  
-Test: [  30/82]  Time: 0.658s (1.194s,    6.70/s)  
-Test: [  40/82]  Time: 0.664s (1.116s,    7.17/s)  
-Test: [  50/82]  Time: 0.669s (1.055s,    7.58/s)  
-Test: [  60/82]  Time: 0.670s (1.020s,    7.85/s)  
-Test: [  70/82]  Time: 0.662s (1.005s,    7.96/s)  
-Test: [  80/82]  Time: 0.609s (0.987s,    8.11/s)  
-Test: [  81/82]  Time: 1.669s (0.995s,    7.04/s)  
+Test: [   0/82]  Time: 13.203s (13.203s,    0.61/s)  
+Test: [  10/82]  Time: 0.794s (2.086s,    3.83/s)  
+Test: [  20/82]  Time: 1.055s (1.517s,    5.27/s)  
+Test: [  30/82]  Time: 0.734s (1.342s,    5.96/s)  
+Test: [  40/82]  Time: 0.790s (1.347s,    5.94/s)  
+Test: [  50/82]  Time: 0.743s (1.317s,    6.08/s)  
+Test: [  60/82]  Time: 0.820s (1.308s,    6.12/s)  
+Test: [  70/82]  Time: 0.778s (1.288s,    6.21/s)  
+Test: [  80/82]  Time: 0.739s (1.275s,    6.27/s)  
+Test: [  81/82]  Time: 1.901s (1.283s,    5.46/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.756646424191183
+**************************************************
 
 Dataset: stf_fog_day
 Branch: rgb
@@ -106,14 +115,17 @@ Loading fusion head from rgb checkpoint.
 Model efficientdetv2_dt created, param count: 26789790
 AMP not enabled. Validating in float32.
 loading annotations into memory...
-Done (t=0.02s)
+Done (t=0.03s)
 creating index...
 index created!
-Test: [   0/38]  Time: 7.573s (7.573s,    1.06/s)  
-Test: [  10/38]  Time: 0.651s (1.409s,    5.68/s)  
-Test: [  20/38]  Time: 0.702s (1.089s,    7.35/s)  
-Test: [  30/38]  Time: 0.627s (0.999s,    8.01/s)  
-Test: [  37/38]  Time: 3.488s (1.048s,    0.95/s)  
+Test: [   0/38]  Time: 8.448s (8.448s,    0.95/s)  
+Test: [  10/38]  Time: 0.803s (1.616s,    4.95/s)  
+Test: [  20/38]  Time: 1.193s (1.369s,    5.84/s)  
+Test: [  30/38]  Time: 1.562s (1.310s,    6.11/s)  
+Test: [  37/38]  Time: 3.513s (1.315s,    0.76/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8864645011093849
+**************************************************
 
 Dataset: stf_fog_night
 Branch: rgb
@@ -123,13 +135,16 @@ Loading fusion head from rgb checkpoint.
 Model efficientdetv2_dt created, param count: 26789790
 AMP not enabled. Validating in float32.
 loading annotations into memory...
-Done (t=0.01s)
+Done (t=0.04s)
 creating index...
 index created!
-Test: [   0/23]  Time: 7.349s (7.349s,    1.09/s)  
-Test: [  10/23]  Time: 0.751s (1.400s,    5.72/s)  
-Test: [  20/23]  Time: 0.645s (1.059s,    7.56/s)  
-Test: [  22/23]  Time: 1.651s (1.065s,    6.57/s)  
+Test: [   0/23]  Time: 11.340s (11.340s,    0.71/s)  
+Test: [  10/23]  Time: 0.761s (2.119s,    3.77/s)  
+Test: [  20/23]  Time: 0.903s (1.551s,    5.16/s)  
+Test: [  22/23]  Time: 1.717s (1.525s,    4.59/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8598232371007626
+**************************************************
 
 Dataset: stf_snow_day
 Branch: rgb
@@ -139,18 +154,21 @@ Loading fusion head from rgb checkpoint.
 Model efficientdetv2_dt created, param count: 26789790
 AMP not enabled. Validating in float32.
 loading annotations into memory...
-Done (t=0.01s)
+Done (t=0.05s)
 creating index...
 index created!
-Test: [   0/72]  Time: 7.214s (7.214s,    1.11/s)  
-Test: [  10/72]  Time: 0.644s (1.358s,    5.89/s)  
-Test: [  20/72]  Time: 2.201s (1.195s,    6.69/s)  
-Test: [  30/72]  Time: 0.638s (1.134s,    7.05/s)  
-Test: [  40/72]  Time: 1.549s (1.141s,    7.01/s)  
-Test: [  50/72]  Time: 0.639s (1.099s,    7.28/s)  
-Test: [  60/72]  Time: 0.840s (1.038s,    7.71/s)  
-Test: [  70/72]  Time: 0.497s (0.997s,    8.03/s)  
-Test: [  71/72]  Time: 4.385s (1.044s,    1.92/s)  
+Test: [   0/72]  Time: 10.386s (10.386s,    0.77/s)  
+Test: [  10/72]  Time: 0.824s (1.895s,    4.22/s)  
+Test: [  20/72]  Time: 1.980s (1.523s,    5.25/s)  
+Test: [  30/72]  Time: 0.800s (1.402s,    5.71/s)  
+Test: [  40/72]  Time: 1.446s (1.362s,    5.87/s)  
+Test: [  50/72]  Time: 0.779s (1.333s,    6.00/s)  
+Test: [  60/72]  Time: 1.861s (1.314s,    6.09/s)  
+Test: [  70/72]  Time: 0.523s (1.268s,    6.31/s)  
+Test: [  71/72]  Time: 4.573s (1.313s,    1.52/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7493316643802103
+**************************************************
 
 Dataset: stf_snow_night
 Branch: rgb
@@ -160,15 +178,18 @@ Loading fusion head from rgb checkpoint.
 Model efficientdetv2_dt created, param count: 26789790
 AMP not enabled. Validating in float32.
 loading annotations into memory...
-Done (t=0.01s)
+Done (t=0.05s)
 creating index...
 index created!
-Test: [   0/76]  Time: 7.173s (7.173s,    1.12/s)  
-Test: [  10/76]  Time: 0.686s (1.386s,    5.77/s)  
-Test: [  20/76]  Time: 0.650s (1.108s,    7.22/s)  
-Test: [  30/76]  Time: 0.683s (1.052s,    7.61/s)  
-Test: [  40/76]  Time: 0.645s (0.995s,    8.04/s)  
-Test: [  50/76]  Time: 0.652s (0.982s,    8.15/s)  
-Test: [  60/76]  Time: 0.799s (0.958s,    8.35/s)  
-Test: [  70/76]  Time: 0.662s (0.943s,    8.48/s)  
-Test: [  75/76]  Time: 1.666s (0.937s,    7.47/s)  
+Test: [   0/76]  Time: 15.565s (15.565s,    0.51/s)  
+Test: [  10/76]  Time: 0.906s (2.394s,    3.34/s)  
+Test: [  20/76]  Time: 0.771s (1.756s,    4.56/s)  
+Test: [  30/76]  Time: 2.538s (1.607s,    4.98/s)  
+Test: [  40/76]  Time: 1.120s (1.503s,    5.32/s)  
+Test: [  50/76]  Time: 1.511s (1.437s,    5.57/s)  
+Test: [  60/76]  Time: 1.002s (1.370s,    5.84/s)  
+Test: [  70/76]  Time: 1.548s (1.339s,    5.97/s)  
+Test: [  75/76]  Time: 1.854s (1.314s,    5.33/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8365679809737654
+**************************************************

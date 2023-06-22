@@ -243,9 +243,9 @@ def main():
         print("Att Type: "+args.att_type)
         
     mean_ap = validate(args)
-    # print("*"*50)
-    # print("Mean Average Precision Obtained is : "+str(mean_ap))
-    # print("*"*50)
+    print("*"*50)
+    print("Mean Average Precision Obtained is : "+str(mean_ap))
+    print("*"*50)
     
 
 
