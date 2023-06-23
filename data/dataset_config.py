@@ -87,6 +87,18 @@ class M3fdFullCfg(CocoCfg):
 
 # Seeing Through Fog Dataset
 
+
+@dataclass
+class StfClearCfg(CocoCfg):
+    variant: str = ''
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(ann_filename='meta/all/stf-clear-train.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        val=dict(ann_filename='meta/all/stf-clear-val.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        test=dict(ann_filename='meta/all/stf-clear-test.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+    ))
+
+
+
 @dataclass
 class StfClearDayCfg(CocoCfg):
     variant: str = ''

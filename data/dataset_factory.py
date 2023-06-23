@@ -202,6 +202,34 @@ def create_dataset(name, root, splits=('train', 'val')):
                 gated_std = [0.15437697, 0.15437697, 0.15437697]
             )
 
+
+    elif name == 'stf_clear': 
+        dataset_cls = XBitFusionDatsetSTF
+        datasets = OrderedDict()
+        dataset_cfg = StfClearCfg()
+        for s in splits:
+            if s not in dataset_cfg.splits:
+                raise RuntimeError(f'{s} split not found in config')
+            split_cfg = dataset_cfg.splits[s]
+            ann_file = root / split_cfg['ann_filename']
+            parser_cfg = CocoParserCfg(
+                ann_filename=ann_file,
+                has_labels=split_cfg['has_labels']
+            )
+
+            datasets[s] = dataset_cls(
+                gated_data_dir=root / Path(split_cfg['img_dir']),
+                rgb_data_dir=root / Path(split_cfg['img_dir'].replace('gated_full_acc_rect_aligned', 'cam_stereo_left_rect_aligned')),
+                parser=create_parser_stf(dataset_cfg.parser, cfg=parser_cfg),
+                mode=s, 
+                rgb_bits=12,
+                gated_bits=10,
+                rgb_mean = [0.26694615, 0.26693442, 0.26698295], 
+                rgb_std = [0.12035122, 0.12039929, 0.12037755],
+                gated_mean = [0.20945697, 0.20945697, 0.20945697], 
+                gated_std = [0.15437697, 0.15437697, 0.15437697]
+            )
+
     elif name == 'stf_clear_day': 
         dataset_cls = XBitFusionDatsetSTF
         datasets = OrderedDict()
