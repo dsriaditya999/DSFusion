@@ -1,0 +1,73 @@
+Dataset: flir_aligned_full
+Branch: thermal
+Loading Thermal from /groups/ARCL/ganlu/flir_thermal_backbone.pth.tar
+RGB checkpoint path not provided.
+Loading fusion head from thermal checkpoint.
+Model efficientdetv2_dt created, param count: 26786307
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/127]  Time: 4.173s (4.173s,    1.92/s)  
+Test: [  10/127]  Time: 0.265s (0.733s,   10.91/s)  
+Test: [  20/127]  Time: 0.261s (0.513s,   15.59/s)  
+Test: [  30/127]  Time: 0.278s (0.436s,   18.34/s)  
+Test: [  40/127]  Time: 0.276s (0.399s,   20.07/s)  
+Test: [  50/127]  Time: 0.299s (0.375s,   21.33/s)  
+Test: [  60/127]  Time: 0.253s (0.359s,   22.30/s)  
+Test: [  70/127]  Time: 0.276s (0.347s,   23.06/s)  
+Test: [  80/127]  Time: 0.259s (0.339s,   23.60/s)  
+Test: [  90/127]  Time: 0.267s (0.331s,   24.15/s)  
+Test: [ 100/127]  Time: 0.276s (0.326s,   24.56/s)  
+Test: [ 110/127]  Time: 0.282s (0.323s,   24.79/s)  
+Test: [ 120/127]  Time: 0.267s (0.319s,   25.09/s)  
+Test: [ 126/127]  Time: 1.363s (0.325s,   15.38/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7598579819501744
+**************************************************
+
+Dataset: flir_aligned_day
+Branch: thermal
+Loading Thermal from /groups/ARCL/ganlu/flir_thermal_backbone.pth.tar
+RGB checkpoint path not provided.
+Loading fusion head from thermal checkpoint.
+Model efficientdetv2_dt created, param count: 26786307
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Test: [   0/88]  Time: 3.823s (3.823s,    2.09/s)  
+Test: [  10/88]  Time: 0.252s (0.707s,   11.31/s)  
+Test: [  20/88]  Time: 0.270s (0.500s,   16.00/s)  
+Test: [  30/88]  Time: 0.272s (0.428s,   18.69/s)  
+Test: [  40/88]  Time: 0.274s (0.391s,   20.45/s)  
+Test: [  50/88]  Time: 0.275s (0.368s,   21.76/s)  
+Test: [  60/88]  Time: 0.279s (0.352s,   22.70/s)  
+Test: [  70/88]  Time: 0.290s (0.342s,   23.38/s)  
+Test: [  80/88]  Time: 0.307s (0.335s,   23.89/s)  
+Test: [  87/88]  Time: 1.422s (0.343s,   17.50/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7509056179275678
+**************************************************
+
+Dataset: flir_aligned_night
+Branch: thermal
+Loading Thermal from /groups/ARCL/ganlu/flir_thermal_backbone.pth.tar
+RGB checkpoint path not provided.
+Loading fusion head from thermal checkpoint.
+Model efficientdetv2_dt created, param count: 26786307
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/39]  Time: 4.108s (4.108s,    1.95/s)  
+Test: [  10/39]  Time: 0.302s (0.737s,   10.86/s)  
+Test: [  20/39]  Time: 0.273s (0.515s,   15.53/s)  
+Test: [  30/39]  Time: 0.267s (0.436s,   18.36/s)  
+Test: [  38/39]  Time: 1.397s (0.430s,   16.28/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7972034192460494
+**************************************************
