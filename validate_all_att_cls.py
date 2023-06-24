@@ -205,8 +205,8 @@ def validate(args):
     #     # evaluator = CocoEvaluator(dataset, distributed=False, pred_yxyx=False)
     #     evaluator = KittiEvaluator(dataset, distributed=False, pred_yxyx=False)
 
-    # evaluator = KittiEvaluator(dataset, distributed=False, pred_yxyx=False)
-    evaluator = PascalEvaluator(dataset, distributed=False, pred_yxyx=False)
+    evaluator = KittiEvaluator(dataset, distributed=False, pred_yxyx=False)
+    # evaluator = PascalEvaluator(dataset, distributed=False, pred_yxyx=False)
 
     bench.eval()
     batch_time = AverageMeter()

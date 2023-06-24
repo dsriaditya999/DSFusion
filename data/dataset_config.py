@@ -106,6 +106,42 @@ class StfClearNightCfg(CocoCfg):
     ))
 
 @dataclass
+class StfClearCfg(CocoCfg):
+    variant: str = ''
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(ann_filename='meta/STF/all/all/train_clear.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        val=dict(ann_filename='meta/STF/all/all/val_clear.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        test=dict(ann_filename='meta/STF/all/all/test_clear.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+    ))
+
+@dataclass
+class StfLightFogCfg(CocoCfg):
+    variant: str = ''
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(ann_filename='meta/STF/all/all/train_clear.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        val=dict(ann_filename='meta/STF/all/all/val_clear.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        test=dict(ann_filename='meta/STF/all/all/light_fog.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+    ))
+
+@dataclass
+class StfDenseFogCfg(CocoCfg):
+    variant: str = ''
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(ann_filename='meta/STF/all/all/train_clear.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        val=dict(ann_filename='meta/STF/all/all/val_clear.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        test=dict(ann_filename='meta/STF/all/all/dense_fog.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+    ))
+
+@dataclass
+class StfSnowRainCfg(CocoCfg):
+    variant: str = ''
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(ann_filename='meta/STF/all/all/train_clear.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        val=dict(ann_filename='meta/STF/all/all/val_clear.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        test=dict(ann_filename='meta/STF/all/all/snow_rain.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+    ))
+
+@dataclass
 class StfFogDayCfg(CocoCfg):
     variant: str = ''
     splits: Dict[str, dict] = field(default_factory=lambda: dict(
@@ -159,6 +195,7 @@ class StfFullCfg(CocoCfg):
         train=dict(ann_filename='meta/STF/all/stf-full-train.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
         val=dict(ann_filename='meta/STF/all/stf-full-val.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
         test=dict(ann_filename='meta/STF/all/stf-full-test.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
+        #test=dict(ann_filename='meta/STF/all/stf-full-test.json', img_dir='gated_full_acc_rect_aligned', has_labels=True),
     ))
 
 
