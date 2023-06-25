@@ -14,7 +14,7 @@ from timm.utils import AverageMeter, setup_default_logging
 from timm.models import load_checkpoint
 from timm.models.layers import set_layer_config
 
-from models.models import Att_FusionNet, Adaptive_Att_FusionNet
+from models.models import Att_FusionNet, Adaptive_Att_FusionNet, Att_FusionNet_BeforeBiFPN, Adaptive_Att_FusionNet_BeforeBiFPN
 from models.detector import DetBenchPredictImagePair
 from data import create_dataset, create_loader, resolve_input_config
 from utils.evaluator import CocoEvaluator
@@ -150,7 +150,7 @@ def validate(args):
             )
     else:
         #model = Att_FusionNet(args)
-        model = Adaptive_Att_FusionNet(args)
+        model = Adaptive_Att_FusionNet_BeforeBiFPN(args)
         if args.checkpoint:
             load_checkpoint(model, args.checkpoint, use_ema=args.use_ema, strict=False)
         if args.checkpoint_cls:
