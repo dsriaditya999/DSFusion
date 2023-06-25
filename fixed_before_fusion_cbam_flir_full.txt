@@ -1,0 +1,240 @@
+Dataset: flir_aligned_day
+Checkpoint: /home/sdeevi/Research/deep-sensor-fusion-main/output/train_flir_before/EXP_BeforeBiFPN_FLIR_ALIGNED_DAY_CBAM/last.pth.tar
+Att Type: cbam
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27741499
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.19s)
+creating index...
+index created!
+Test: [   0/88]  Time: 4.211s (4.211s,    1.90/s)  
+Test: [  10/88]  Time: 0.380s (0.850s,    9.42/s)  
+Test: [  20/88]  Time: 0.382s (0.626s,   12.78/s)  
+Test: [  30/88]  Time: 0.380s (0.546s,   14.64/s)  
+Test: [  40/88]  Time: 0.379s (0.505s,   15.83/s)  
+Test: [  50/88]  Time: 0.383s (0.481s,   16.64/s)  
+Test: [  60/88]  Time: 0.381s (0.464s,   17.23/s)  
+Test: [  70/88]  Time: 0.383s (0.453s,   17.67/s)  
+Test: [  80/88]  Time: 0.376s (0.444s,   18.01/s)  
+Test: [  87/88]  Time: 1.428s (0.450s,   13.32/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7807360926988305
+**************************************************
+
+Dataset: flir_aligned_night
+Checkpoint: /home/sdeevi/Research/deep-sensor-fusion-main/output/train_flir_before/EXP_BeforeBiFPN_FLIR_ALIGNED_DAY_CBAM/last.pth.tar
+Att Type: cbam
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27741499
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/39]  Time: 4.608s (4.608s,    1.74/s)  
+Test: [  10/39]  Time: 0.381s (0.883s,    9.06/s)  
+Test: [  20/39]  Time: 0.382s (0.644s,   12.43/s)  
+Test: [  30/39]  Time: 0.373s (0.558s,   14.33/s)  
+Test: [  38/39]  Time: 1.556s (0.552s,   12.69/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8609380198990841
+**************************************************
+
+Dataset: flir_aligned_full
+Checkpoint: /home/sdeevi/Research/deep-sensor-fusion-main/output/train_flir_before/EXP_BeforeBiFPN_FLIR_ALIGNED_DAY_CBAM/last.pth.tar
+Att Type: cbam
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27741499
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.20s)
+creating index...
+index created!
+Test: [   0/127]  Time: 4.329s (4.329s,    1.85/s)  
+Test: [  10/127]  Time: 0.384s (0.862s,    9.29/s)  
+Test: [  20/127]  Time: 0.380s (0.633s,   12.64/s)  
+Test: [  30/127]  Time: 0.380s (0.552s,   14.49/s)  
+Test: [  40/127]  Time: 0.385s (0.511s,   15.65/s)  
+Test: [  50/127]  Time: 0.382s (0.486s,   16.45/s)  
+Test: [  60/127]  Time: 0.382s (0.469s,   17.05/s)  
+Test: [  70/127]  Time: 0.380s (0.457s,   17.52/s)  
+Test: [  80/127]  Time: 0.380s (0.447s,   17.89/s)  
+Test: [  90/127]  Time: 0.376s (0.440s,   18.18/s)  
+Test: [ 100/127]  Time: 0.382s (0.434s,   18.43/s)  
+Test: [ 110/127]  Time: 0.383s (0.429s,   18.64/s)  
+Test: [ 120/127]  Time: 0.378s (0.425s,   18.82/s)  
+Test: [ 126/127]  Time: 1.452s (0.431s,   11.60/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.797145280301142
+**************************************************
+
+Dataset: flir_aligned_day
+Checkpoint: /home/sdeevi/Research/deep-sensor-fusion-main/output/train_flir_before/EXP_BeforeBiFPN_FLIR_ALIGNED_NIGHT_CBAM/last.pth.tar
+Att Type: cbam
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27741499
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.19s)
+creating index...
+index created!
+Test: [   0/88]  Time: 4.247s (4.247s,    1.88/s)  
+Test: [  10/88]  Time: 0.383s (0.854s,    9.37/s)  
+Test: [  20/88]  Time: 0.383s (0.628s,   12.74/s)  
+Test: [  30/88]  Time: 0.382s (0.549s,   14.58/s)  
+Test: [  40/88]  Time: 0.379s (0.507s,   15.77/s)  
+Test: [  50/88]  Time: 0.380s (0.482s,   16.58/s)  
+Test: [  60/88]  Time: 0.379s (0.466s,   17.17/s)  
+Test: [  70/88]  Time: 0.381s (0.454s,   17.63/s)  
+Test: [  80/88]  Time: 0.371s (0.444s,   18.00/s)  
+Test: [  87/88]  Time: 1.472s (0.451s,   13.30/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7873411072732358
+**************************************************
+
+Dataset: flir_aligned_night
+Checkpoint: /home/sdeevi/Research/deep-sensor-fusion-main/output/train_flir_before/EXP_BeforeBiFPN_FLIR_ALIGNED_NIGHT_CBAM/last.pth.tar
+Att Type: cbam
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27741499
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/39]  Time: 4.611s (4.611s,    1.73/s)  
+Test: [  10/39]  Time: 0.383s (0.886s,    9.03/s)  
+Test: [  20/39]  Time: 0.376s (0.645s,   12.41/s)  
+Test: [  30/39]  Time: 0.375s (0.560s,   14.29/s)  
+Test: [  38/39]  Time: 1.654s (0.555s,   12.62/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8421610045497699
+**************************************************
+
+Dataset: flir_aligned_full
+Checkpoint: /home/sdeevi/Research/deep-sensor-fusion-main/output/train_flir_before/EXP_BeforeBiFPN_FLIR_ALIGNED_NIGHT_CBAM/last.pth.tar
+Att Type: cbam
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27741499
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.20s)
+creating index...
+index created!
+Test: [   0/127]  Time: 4.350s (4.350s,    1.84/s)  
+Test: [  10/127]  Time: 0.382s (0.871s,    9.18/s)  
+Test: [  20/127]  Time: 0.380s (0.640s,   12.50/s)  
+Test: [  30/127]  Time: 0.382s (0.557s,   14.37/s)  
+Test: [  40/127]  Time: 0.380s (0.514s,   15.56/s)  
+Test: [  50/127]  Time: 0.383s (0.488s,   16.40/s)  
+Test: [  60/127]  Time: 0.383s (0.471s,   17.00/s)  
+Test: [  70/127]  Time: 0.382s (0.458s,   17.46/s)  
+Test: [  80/127]  Time: 0.382s (0.449s,   17.84/s)  
+Test: [  90/127]  Time: 0.384s (0.441s,   18.12/s)  
+Test: [ 100/127]  Time: 0.381s (0.436s,   18.37/s)  
+Test: [ 110/127]  Time: 0.381s (0.431s,   18.58/s)  
+Test: [ 120/127]  Time: 0.377s (0.427s,   18.75/s)  
+Test: [ 126/127]  Time: 1.335s (0.432s,   11.58/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7992263589516732
+**************************************************
+
+Dataset: flir_aligned_day
+Checkpoint: /home/sdeevi/Research/deep-sensor-fusion-main/output/train_flir_before/EXP_BeforeBiFPN_FLIR_ALIGNED_FULL_CBAM/last.pth.tar
+Att Type: cbam
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27741499
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.19s)
+creating index...
+index created!
+Test: [   0/88]  Time: 4.315s (4.315s,    1.85/s)  
+Test: [  10/88]  Time: 0.381s (0.866s,    9.24/s)  
+Test: [  20/88]  Time: 0.381s (0.635s,   12.60/s)  
+Test: [  30/88]  Time: 0.384s (0.553s,   14.46/s)  
+Test: [  40/88]  Time: 0.378s (0.511s,   15.65/s)  
+Test: [  50/88]  Time: 0.382s (0.486s,   16.47/s)  
+Test: [  60/88]  Time: 0.383s (0.469s,   17.08/s)  
+Test: [  70/88]  Time: 0.381s (0.456s,   17.53/s)  
+Test: [  80/88]  Time: 0.378s (0.447s,   17.90/s)  
+Test: [  87/88]  Time: 1.427s (0.453s,   13.24/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7780779129253862
+**************************************************
+
+Dataset: flir_aligned_night
+Checkpoint: /home/sdeevi/Research/deep-sensor-fusion-main/output/train_flir_before/EXP_BeforeBiFPN_FLIR_ALIGNED_FULL_CBAM/last.pth.tar
+Att Type: cbam
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27741499
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Test: [   0/39]  Time: 4.637s (4.637s,    1.73/s)  
+Test: [  10/39]  Time: 0.382s (0.890s,    8.99/s)  
+Test: [  20/39]  Time: 0.383s (0.648s,   12.35/s)  
+Test: [  30/39]  Time: 0.375s (0.563s,   14.22/s)  
+Test: [  38/39]  Time: 1.571s (0.555s,   12.61/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8466935300401115
+**************************************************
+
+Dataset: flir_aligned_full
+Checkpoint: /home/sdeevi/Research/deep-sensor-fusion-main/output/train_flir_before/EXP_BeforeBiFPN_FLIR_ALIGNED_FULL_CBAM/last.pth.tar
+Att Type: cbam
+Thermal checkpoint path not provided.
+RGB checkpoint path not provided.
+Fusion head random init.
+Using cbam attention.
+Model efficientdetv2_dt created, param count: 27741499
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.20s)
+creating index...
+index created!
+Test: [   0/127]  Time: 4.346s (4.346s,    1.84/s)  
+Test: [  10/127]  Time: 0.385s (0.865s,    9.25/s)  
+Test: [  20/127]  Time: 0.379s (0.635s,   12.60/s)  
+Test: [  30/127]  Time: 0.385s (0.553s,   14.46/s)  
+Test: [  40/127]  Time: 0.378s (0.511s,   15.64/s)  
+Test: [  50/127]  Time: 0.389s (0.486s,   16.45/s)  
+Test: [  60/127]  Time: 0.383s (0.469s,   17.04/s)  
+Test: [  70/127]  Time: 0.383s (0.457s,   17.50/s)  
+Test: [  80/127]  Time: 0.380s (0.448s,   17.85/s)  
+Test: [  90/127]  Time: 0.382s (0.441s,   18.15/s)  
+Test: [ 100/127]  Time: 0.383s (0.435s,   18.39/s)  
+Test: [ 110/127]  Time: 0.384s (0.430s,   18.60/s)  
+Test: [ 120/127]  Time: 0.378s (0.426s,   18.78/s)  
+Test: [ 126/127]  Time: 1.453s (0.432s,   11.58/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7930182790201838
+**************************************************
+

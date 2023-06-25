@@ -14,7 +14,7 @@ from torchsummary import summary
 
 from data import create_dataset, create_loader, resolve_input_config
 from models.detector import DetBenchTrainImagePair
-from models.models import Att_FusionNet
+from models.models import Att_FusionNet, Att_FusionNet_BeforeBiFPN
 from utils.evaluator import CocoEvaluator
 from utils.utils import visualize_detections, visualize_target
 from copy import deepcopy
@@ -110,7 +110,8 @@ if __name__ == '__main__':
 
     os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu)
 
-    net = Att_FusionNet(args)
+    # net = Att_FusionNet(args)
+    net = Att_FusionNet_BeforeBiFPN(args)
 
     
     training_bench = DetBenchTrainImagePair(net, create_labeler=True)
@@ -121,7 +122,7 @@ if __name__ == '__main__':
     head_net_params = count_parameters(training_bench.model.fusion_class_net) + count_parameters(training_bench.model.fusion_box_net)
     bifpn_params = count_parameters(training_bench.model.rgb_fpn) + count_parameters(training_bench.model.thermal_fpn)
     full_params = count_parameters(training_bench.model)
-    fusion_net_params = sum([count_parameters(getattr(training_bench.model,"fusion_"+args.att_type+str(i))) for i in range(5)])
+    fusion_net_params = sum([count_parameters(getattr(training_bench.model,"fusion_"+args.att_type+str(i))) for i in range(3)])
 
 
 
@@ -187,7 +188,7 @@ if __name__ == '__main__':
     exp_name = args.save+"_"+args.dataset.upper()+"_"+args.att_type.upper()
         
 
-    output_dir = get_outdir(output_base, 'train_flir_full', exp_name)
+    output_dir = get_outdir(output_base, 'train_flir_before', exp_name)
     saver = CheckpointSaver(
         net, optimizer, args=args, checkpoint_dir=output_dir)
 
