@@ -110,8 +110,8 @@ if __name__ == '__main__':
 
     os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu)
 
-    # net = Att_FusionNet(args)
-    net = Att_FusionNet_BeforeBiFPN(args)
+    net = Att_FusionNet(args)
+    # net = Att_FusionNet_BeforeBiFPN(args)
 
     
     training_bench = DetBenchTrainImagePair(net, create_labeler=True)
@@ -188,7 +188,7 @@ if __name__ == '__main__':
     exp_name = args.save+"_"+args.dataset.upper()+"_"+args.att_type.upper()
         
 
-    output_dir = get_outdir(output_base, 'train_flir_before', exp_name)
+    output_dir = get_outdir(output_base, 'train_m3fd', exp_name)
     saver = CheckpointSaver(
         net, optimizer, args=args, checkpoint_dir=output_dir)
 
