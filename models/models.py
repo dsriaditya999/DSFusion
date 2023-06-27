@@ -117,40 +117,40 @@ class Att_FusionNet(nn.Module):
             print('Thermal checkpoint path not provided.')
         
         if args.rgb_checkpoint_path:
-            effdet.helpers.load_checkpoint(rgb_det, args.rgb_checkpoint_path)
-            # checkpoint = torch.load(args.rgb_checkpoint_path)
-            # checkpoint2 = deepcopy(checkpoint)
+            # effdet.helpers.load_checkpoint(rgb_det, args.rgb_checkpoint_path)
+            checkpoint = torch.load(args.rgb_checkpoint_path)
+            checkpoint2 = deepcopy(checkpoint)
 
-            # for k,v in checkpoint2['state_dict'].items():
-            #     if "rgb_fpn" in k:
-            #         k1 = k.replace("rgb_fpn","fpn")
-            #         checkpoint['state_dict'][k1] = v
-            #         del checkpoint['state_dict'][k]
+            for k,v in checkpoint2['state_dict'].items():
+                if "rgb_fpn" in k:
+                    k1 = k.replace("rgb_fpn","fpn")
+                    checkpoint['state_dict'][k1] = v
+                    del checkpoint['state_dict'][k]
 
-            #     if "rgb_box_net" in k:
-            #         k1 = k.replace("rgb_box_net","box_net")
-            #         checkpoint['state_dict'][k1] = v
-            #         del checkpoint['state_dict'][k]
+                if "rgb_box_net" in k:
+                    k1 = k.replace("rgb_box_net","box_net")
+                    checkpoint['state_dict'][k1] = v
+                    del checkpoint['state_dict'][k]
 
-            #     if "rgb_class_net" in k:
-            #         k1 = k.replace("rgb_class_net","class_net")
-            #         checkpoint['state_dict'][k1] = v
-            #         del checkpoint['state_dict'][k]
+                if "rgb_class_net" in k:
+                    k1 = k.replace("rgb_class_net","class_net")
+                    checkpoint['state_dict'][k1] = v
+                    del checkpoint['state_dict'][k]
 
-            #     if "rgb_backbone" in k:
-            #         k1 = k.replace("rgb_backbone","backbone")
-            #         checkpoint['state_dict'][k1] = v
-            #         del checkpoint['state_dict'][k]
-
-
-            # missing,_ = rgb_det.load_state_dict(checkpoint['state_dict'], strict=False)
+                if "rgb_backbone" in k:
+                    k1 = k.replace("rgb_backbone","backbone")
+                    checkpoint['state_dict'][k1] = v
+                    del checkpoint['state_dict'][k]
 
 
-            # if len(missing) != 0:
-            #     raise ValueError('Missing keys in thermal backbone checkpoint for Thermal FPN')
+            missing,_ = rgb_det.load_state_dict(checkpoint['state_dict'], strict=False)
+
+
+            if len(missing) != 0:
+                raise ValueError('Missing keys in thermal backbone checkpoint for Thermal FPN')
             
-            # print('Loading RGB from {}'.format(args.rgb_checkpoint_path))
             print('Loading RGB from {}'.format(args.rgb_checkpoint_path))
+            # print('Loading RGB from {}'.format(args.rgb_checkpoint_path))
         else:
             # raise ValueError('RGB checkpoint path not provided.')
             print('RGB checkpoint path not provided.')
