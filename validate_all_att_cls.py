@@ -149,8 +149,8 @@ def validate(args):
                 **extra_args,
             )
     else:
-        #model = Att_FusionNet(args)
-        model = Adaptive_Att_FusionNet_BeforeBiFPN(args)
+        model = Adaptive_Att_FusionNet(args)
+        # model = Adaptive_Att_FusionNet_BeforeBiFPN(args)
         if args.checkpoint:
             load_checkpoint(model, args.checkpoint, use_ema=args.use_ema, strict=False)
         if args.checkpoint_cls:

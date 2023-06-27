@@ -142,10 +142,10 @@ def validate(args):
                 **extra_args,
             )
     else:
-        # model = Att_FusionNet(args)
-        model = Att_FusionNet_BeforeBiFPN(args)
+        model = Att_FusionNet(args)
+        # model = Att_FusionNet_BeforeBiFPN(args)
         if args.checkpoint:
-            load_checkpoint(model, args.checkpoint, use_ema=args.use_ema)
+            load_checkpoint(model, args.checkpoint, use_ema=args.use_ema, strict=False)
         bench = DetBenchPredictImagePair(model)
     model_config = bench.config
 
