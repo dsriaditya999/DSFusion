@@ -15,7 +15,7 @@ from timm.utils import AverageMeter, setup_default_logging
 from timm.models import load_checkpoint
 from timm.models.layers import set_layer_config
 
-from models.models import FusionNet_New
+from models.models import FusionNet_New, FusionNet_New_AfterFusion
 from models.detector import DetBenchPredictImagePair
 from data import create_dataset, create_loader
 from utils.evaluator import CocoEvaluator
@@ -77,6 +77,8 @@ parser.add_argument('--fill-color', default=None, type=str, metavar='NAME',
                     help='Image augmentation fill (background) color ("mean" or int)')
 parser.add_argument('--log-freq', default=10, type=int,
                     metavar='N', help='batch logging frequency (default: 10)')
+parser.add_argument('--channels', default=128, type=int,
+                        metavar='N', help='channels (default: 128)')
 parser.add_argument('--checkpoint', default='', type=str, metavar='PATH',
                     help='path to latest checkpoint (default: none)')
 parser.add_argument('--pretrained', dest='pretrained', action='store_true',
@@ -136,7 +138,8 @@ def validate(args):
                 **extra_args,
             )
     else:
-        model = FusionNet_New(args.num_classes)
+        # model = FusionNet_New(args.num_classes)
+        model = FusionNet_New_AfterFusion(args)
         if args.checkpoint:
             load_checkpoint(model, args.checkpoint, use_ema=args.use_ema)
         bench = DetBenchPredictImagePair(model)
@@ -216,8 +219,11 @@ def validate(args):
 
 
 def main():
+    
     args = parser.parse_args()
+    print("Dataset : ", args.dataset)
     mean_ap = validate(args)
+    
     print("*"*50)
     print("Mean Average Precision Obtained is : "+str(mean_ap))
     print("*"*50)

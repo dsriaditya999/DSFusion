@@ -103,8 +103,14 @@ class FusionNet_New(nn.Module):
         rgb_det = EfficientDet(self.config)
         
         self.thermal_backbone = thermal_det.backbone
+        self.thermal_fpn = thermal_det.fpn
+        self.thermal_class_net = thermal_det.class_net
+        self.thermal_box_net = thermal_det.box_net
 
         self.rgb_backbone = rgb_det.backbone
+        self.rgb_fpn = rgb_det.fpn
+        self.rgb_class_net = rgb_det.class_net
+        self.rgb_box_net = rgb_det.box_net
 
         fusion_det = EfficientDet(self.config)
         self.fusion_fpn = fusion_det.fpn
@@ -148,6 +154,78 @@ class FusionNet_New(nn.Module):
         x = fpn(feats)
         x_class = class_net(x)
         x_box = box_net(x)
+
+        return x_class, x_box
+    
+
+
+class FusionNet_New_AfterFusion(nn.Module):
+
+    def __init__(self, args):
+        super(FusionNet_New_AfterFusion, self).__init__()
+
+        self.config = effdet.config.model_config.get_efficientdet_config('efficientdetv2_dt')
+        self.config.num_classes = args.num_classes
+
+        thermal_det = EfficientDet(self.config)
+        rgb_det = EfficientDet(self.config)
+        
+        self.thermal_backbone = thermal_det.backbone
+        self.thermal_fpn = thermal_det.fpn
+        self.thermal_class_net = thermal_det.class_net
+        self.thermal_box_net = thermal_det.box_net
+
+        self.rgb_backbone = rgb_det.backbone
+        self.rgb_fpn = rgb_det.fpn
+        self.rgb_class_net = rgb_det.class_net
+        self.rgb_box_net = rgb_det.box_net
+
+        fusion_det = EfficientDet(self.config)
+        self.fusion_fpn = fusion_det.fpn
+        self.fusion_class_net = fusion_det.class_net
+        self.fusion_box_net = fusion_det.box_net
+
+
+        feature_info = get_feature_info(self.thermal_backbone)
+        for level in range(self.config.num_levels):
+            in_chs = args.channels
+            self.add_module(f'fusion_cbam{level}', CBAMLayer(2*in_chs))
+
+    def forward(self, data_pair, branch='fusion'):
+        thermal_x, rgb_x = data_pair[0], data_pair[1]
+
+        
+        class_net = getattr(self, f'{branch}_class_net')
+        box_net = getattr(self, f'{branch}_box_net')
+        
+        x = None
+        if branch =='fusion':
+            # print("I am here in Fusion branch")
+            thermal_x = self.thermal_backbone(thermal_x)
+            rgb_x = self.rgb_backbone(rgb_x)
+
+            thermal_x = self.thermal_fpn(thermal_x)
+            rgb_x = self.rgb_fpn(rgb_x)
+
+            out = []
+            for i, (tx, vx) in enumerate(zip(thermal_x, rgb_x)):
+                x = torch.cat((tx, vx), dim=1)
+                cbam = getattr(self, f'fusion_cbam{i}')
+                out.append(cbam(x))
+        else:
+            fpn = getattr(self, f'{branch}_fpn')
+            backbone = getattr(self, f'{branch}_backbone')
+            if branch =='thermal':
+                # print("I am here in thermal branch")
+                x = thermal_x
+            elif branch =='rgb':
+                x = rgb_x
+                # print("I am here in rgb branch")
+            feats = backbone(x)
+            out = fpn(feats)
+        
+        x_class = class_net(out)
+        x_box = box_net(out)
 
         return x_class, x_box
 

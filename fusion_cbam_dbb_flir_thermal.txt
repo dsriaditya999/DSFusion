@@ -1,0 +1,53 @@
+Dataset :  flir_aligned_day
+Model efficientdetv2_dt created, param count: 28044520
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.05s)
+creating index...
+index created!
+16
+Test: [   0/44]  Time: 5.454s (5.454s,    2.93/s)  
+Test: [  10/44]  Time: 0.455s (1.025s,   15.61/s)  
+Test: [  20/44]  Time: 0.462s (0.749s,   21.36/s)  
+Test: [  30/44]  Time: 0.443s (0.649s,   24.66/s)  
+Test: [  40/44]  Time: 0.450s (0.597s,   26.78/s)  
+Test: [  43/44]  Time: 2.423s (0.631s,   22.18/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.731333710075162
+**************************************************
+
+Dataset :  flir_aligned_night
+Model efficientdetv2_dt created, param count: 28044520
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.03s)
+creating index...
+index created!
+16
+Test: [   0/20]  Time: 5.189s (5.189s,    3.08/s)  
+Test: [  10/20]  Time: 0.447s (0.992s,   16.12/s)  
+Test: [  19/20]  Time: 1.960s (0.819s,    8.55/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7154089766689808
+**************************************************
+
+Dataset :  flir_aligned_full
+Model efficientdetv2_dt created, param count: 28044520
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.04s)
+creating index...
+index created!
+16
+Test: [   0/64]  Time: 5.176s (5.176s,    3.09/s)  
+Test: [  10/64]  Time: 0.436s (0.982s,   16.29/s)  
+Test: [  20/64]  Time: 0.430s (0.722s,   22.17/s)  
+Test: [  30/64]  Time: 0.449s (0.631s,   25.35/s)  
+Test: [  40/64]  Time: 0.440s (0.584s,   27.41/s)  
+Test: [  50/64]  Time: 0.452s (0.555s,   28.81/s)  
+Test: [  60/64]  Time: 0.427s (0.536s,   29.86/s)  
+Test: [  63/64]  Time: 1.896s (0.553s,    9.04/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7231718558414325
+**************************************************
+

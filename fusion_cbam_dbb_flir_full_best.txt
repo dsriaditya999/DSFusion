@@ -1,0 +1,159 @@
+Dataset :  flir_aligned_day
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.04s)
+creating index...
+index created!
+16
+Test: [   0/44]  Time: 12.832s (12.832s,    1.25/s)  
+Test: [  10/44]  Time: 0.657s (1.912s,    8.37/s)  
+Test: [  20/44]  Time: 0.640s (1.310s,   12.22/s)  
+Test: [  30/44]  Time: 0.637s (1.095s,   14.61/s)  
+Test: [  40/44]  Time: 0.653s (0.987s,   16.21/s)  
+Test: [  43/44]  Time: 2.634s (1.009s,   13.88/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.845518308842727
+**************************************************
+
+Dataset :  flir_aligned_night
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.03s)
+creating index...
+index created!
+16
+Test: [   0/20]  Time: 5.415s (5.415s,    2.95/s)  
+Test: [  10/20]  Time: 0.677s (1.204s,   13.29/s)  
+Test: [  19/20]  Time: 2.052s (1.021s,    6.86/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8672307604060706
+**************************************************
+
+Dataset :  flir_aligned_full
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.05s)
+creating index...
+index created!
+16
+Test: [   0/64]  Time: 5.577s (5.577s,    2.87/s)  
+Test: [  10/64]  Time: 0.650s (1.208s,   13.24/s)  
+Test: [  20/64]  Time: 0.649s (0.941s,   16.99/s)  
+Test: [  30/64]  Time: 0.650s (0.847s,   18.90/s)  
+Test: [  40/64]  Time: 0.636s (0.798s,   20.06/s)  
+Test: [  50/64]  Time: 0.641s (0.768s,   20.84/s)  
+Test: [  60/64]  Time: 0.643s (0.748s,   21.39/s)  
+Test: [  63/64]  Time: 2.083s (0.765s,    6.53/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8496751418443916
+**************************************************
+
+Dataset :  flir_aligned_day
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.04s)
+creating index...
+index created!
+16
+Test: [   0/44]  Time: 5.064s (5.064s,    3.16/s)  
+Test: [  10/44]  Time: 0.663s (1.169s,   13.69/s)  
+Test: [  20/44]  Time: 0.632s (0.917s,   17.44/s)  
+Test: [  30/44]  Time: 0.645s (0.830s,   19.28/s)  
+Test: [  40/44]  Time: 0.646s (0.785s,   20.38/s)  
+Test: [  43/44]  Time: 2.700s (0.822s,   17.03/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8103082800837623
+**************************************************
+
+Dataset :  flir_aligned_night
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+16
+Test: [   0/20]  Time: 4.981s (4.981s,    3.21/s)  
+Test: [  10/20]  Time: 0.640s (1.147s,   13.95/s)  
+Test: [  19/20]  Time: 1.999s (0.983s,    7.12/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8653388068536393
+**************************************************
+
+Dataset :  flir_aligned_full
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.03s)
+creating index...
+index created!
+16
+Test: [   0/64]  Time: 4.916s (4.916s,    3.25/s)  
+Test: [  10/64]  Time: 0.623s (1.147s,   13.94/s)  
+Test: [  20/64]  Time: 0.637s (0.905s,   17.68/s)  
+Test: [  30/64]  Time: 0.647s (0.819s,   19.54/s)  
+Test: [  40/64]  Time: 0.647s (0.775s,   20.64/s)  
+Test: [  50/64]  Time: 0.645s (0.749s,   21.37/s)  
+Test: [  60/64]  Time: 0.625s (0.731s,   21.89/s)  
+Test: [  63/64]  Time: 2.062s (0.749s,    6.68/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.82351120704499
+**************************************************
+
+Dataset :  flir_aligned_day
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.04s)
+creating index...
+index created!
+16
+Test: [   0/44]  Time: 5.038s (5.038s,    3.18/s)  
+Test: [  10/44]  Time: 0.655s (1.173s,   13.64/s)  
+Test: [  20/44]  Time: 0.659s (0.925s,   17.29/s)  
+Test: [  30/44]  Time: 0.656s (0.836s,   19.13/s)  
+Test: [  40/44]  Time: 0.643s (0.790s,   20.25/s)  
+Test: [  43/44]  Time: 2.716s (0.827s,   16.92/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8430056344996938
+**************************************************
+
+Dataset :  flir_aligned_night
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+16
+Test: [   0/20]  Time: 5.065s (5.065s,    3.16/s)  
+Test: [  10/20]  Time: 0.652s (1.162s,   13.77/s)  
+Test: [  19/20]  Time: 2.011s (0.996s,    7.03/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8819148656383519
+**************************************************
+
+Dataset :  flir_aligned_full
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+16
+Test: [   0/64]  Time: 4.913s (4.913s,    3.26/s)  
+Test: [  10/64]  Time: 0.630s (1.143s,   14.00/s)  
+Test: [  20/64]  Time: 0.644s (0.904s,   17.70/s)  
+Test: [  30/64]  Time: 0.637s (0.821s,   19.49/s)  
+Test: [  40/64]  Time: 0.625s (0.777s,   20.58/s)  
+Test: [  50/64]  Time: 0.634s (0.751s,   21.31/s)  
+Test: [  60/64]  Time: 0.643s (0.733s,   21.83/s)  
+Test: [  63/64]  Time: 2.064s (0.750s,    6.67/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.85166029175931
+**************************************************
+

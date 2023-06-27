@@ -1,0 +1,150 @@
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+16
+Test: [   0/44]  Time: 4.576s (4.576s,    3.50/s)  
+Test: [  10/44]  Time: 0.624s (1.089s,   14.69/s)  
+Test: [  20/44]  Time: 0.619s (0.867s,   18.46/s)  
+Test: [  30/44]  Time: 0.624s (0.788s,   20.31/s)  
+Test: [  40/44]  Time: 0.622s (0.747s,   21.41/s)  
+Test: [  43/44]  Time: 2.616s (0.784s,   17.86/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8310804349819758
+**************************************************
+
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.05s)
+creating index...
+index created!
+16
+Test: [   0/20]  Time: 4.822s (4.822s,    3.32/s)  
+Test: [  10/20]  Time: 0.622s (1.112s,   14.39/s)  
+Test: [  19/20]  Time: 1.983s (0.959s,    7.30/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8709836474925017
+**************************************************
+
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.03s)
+creating index...
+index created!
+16
+Test: [   0/64]  Time: 4.427s (4.427s,    3.61/s)  
+Test: [  10/64]  Time: 0.621s (1.076s,   14.87/s)  
+Test: [  20/64]  Time: 0.625s (0.861s,   18.59/s)  
+Test: [  30/64]  Time: 0.620s (0.784s,   20.41/s)  
+Test: [  40/64]  Time: 0.621s (0.744s,   21.50/s)  
+Test: [  50/64]  Time: 0.623s (0.721s,   22.20/s)  
+Test: [  60/64]  Time: 0.622s (0.704s,   22.71/s)  
+Test: [  63/64]  Time: 2.000s (0.722s,    6.93/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8385010713602346
+**************************************************
+
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+16
+Test: [   0/44]  Time: 4.390s (4.390s,    3.64/s)  
+Test: [  10/44]  Time: 0.622s (1.071s,   14.94/s)  
+Test: [  20/44]  Time: 0.620s (0.856s,   18.68/s)  
+Test: [  30/44]  Time: 0.620s (0.780s,   20.51/s)  
+Test: [  40/44]  Time: 0.620s (0.742s,   21.57/s)  
+Test: [  43/44]  Time: 2.606s (0.779s,   17.98/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.7899058778583056
+**************************************************
+
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+16
+Test: [   0/20]  Time: 4.437s (4.437s,    3.61/s)  
+Test: [  10/20]  Time: 0.621s (1.077s,   14.86/s)  
+Test: [  19/20]  Time: 1.946s (0.938s,    7.46/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8580571699321279
+**************************************************
+
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+16
+Test: [   0/64]  Time: 4.414s (4.414s,    3.62/s)  
+Test: [  10/64]  Time: 0.622s (1.078s,   14.85/s)  
+Test: [  20/64]  Time: 0.624s (0.861s,   18.59/s)  
+Test: [  30/64]  Time: 0.623s (0.784s,   20.41/s)  
+Test: [  40/64]  Time: 0.621s (0.745s,   21.49/s)  
+Test: [  50/64]  Time: 0.620s (0.720s,   22.21/s)  
+Test: [  60/64]  Time: 0.621s (0.704s,   22.72/s)  
+Test: [  63/64]  Time: 2.025s (0.722s,    6.93/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8057932008481409
+**************************************************
+
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+16
+Test: [   0/44]  Time: 4.358s (4.358s,    3.67/s)  
+Test: [  10/44]  Time: 0.623s (1.069s,   14.97/s)  
+Test: [  20/44]  Time: 0.621s (0.856s,   18.69/s)  
+Test: [  30/44]  Time: 0.620s (0.780s,   20.51/s)  
+Test: [  40/44]  Time: 0.620s (0.741s,   21.58/s)  
+Test: [  43/44]  Time: 2.647s (0.779s,   17.97/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8445049565904927
+**************************************************
+
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+16
+Test: [   0/20]  Time: 4.487s (4.487s,    3.57/s)  
+Test: [  10/20]  Time: 0.620s (1.081s,   14.80/s)  
+Test: [  19/20]  Time: 1.961s (0.940s,    7.45/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.848688900629576
+**************************************************
+
+Model efficientdetv2_dt created, param count: 25998222
+AMP not enabled. Validating in float32.
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+16
+Test: [   0/64]  Time: 4.391s (4.391s,    3.64/s)  
+Test: [  10/64]  Time: 0.622s (1.073s,   14.91/s)  
+Test: [  20/64]  Time: 0.621s (0.859s,   18.63/s)  
+Test: [  30/64]  Time: 0.623s (0.783s,   20.42/s)  
+Test: [  40/64]  Time: 0.620s (0.744s,   21.51/s)  
+Test: [  50/64]  Time: 0.621s (0.720s,   22.23/s)  
+Test: [  60/64]  Time: 0.621s (0.704s,   22.74/s)  
+Test: [  63/64]  Time: 2.014s (0.721s,    6.93/s)  
+**************************************************
+Mean Average Precision Obtained is : 0.8442609862108368
+**************************************************
+

@@ -15,7 +15,7 @@ from torchsummary import summary
 
 from data import create_dataset, create_loader
 from models.detector import DetBenchTrainImagePair
-from models.models import FusionNet_New
+from models.models import FusionNet_New, FusionNet_New_AfterFusion
 from utils.evaluator import CocoEvaluator
 from utils.utils import visualize_detections, visualize_target
 
@@ -49,6 +49,8 @@ if __name__ == '__main__':
                         help='validation split')
     parser.add_argument('--model', '-m', metavar='MODEL', default='tf_efficientdet_d1',
                         help='model architecture (default: tf_efficientdet_d1)')
+    parser.add_argument('--channels', default=128, type=int,
+                        metavar='N', help='channels (default: 128)')
     parser.add_argument('--save', type=str, default='EXP', help='where to save the experiment')
     parser.add_argument('--num-classes', type=int, default=None, metavar='N',
                         help='Override num_classes in model config if set. For fine-tuning from pretrained.')
@@ -93,7 +95,8 @@ if __name__ == '__main__':
 
     os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu)
 
-    net = FusionNet_New(args.num_classes)
+    # net = FusionNet_New(args.num_classes)
+    net = FusionNet_New_AfterFusion(args)
 
     # load checkpoint
     if args.checkpoint:
@@ -183,7 +186,7 @@ if __name__ == '__main__':
         datetime.now().strftime("%Y%m%d-%H%M%S"),
         args.save
     ])
-    output_dir = get_outdir(output_base, 'final_train_offline', exp_name)
+    output_dir = get_outdir(output_base, 'train_flir_after_diffbb', exp_name)
     saver = CheckpointSaver(
         net, optimizer, args=args, checkpoint_dir=output_dir)
 
