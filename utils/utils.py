@@ -228,3 +228,47 @@ def state_restore_selective(net, loaded_dict, scene=None):
     net.load_state_dict(net_state_dict)
     return net
 
+def visualize_detections(dataset, detections, target, wandb, args, split='val', score_threshold=0.5):
+    class_id_to_label = { int(i) : str(i) for i in range(1, args.num_classes + 1)}
+    #class_id_to_label.update({1: "person", 2: "bicycle", 3: "car"})
+    class_id_to_label.update({1: "people", 2: "car", 3: "motorcycle", 4: "bus", 5: "truck", 6: "lamp"})
+    detections = detections.detach().cpu().numpy()
+    img_indices = target['img_idx'].cpu().numpy()
+    bboxes = target['bbox'].cpu().numpy()
+    clses = target['cls'].cpu().numpy()
+    scores = target['scores'].cpu().numpy() if 'scores' in target else np.zeros_like(clses) + 1000
+    img_scales = target['img_scale'].cpu().numpy()
+    for img_idx, img_dets, bbox, cls, img_scale, score in zip(img_indices, detections, bboxes, clses, img_scales, scores):
+        img_id = dataset.parser.img_ids[img_idx]
+        img_info = dataset.parser.img_infos[img_idx]
+        # yxyx to xyxy
+        bbox[:, 0:4] = bbox[:, [1, 0, 3, 2]] * img_scale
+        predicted_boxes = bounding_boxes(
+            v_boxes=img_dets[:, 0:4],
+            v_labels=img_dets[:, 5],
+            v_scores=img_dets[:, 4],
+            log_width=img_info['width'],
+            log_height=img_info['height'],
+            class_id_to_label=class_id_to_label,
+            score_threshold=score_threshold)
+        gt_boxes = bounding_boxes(
+            v_boxes=bbox,
+            v_labels=cls,
+            v_scores=score,
+            log_width=img_info['width'],
+            log_height=img_info['height'],
+            class_id_to_label=class_id_to_label,
+            score_threshold=0)
+        filename = dataset.thermal_data_dir/img_info['file_name']
+        filename_rgb = dataset.rgb_data_dir/img_info['file_name'].replace('_PreviewData.jpg', '_RGB.jpg')
+        raw_image = Image.open(filename).convert('RGB')
+        raw_image_rgb = Image.open(filename_rgb).convert('RGB')
+        # log to wandb: raw image, predictions, and dictionary of class labels for each class id
+        box_image = wandb.Image(raw_image, boxes = {"predictions": {"box_data": predicted_boxes, "class_labels" : class_id_to_label},
+                                                    "gts": {"box_data": gt_boxes, "class_labels" : class_id_to_label}},
+                                                    caption=str(filename))
+        box_image_rgb = wandb.Image(raw_image_rgb, boxes = {"predictions": {"box_data": predicted_boxes, "class_labels" : class_id_to_label},
+                                                    "gts": {"box_data": gt_boxes, "class_labels" : class_id_to_label}},
+                                                   caption=str(filename_rgb))
+        wandb.log({'thermal': box_image})
+        wandb.log({'rgb': box_image_rgb})

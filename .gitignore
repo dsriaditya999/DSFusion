@@ -1,3 +1,4 @@
+wandb/
 .ipynb_checkpoints/*
 output/*
 Pretrained Model Files/*

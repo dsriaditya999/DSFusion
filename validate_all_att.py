@@ -18,6 +18,7 @@ from models.models import Att_FusionNet, Att_FusionNet_BeforeBiFPN
 from models.detector import DetBenchPredictImagePair
 from data import create_dataset, create_loader, resolve_input_config
 from utils.evaluator import CocoEvaluator
+from utils.utils import visualize_detections
 
 has_apex = False
 try:
@@ -110,6 +111,9 @@ parser.add_argument('--thermal-checkpoint-path', type=str, default=None)
 parser.add_argument('--rgb-checkpoint-path', type=str, default=None)
 parser.add_argument('--classwise', dest='classwise', action='store_true',
                     help='use Pascal evaluator for classwise metrics')
+parser.add_argument('--wandb', action='store_true',
+                    help='use wandb for logging and visualization')
+
 
 
 def validate(args):
@@ -191,6 +195,17 @@ def validate(args):
     batch_time = AverageMeter()
     end = time.time()
     last_idx = len(loader) - 1
+
+    # logging
+    if args.wandb:
+        import wandb
+        config = dict()
+        config.update({arg: getattr(args, arg) for arg in vars(args)})
+        wandb.init(
+          project='wacv2024',
+          config=config
+        )
+
     with torch.no_grad():
         for i, (thermal_input, rgb_input, target) in enumerate(loader):
             with amp_autocast():
@@ -199,6 +214,9 @@ def validate(args):
                 else:
                     output = bench(thermal_input, rgb_input, img_info=target, branch=args.branch)
             evaluator.add_predictions(output, target)
+            # print(output)
+            if args.wandb:
+                visualize_detections(dataset, output, target, wandb, args, 'test')
 
             # measure elapsed time
             batch_time.update(time.time() - end)

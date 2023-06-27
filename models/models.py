@@ -102,6 +102,14 @@ class Att_FusionNet(nn.Module):
         thermal_det = EfficientDet(self.config)
         rgb_det = EfficientDet(self.config)
 
+        # self.config = effdet.config.model_config.get_efficientdet_config('efficientdetv2_dt')
+        # self.config.num_classes = args.num_classes
+
+        # thermal_det = EfficientDet(self.config)
+        # new_config = effdet.config.model_config.get_efficientdet_config('efficientdetv2_dt')
+        # new_config.num_classes = 90
+        # rgb_det = EfficientDet(new_config)
+
         if args.thermal_checkpoint_path:
             effdet.helpers.load_checkpoint(thermal_det, args.thermal_checkpoint_path)
             print('Loading Thermal from {}'.format(args.thermal_checkpoint_path))
