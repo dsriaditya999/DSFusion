@@ -2,6 +2,13 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from sklearn.preprocessing import normalize
+
+import numpy as np
+import matplotlib.pyplot as plt
+# plt.style.use('_mpl-gallery')
+
+
 class CBAMLayer(nn.Module):
 
     def __init__(self, channel, reduction=16):
@@ -30,6 +37,16 @@ class CBAMLayer(nn.Module):
         x_max = self.fc(self.max_pool(x).view(b, c)).view(b, c, 1, 1)
 
         y = torch.sigmoid(x_avg + x_max)
+
+        # plot_y = y[0,:,0,0].cpu().numpy()
+        # plot_y = (plot_y - np.nanmin(plot_y)) / (np.nanmax(plot_y) - np.nanmin(plot_y))
+        # plot_x = np.arange(256)
+        # fig, ax = plt.subplots()
+        # markerline1, stemlines, _ = plt.stem(plot_x[:128], plot_y[:128], 'k')
+        # plt.setp(markerline1, 'color', 'k', 'markerfacecolor', 'k', 'mec', 'k')
+        # markerline2, stemlines, _ = plt.stem(plot_x[128:], plot_y[128:], 'crimson')
+        # plt.setp(markerline2, 'color', 'crimson', 'markerfacecolor', 'crimson', 'mec', 'crimson')
+        # plt.savefig('cam/{i}.png'.format(i=x.shape[-2]))
 
         return self.combine(x * y)
 

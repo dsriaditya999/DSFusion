@@ -20,6 +20,15 @@ from data import create_dataset, create_loader, resolve_input_config
 from utils.evaluator import CocoEvaluator
 from utils.utils import visualize_detections
 
+import numpy as np
+from PIL import Image
+
+from utils.utils import FasterRCNNBoxScoreTarget
+
+from pytorch_grad_cam import AblationCAM, EigenCAM, GradCAM
+from pytorch_grad_cam.ablation_layer import AblationLayerFasterRCNN
+from pytorch_grad_cam.utils.image import show_cam_on_image, scale_accross_batch_and_channels, scale_cam_image
+
 has_apex = False
 try:
     from apex import amp
@@ -217,6 +226,30 @@ def validate(args):
             # print(output)
             if args.wandb:
                 visualize_detections(dataset, output, target, wandb, args, 'test')
+
+            # target_layers = [model.fusion_cbam2, model.fusion_cbam3, model.fusion_cbam4]
+            # targets = [FasterRCNNBoxScoreTarget(labels=target['cls'], bounding_boxes=target['bbox'])]
+
+            # cam = EigenCAM(model,
+            #     target_layers, 
+            #     use_cuda=torch.cuda.is_available())
+            # grayscale_cam = cam([rgb_input, thermal_input], targets=targets)
+            # # Take the first image in the batch:
+            # grayscale_cam = grayscale_cam[0, :]
+
+
+            # raw_img = np.transpose(rgb_input[0].clamp(-3.0, 3.0).cpu().numpy(), (1, 2, 0))
+            # raw_img = np.array((raw_img+3)/6)
+            # cam_img = show_cam_on_image(raw_img, grayscale_cam, use_rgb=True)
+            # im = Image.fromarray(cam_img)
+
+            # img_idx = target['img_idx'].cpu().numpy()[0]
+            # img_info = dataset.parser.img_infos[img_idx]
+            # im.save('cam/'+img_info['file_name'])
+
+            # raw_img = np.array(raw_img*255, dtype=np.uint8)
+            # raw_img = Image.fromarray(raw_img)
+            # raw_img.save('raw/'+img_info['file_name'])
 
             # measure elapsed time
             batch_time.update(time.time() - end)

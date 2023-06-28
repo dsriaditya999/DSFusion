@@ -72,6 +72,8 @@ class FusionDatasetFLIR(data.Dataset):
         Returns:
             tuple: Tuple (thermal_image, rgb_image, annotations (target)).
         """
+        # print(self._parser.img_infos)
+        # index = 41
         img_info = self._parser.img_infos[index]
         target = dict(img_idx=index, img_size=(img_info['width'], img_info['height']))
         if self._parser.has_labels:

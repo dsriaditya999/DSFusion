@@ -16,7 +16,7 @@ from effdet.distributed import synchronize, is_main_process, all_gather_containe
 #import pyximport; py_importer, pyx_importer = pyximport.install(pyimport=True)
 from .evaluation import detection_evaluator as tfm_eval
 #pyximport.uninstall(py_importer, pyx_importer)
-from .kitti_eval import kitti_eval
+# from .kitti_eval import kitti_eval
 
 _logger = logging.getLogger(__name__)
 

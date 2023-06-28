@@ -1,4 +1,8 @@
 wandb/
+flir_night_agn/
+flir_night_ada/
+flir_day_agn/
+flir_day_ada/
 .ipynb_checkpoints/*
 output/*
 Pretrained Model Files/*

@@ -1,6 +1,6 @@
 import copy
 
-import ensemble_boxes
+# import ensemble_boxes
 import numpy as np
 import torch
 import torchvision
@@ -22,55 +22,6 @@ def normalize_boxes(boxes, img_size, invert=False):
     return boxes
 
 
-def detections_to_self_label(detections1, detections2, target, score_threshold=0.1, use_weighted_boxes_fusion=False):
-    self_label = copy.deepcopy(target)
-    for idx, [img_dets1, img_dets2] in enumerate(zip(detections1, detections2)):
-        
-        # boxes fusion
-        if use_weighted_boxes_fusion:
-            aggregate_detections = torch.cat((torch.unsqueeze(img_dets1, 0), torch.unsqueeze(img_dets2, 0)), dim=0)
-            aggregate_detections = normalize_boxes(aggregate_detections, self_label['img_size'][idx])
-
-            boxes, scores, labels = ensemble_boxes.weighted_boxes_fusion(
-                aggregate_detections[:, :, 0:4], 
-                aggregate_detections[:, :, 4], 
-                aggregate_detections[:, :, 5])
-            
-            boxes = torch.from_numpy(boxes).to(aggregate_detections.device)
-            scores = torch.from_numpy(scores).to(aggregate_detections.device)
-            labels = torch.from_numpy(labels).to(aggregate_detections.device)
-            boxes = normalize_boxes(boxes, self_label['img_size'][idx], invert=True)
-        else:
-            aggregate_detections = torch.cat((img_dets1, img_dets2), dim=0)
-            idx2keep = torchvision.ops.nms(aggregate_detections[:,:4], aggregate_detections[:,4], iou_threshold=0.5)
-
-            processed_detections = aggregate_detections[idx2keep]
-            boxes = processed_detections[:,0:4]
-            scores = processed_detections[:,4]
-            labels = processed_detections[:,5]
-
-        # from xyxy to yxyx
-        boxes[:, 0:4] = boxes[:, [1, 0, 3, 2]] / self_label['img_scale'][idx]
-        # score filter
-
-        valid_idx = torch.where(torch.logical_and((scores > score_threshold), (labels < 4)))[0]
-        boxes = torch.index_select(boxes, 0, valid_idx)
-        labels = torch.index_select(labels, 0, valid_idx)
-        scores = torch.index_select(scores, 0, valid_idx)
-        
-        self_label['scores'] = 0*self_label['cls'][:] - 1
-        padding_len = self_label['bbox'][idx].shape[0] - len(valid_idx)
-        if padding_len > 0:
-            padding = -1 * torch.ones((padding_len, 6)).to(aggregate_detections.device)
-            self_label['bbox'][idx] = torch.cat((boxes, padding[:, 0:4]), dim=0)
-            self_label['cls'][idx] = torch.cat((labels, padding[:, 4]), dim=0)
-            self_label['scores'][idx] = torch.cat((scores, padding[:, 5]), dim=0)
-        elif padding_len <= 0:
-            self_label['bbox'][idx] = boxes[0: self_label['bbox'][idx].shape[0], :]
-            self_label['cls'][idx] = labels[0: self_label['bbox'][idx].shape[0], :]
-            self_label['scores'][idx] = scores[0: self_label['bbox'][idx].shape[0], :]
-
-    return self_label
 
 
 def bounding_boxes(v_boxes, v_labels, v_scores, log_width, log_height, class_id_to_label, score_threshold):
@@ -272,3 +223,38 @@ def visualize_detections(dataset, detections, target, wandb, args, split='val', 
                                                    caption=str(filename_rgb))
         wandb.log({'thermal': box_image})
         wandb.log({'rgb': box_image_rgb})
+
+
+class FasterRCNNBoxScoreTarget:
+    """ For every original detected bounding box specified in "bounding boxes",
+        assign a score on how the current bounding boxes match it,
+            1. In IOU
+            2. In the classification score.
+        If there is not a large enough overlap, or the category changed,
+        assign a score of 0.
+        The total score is the sum of all the box scores.
+    """
+    def __init__(self, labels, bounding_boxes, iou_threshold=0.5):
+        self.labels = labels
+        self.bounding_boxes = bounding_boxes
+        self.iou_threshold = iou_threshold
+
+    def __call__(self, model_outputs):
+        output = torch.Tensor([0])
+        if torch.cuda.is_available():
+            output = output.cuda()
+
+        if len(model_outputs[1]) == 0:
+            return output
+
+        for box, label in zip(self.bounding_boxes, self.labels):
+            box = torch.Tensor(box[None, :])
+            if torch.cuda.is_available():
+                box = box.cuda()
+
+            ious = torchvision.ops.box_iou(box, model_outputs[1])
+            index = ious.argmax()
+            # if ious[0, index] > self.iou_threshold and model_outputs[0][index] == label:
+            #     score = ious[0, index] + model_outputs['scores'][index]
+            #     output = output + score
+        return output
