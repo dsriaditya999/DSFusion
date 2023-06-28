@@ -1,5 +1,8 @@
 .ipynb_checkpoints/*
 output/*
+wandb/*
+cam/*
+raw/*
 Pretrained Model Files/*
 data/__pycache__/*
 models/__pycache__/*

@@ -8,6 +8,8 @@ import time
 import torch
 import torch.nn.parallel
 from contextlib import suppress
+import numpy as np
+from PIL import Image
 
 from effdet import create_model, create_evaluator
 from timm.utils import AverageMeter, setup_default_logging
@@ -18,6 +20,12 @@ from models.models import Att_FusionNet
 from models.detector import DetBenchPredictImagePair
 from data import create_dataset, create_loader, resolve_input_config
 from utils.evaluator import CocoEvaluator, KittiEvaluator, PascalEvaluator
+from utils.utils import visualize_detections
+from utils.utils import FasterRCNNBoxScoreTarget, fasterrcnn_reshape_transform
+
+from pytorch_grad_cam import AblationCAM, EigenCAM
+from pytorch_grad_cam.ablation_layer import AblationLayerFasterRCNN
+from pytorch_grad_cam.utils.image import show_cam_on_image, scale_accross_batch_and_channels, scale_cam_image
 
 has_apex = False
 try:
@@ -110,6 +118,8 @@ parser.add_argument('--thermal-checkpoint-path', type=str, default=None)
 parser.add_argument('--rgb-checkpoint-path', type=str, default=None)
 parser.add_argument('--classwise', dest='classwise', action='store_true',
                     help='use Pascal evaluator for classwise metrics')
+parser.add_argument('--wandb', action='store_true',
+                    help='use wandb for logging and visualization')
 
 
 def validate(args):
@@ -195,6 +205,17 @@ def validate(args):
     batch_time = AverageMeter()
     end = time.time()
     last_idx = len(loader) - 1
+
+    # logging
+    if args.wandb:
+        import wandb
+        config = dict()
+        config.update({arg: getattr(args, arg) for arg in vars(args)})
+        wandb.init(
+          project='wacv2024',
+          config=config
+        )
+
     with torch.no_grad():
         for i, (thermal_input, rgb_input, target) in enumerate(loader):
             with amp_autocast():
@@ -203,6 +224,31 @@ def validate(args):
                 else:
                     output = bench(thermal_input, rgb_input, img_info=target, branch=args.branch)
             evaluator.add_predictions(output, target)
+
+            if args.wandb:
+                visualize_detections(dataset, output, target, wandb, args, 'test')
+
+            target_layers = [model.fusion_cbam0]
+            targets = [FasterRCNNBoxScoreTarget(labels=target['cls'], bounding_boxes=target['bbox'])]
+            
+            # print('+++++++++++++++++++++++===')
+            cam = EigenCAM(model,
+                target_layers, 
+                use_cuda=torch.cuda.is_available())
+            grayscale_cam = cam([rgb_input, thermal_input], targets=targets)
+            # Take the first image in the batch:
+            grayscale_cam = grayscale_cam[0, :]
+
+
+            raw_img = np.transpose(rgb_input[0].clamp(-3.0, 3.0).cpu().numpy(), (1, 2, 0))
+            raw_img = np.array((raw_img+3)/6)
+            cam_img = show_cam_on_image(raw_img, grayscale_cam, use_rgb=True)
+            im = Image.fromarray(np.flip(cam_img,axis=1))
+            im.save('cam/{i}.png'.format(i=i))
+
+            raw_img = np.array(raw_img*255, dtype=np.uint8)
+            raw_img = Image.fromarray(np.flip(raw_img, axis=1))
+            raw_img.save('raw/{i}.png'.format(i=i))
 
             # measure elapsed time
             batch_time.update(time.time() - end)
