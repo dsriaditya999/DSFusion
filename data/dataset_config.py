@@ -21,9 +21,9 @@ class FlirAlignedFullCfg(CocoCfg):
 class FlirAlignedDayCfg(CocoCfg):
     variant: str = ''
     splits: Dict[str, dict] = field(default_factory=lambda: dict(
-        train=dict(ann_filename='meta/thermal/day_flir_train.json', img_dir='images_thermal_train_day/data/', has_labels=True),
-        val=dict(ann_filename='meta/thermal/day_flir_test.json', img_dir='images_thermal_test_day/data/', has_labels=True),
-        test=dict(ann_filename='meta/thermal/day_flir_test.json', img_dir='images_thermal_test_day/data/', has_labels=True),
+        train=dict(ann_filename='meta/thermal/day_flir_train.json', img_dir='images_thermal_train/data/', has_labels=True),
+        val=dict(ann_filename='meta/thermal/day_flir_test.json', img_dir='images_thermal_test/data/', has_labels=True),
+        test=dict(ann_filename='meta/thermal/day_flir_test.json', img_dir='images_thermal_test/data/', has_labels=True),
     ))
 
 
@@ -32,7 +32,7 @@ class FlirAlignedDayCfg(CocoCfg):
 class FlirAlignedNightCfg(CocoCfg):
     variant: str = ''
     splits: Dict[str, dict] = field(default_factory=lambda: dict(
-        train=dict(ann_filename='meta/thermal/night_flir_train.json', img_dir='images_thermal_train_night/data/', has_labels=True),
-        val=dict(ann_filename='meta/thermal/night_flir_test.json', img_dir='images_thermal_test_night/data/', has_labels=True),
-        test=dict(ann_filename='meta/thermal/night_flir_test.json', img_dir='images_thermal_test_night/data/', has_labels=True),
+        train=dict(ann_filename='meta/thermal/night_flir_train.json', img_dir='images_thermal_train/data/', has_labels=True),
+        val=dict(ann_filename='meta/thermal/night_flir_test.json', img_dir='images_thermal_test/data/', has_labels=True),
+        test=dict(ann_filename='meta/thermal/night_flir_test.json', img_dir='images_thermal_test/data/', has_labels=True),
     ))
