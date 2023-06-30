@@ -1,1 +1,0 @@
-python train_segmentation.py /home/carson/data/cityscapes/ --dataset=cityscapes --model=resnet50 --num-classes=19 --batch-size=16 --num-workers=16 --img-size=1024 --wandb --gpu=0 --epochs=300 --cityscapes-split fine coarse --lr=1e-4 --pretrained-weights=weights/resnet50-cityscapes-20221016-151306-finetune/weights-0460.pt --freeze-encoder

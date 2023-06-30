@@ -1,1 +1,0 @@
-python validate_segmentation.py /home/carson/data/cityscapes/ --dataset=cityscapes --model=resnet50 --num-classes=19 --batch-size=8 --img-size=2048 --gpu=1 --num-workers=4 --pretrained-weights=weights/resnet50-cityscapes-20221020-133529-coarse/best.pt

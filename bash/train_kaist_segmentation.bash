@@ -1,1 +1,0 @@
-python ../train_segmentation.py /home/carson/data/kaist/ --dataset=kaist --model=resnet50 --num-classes=19 --branch='rgb' --batch-size=32 --img-size=640 --wandb --gpu=1 --lr=1e-2

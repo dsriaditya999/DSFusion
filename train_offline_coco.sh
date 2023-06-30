@@ -1,1 +1,0 @@
-python train_offline.py /home/carson/data/FLIR/FLIR_Aligned/ --thermal-checkpoint-path /home/carson/users/connor_lee/efficientdet-pytorch/output/train/20221004-165444-efficientdetv2_dt/model_best.pth.tar --num-classes 90 --model efficientdetv2_dt --branch fusion --batch-size=8 --epochs=10 --init-fusion-head-weights thermal --freeze-layer fusion_cbam 

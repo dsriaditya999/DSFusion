@@ -1,13 +1,10 @@
 """ Flir transforms
 """
 import random
-import math
-from copy import deepcopy
 
 from PIL import Image
 from PIL import ImageEnhance
 import numpy as np
-import torch
 
 from effdet.data.transforms import _pil_interp, _size_tuple, clip_boxes_
 from effdet.data.transforms import resolve_fill_color
