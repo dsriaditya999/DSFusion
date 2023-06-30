@@ -29,7 +29,9 @@ class Att_FusionNet(nn.Module):
             effdet.helpers.load_checkpoint(rgb_det, args.rgb_checkpoint_path)
             print('Loading RGB from {}'.format(args.rgb_checkpoint_path))
         else:
+            effdet.helpers.load_pretrained(rgb_det, self.config.url)
             print('RGB checkpoint path not provided.')
+            print('Loading RGB from {}'.format(self.config.url))
 
             
         

@@ -38,7 +38,7 @@ Download the FLIR Aligned Dataset and put it in this structure:
 To validate the provided Pretrained RGB checkpoint on Day Data (Test), run the following command:
 
 ```
-python validate_fusion.py <dir of flir dataset> --dataset flir_aligned_day --rgb-checkpoint-path <path to rgb checkpoint> --classwise --split test --num-classes 90 --rgb_mean 0.485 0.456 0.406 --rgb_std 0.229 0.224 0.225 --thermal_mean 0.519 0.519 0.519 --thermal_std 0.225 0.225 0.225 --model efficientdetv2_dt --batch-size=8 --branch rgb
+python validate_fusion.py <dir of flir dataset> --dataset flir_aligned_day --classwise --split test --num-classes 90 --rgb_mean 0.485 0.456 0.406 --rgb_std 0.229 0.224 0.225 --thermal_mean 0.519 0.519 0.519 --thermal_std 0.225 0.225 0.225 --model efficientdetv2_dt --batch-size=8 --branch rgb
 ```
 
 ## Validating Thermal Modality Checkpoint
@@ -55,7 +55,7 @@ python validate_fusion.py <dir of flir dataset> --dataset flir_aligned_night --t
 To train a RGB-T Fusion (CBAM) on day data of FLIR Dataset, run the following command:
 
 ```
-python train_fusion.py <dir of flir dataset> --dataset flir_aligned_day --rgb-checkpoint-path <path to rgb checkpoint> --thermal-checkpoint-path <path to thermal checkpoint> --init-fusion-head-weights thermal --num-classes 90 --rgb_mean 0.485 0.456 0.406 --rgb_std 0.229 0.224 0.225 --thermal_mean 0.519 0.519 0.519 --thermal_std 0.225 0.225 0.225 --model efficientdetv2_dt --batch-size=8 --epochs=50 --branch fusion --freeze-layer fusion_cbam --att_type cbam
+python train_fusion.py <dir of flir dataset> --dataset flir_aligned_day --thermal-checkpoint-path <path to thermal checkpoint> --init-fusion-head-weights thermal --num-classes 90 --rgb_mean 0.485 0.456 0.406 --rgb_std 0.229 0.224 0.225 --thermal_mean 0.519 0.519 0.519 --thermal_std 0.225 0.225 0.225 --model efficientdetv2_dt --batch-size=8 --epochs=50 --branch fusion --freeze-layer fusion_cbam --att_type cbam
 ```
 
 ## Validating an RGB-T Model
