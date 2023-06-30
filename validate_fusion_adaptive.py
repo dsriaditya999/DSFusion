@@ -11,7 +11,7 @@ from timm.utils import AverageMeter, setup_default_logging
 from timm.models import load_checkpoint
 from timm.models.layers import set_layer_config
 
-from models.models import Att_FusionNet, Adaptive_Att_FusionNet, Att_FusionNet_BeforeBiFPN, Adaptive_Att_FusionNet_BeforeBiFPN
+from models.models import Att_FusionNet, Adaptive_Att_FusionNet
 from models.detector import DetBenchPredictImagePair
 from data import create_dataset, create_loader, resolve_input_config
 from utils.evaluator import CocoEvaluator
@@ -150,7 +150,6 @@ def validate(args):
             )
     else:
         model = Adaptive_Att_FusionNet(args)
-        # model = Adaptive_Att_FusionNet_BeforeBiFPN(args)
         if args.checkpoint:
             load_checkpoint(model, args.checkpoint, use_ema=args.use_ema, strict=False)
         if args.checkpoint_cls:
@@ -241,7 +240,6 @@ def validate(args):
     mean_ap = 0.
     if dataset.parser.has_labels:
         mean_ap = evaluator.evaluate(output_result_file=args.results)
-        # mean_ap = CocoEvaluator(dataset, distributed=distributed, pred_yxyx=pred_yxyx)
     else:
         evaluator.save(args.results)
 
@@ -262,8 +260,6 @@ def main():
 
     
     mean_ap = validate(args)
-    # print("Dataset Tested on: "+args.dataset.upper()+", Attention Type: "+args.att_type.upper()+", Trained Model Folder: "+args.checkpoint.split('/')[-2])
-    # print("Dataset Tested on: "+args.dataset.upper()+" Branch : "+args.branch.upper())
     print("*"*50)
     print("Mean Average Precision Obtained is : "+str(mean_ap))
     print("*"*50)
