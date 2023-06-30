@@ -68,7 +68,7 @@ python validate_fusion.py <dir of flir dataset> --dataset flir_aligned_night --c
 
 
 
-# Scene-Adaptive Validation
+## Scene-Adaptive Validation
 
 To do a scene-adaptive validation on all data of FLIR Dataset, run the following command:
 
